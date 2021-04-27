@@ -6,5 +6,6 @@ settings.json
 sources.txt
 
 historicalprices.db
+currentprices/
 *.jpg
 *.csv
