@@ -1,4 +1,8 @@
 # %%
+''' NOTE: THIS IS OLD AND DOESN'T WORK
+REA detects requests and refuses to send data
+'''
+
 from bs4 import BeautifulSoup
 import requests 
 import pandas as pd
