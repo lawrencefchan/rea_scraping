@@ -80,7 +80,7 @@ dummy = {
 }
 
 data['dummy'] = dummy
-data
+
 
 # %%
 def scrape_element(element):
@@ -95,7 +95,7 @@ def scrape_element(element):
     }
 
     price = element.find_element_by_xpath(".//div[@class='price h1 strong']").text
-    price = int(re.sub('[$,]', '', price))
+    price = int(re.sub('[$, PW]', '', price))
     d['median'] = price
 
     # 2br/3br/4br
@@ -111,87 +111,25 @@ def scrape_element(element):
 
     return d
 
-# %% houses - buy/rent
+# %% scrape prices: house/unit buy/rent
 buy_elements = driver.find_elements_by_xpath("//div[@class='median-price-subsection buy-subsection']")
 rent_elements = driver.find_elements_by_xpath("//div[@class='median-price-subsection rent-subsection']")
 
+dummy['house_buy'] = scrape_element(buy_elements[0])
+dummy['house_rent'] = scrape_element(rent_elements[0])
 
-
-
-# --- buy
-price = buy_elements[0].find_element_by_xpath(".//div[@class='price h1 strong']").text
-price = int(re.sub('[$,]', '', price))
-dummy['house_buy']['median'] = price
-
-# 2br/3br/4br
-for k, v in brs.items():
-    price = buy_elements[0].find_element_by_xpath(f".//a[@class='breakdown-subsection {v}-subsection']" 
-                                    f"//div[@class='price strong']").text
-    price = int(re.sub('[$, PW]', '', price))
-    dummy['house_buy'][k] = price
-
-date = buy_elements[0].find_element_by_xpath(f".//div[@class='processed-date p-small']"
-                        f"//span[@class='strong']").text
-dummy['house_buy']['updated'] = pd.to_datetime(date).strftime('%Y-%m-%d')
-
-# --- rent
-price = rent_elements[0].find_element_by_xpath(".//div[@class='price h1 strong']").text
-price = int(re.sub('[$, PW]', '', price))
-dummy['house_rent']['median'] = price
-
-# 2br/3br/4br
-for k, v in brs.items():
-    price = rent_elements[0].find_element_by_xpath(f".//a[@class='breakdown-subsection {v}-subsection']" 
-                                    f"//div[@class='price strong']").text
-    price = int(re.sub('[$, PW]', '', price))
-    dummy['house_rent'][k] = price
-
-date = rent_elements[0].find_element_by_xpath(f".//div[@class='processed-date p-small']"
-                        f"//span[@class='strong']").text
-dummy['house_rent']['updated'] = pd.to_datetime(date).strftime('%Y-%m-%d')
-dummy
-
-# %% click "units" button
-
+# click units to get visible text (may not be necessary with right xpath?)
 button = driver.find_element_by_xpath("//span[@class='switch-type h5 units']")
 button = WebDriverWait(driver, 10).until(lambda x: button)  # .until() takes a function, not an element
 driver.execute_script('arguments[0].scrollIntoView({block: "center"});', button)
-
 button.click()
 
-# %% unit - buy/rent
+dummy['unit_buy'] = scrape_element(buy_elements[1])
+dummy['unit_rent'] = scrape_element(rent_elements[1])
 
-# buy
-price = buy_elements[1].find_element_by_xpath(".//div[@class='price h1 strong']").text
-price = int(re.sub('[$,]', '', price))
-dummy['unit_buy']['median'] = price
 
-for k, v in brs.items():
-    price = buy_elements[1].find_element_by_xpath(f".//a[@class='breakdown-subsection {v}-subsection']" 
-                                    f"//div[@class='price strong']").text
-    price = int(re.sub('[$, PW]', '', price))
-    dummy['unit_buy'][k] = price
-
-date = buy_elements[1].find_element_by_xpath(f".//div[@class='processed-date p-small']"
-                        f"//span[@class='strong']").text
-dummy['unit_buy']['updated'] = pd.to_datetime(date).strftime('%Y-%m-%d')
-
-# rent
-price = rent_elements[1].find_element_by_xpath(".//div[@class='price h1 strong']").text
-price = int(re.sub('[$, PW]', '', price))
-dummy['unit_rent']['median'] = price
-
-# 2br/3br/4br
-for k, v in brs.items():
-    price = rent_elements[1].find_element_by_xpath(f".//a[@class='breakdown-subsection {v}-subsection']" 
-                                    f"//div[@class='price strong']").text
-    price = int(re.sub('[$, PW]', '', price))
-    dummy['unit_rent'][k] = price
-
-date = rent_elements[1].find_element_by_xpath(f".//div[@class='processed-date p-small']"
-                        f"//span[@class='strong']").text
-dummy['unit_rent']['updated'] = pd.to_datetime(date).strftime('%Y-%m-%d')
 dummy
+
 
 # %% click "trend" button
 button = driver.find_element_by_xpath("//span[@class='switch-type trend']")
@@ -215,4 +153,7 @@ df.index = pd.to_datetime(df.index)
 
 idx = pd.IndexSlice
 df.loc[:, idx[:, 'price']].plot(marker='.', legend=False)
-# df.loc[:, idx[:, 'count']].plot()
+df.loc[:, idx[:, 'count']].plot(marker='.', legend=False)
+
+# %%
+
