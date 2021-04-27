@@ -13,7 +13,6 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 url_base = r'https://www.realestate.com.au/neighbourhoods/'
-postcodes = pd.read_csv('suburb_postcodes.csv')
 # https://www.realestate.com.au/neighbourhoods/north-epping-2121-nsw
 
 options = webdriver.ChromeOptions()
@@ -25,11 +24,17 @@ options.add_argument("--incognito")
 driver = webdriver.Chrome(executable_path="chromedriver90.exe", options=options)
 
 # %%
+postcodes = pd.read_csv('postcodes-suburbs-regions.csv')
+regions = ['Central & Northern Sydney', 'Southern & South Western Sydney', 'Western Sydney & Blue Mountains']
+
+postcodes = postcodes.query('Region == @regions').reset_index(drop=True)
+
+# %%
 urls = [f'{url_base}{s.lower().replace(" ", "-")}-{p}-nsw'
         for p, s in zip(postcodes['Postcode'], postcodes['Suburb'])]
 
 for url in [i for i in urls if 'epping' in i]:
-    suburb = url.split(r'/')[-1]
+    suburb = url.split(r'/')[-1].split('-')[0]
     driver.get(url)
 
     # html = driver.page_source
@@ -142,7 +147,6 @@ button.click()
 trend_element = driver.find_element_by_xpath("//div[@class='slide-section median-price-subsections trend']")
 trend_data = trend_element.get_attribute('data-trend')
 
-# %%
 d = pd.read_json(trend_data).to_dict()['12_months_median']
 
 df = pd.concat({k: pd.DataFrame(v).T.drop('latest_point_in_time', axis=1, errors='ignore')
@@ -154,6 +158,34 @@ df.index = pd.to_datetime(df.index)
 idx = pd.IndexSlice
 df.loc[:, idx[:, 'price']].plot(marker='.', legend=False)
 df.loc[:, idx[:, 'count']].plot(marker='.', legend=False)
+
+df = df.reset_index()
+
+# %%
+
+import sqlite3
+con = sqlite3.connect('historicalprices.db')
+
+cur = con.cursor()
+
+# Create table
+cur.execute('''CREATE TABLE IF NOT EXISTS prices_counts (
+                date text,
+                house_price integer,
+                house_count integer, 
+                unit_price integer, 
+                unit_count integer
+                )''')
+
+# get column names from db table
+cur.execute('PRAGMA table_info(prices_counts);')
+df.columns = [x[1] for x in cur.fetchall()]
+
+df.to_sql(name='prices_counts', con=con, if_exists='append', index=False)
+
+# Save and close
+con.commit()
+con.close()
 
 # %%
 

@@ -1,3 +1,10 @@
+postcode_munge.py
+
 env/
 chromedriver*
 settings.json
+sources.txt
+
+historicalprices.db
+*.jpg
+*.csv
