@@ -139,7 +139,7 @@ urls = [f'{url_base}{s.lower().replace(" ", "-")}-{p}-nsw'
 
 
 #%%
-startfrom = 'allawah'.replace(' ', '-')
+startfrom = 'ramsgate'.replace(' ', '-')
 i = 0
 for url in urls:
     if startfrom not in url:
@@ -252,5 +252,3 @@ for url in urls[531:]:
     # Save and close
     con.commit()
     con.close()
-
-#%%
