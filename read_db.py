@@ -187,7 +187,7 @@ def detect_outliers(df):
 detect_outliers(df)
 
 # %%
-fig, axes = plt.subplots(ncols=2)
+fig, axes = plt.subplots(nrows=2)
 
 parra = df['parramatta']
 
@@ -199,10 +199,11 @@ parra.columns = pd.MultiIndex.from_product(
 sm = plt.cm.ScalarMappable(cmap='viridis', 
                            norm=plt.Normalize(vmin=parra.index.min().year,
                                               vmax=parra.index.max().year))
-ax = parra['house'].plot.scatter('count', 'price', c=parra.index, cmap='viridis')
-cbar = plt.colorbar(sm)
-
-parra['unit'].plot.scatter('count', 'price', c=parra.index, cmap='viridis')
+parra['house'].plot.scatter('count', 'price', c=parra.index, cmap='viridis', ax=axes[0])
+parra['unit'].plot.scatter('count', 'price', c=parra.index, cmap='viridis', ax=axes[1])
+fig.colorbar(sm, ax=axes.ravel().tolist())
+axes[0].ticklabel_format(style='plain')
+axes[1].yaxis.set_major_locator(plt.MultipleLocator(50000))
 
 plt.show()
 
