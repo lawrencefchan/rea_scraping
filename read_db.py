@@ -143,7 +143,25 @@ df = load_data()
 df0 = filter_dataset(df)
 
 
+def get_suburb_url(suburb):
+    suburb = suburb.title()
 
+    url_base = r'https://www.realestate.com.au/neighbourhoods/'
+    # https://www.realestate.com.au/neighbourhoods/north-epping-2121-nsw
+
+    postcodes = pd.read_csv('postcodes-suburbs-regions.csv').query('Suburb == @suburb')
+
+    display(postcodes)
+
+    p = postcodes.iloc[0, 0]
+    s = postcodes.iloc[0, 1]
+
+    url = f'{url_base}{s.lower().replace(" ", "-")}-{p}-nsw'
+
+    return url
+
+
+get_suburb_url('north epping')
 
 # df.loc[:, 'allawah']
 # df.head()
@@ -222,3 +240,53 @@ df.loc[:, pd.IndexSlice[:, 'house_price']].plot(legend=False)
 # df['house_count'][df0.index]
 
 # df0.loc[:, pd.IndexSlice[:, 'house_count']].plot(legend=False)
+
+# %% growth in past year
+
+
+def plot_historical_growth():
+    drop_cols = ['millers point', 'kemps creek']
+
+    df0 = df.loc[[df.index[-1], df.index[8]], pd.IndexSlice[:, 'house_price']] # growth in past year
+    # df0 = df.loc[[df.index[-1], df.index[-2]], pd.IndexSlice[:, 'house_price']] # growth in past month
+    df0.columns = df0.columns.get_level_values(0)
+    df0 = (df0.iloc[0, :]/df0.iloc[1, :] - 1) \
+        .dropna().sort_values().drop(drop_cols)
+    df0 = df0[df0 != 0]
+
+    # --- plot
+    ax = df0.plot.barh(legend=False, figsize=(7, 90))
+    # ax.get_xaxis().set_ticks([])
+    # ax.set_title('Suburbs with positive growth (Feb/2021 - Mar/2021)')
+    ax.set_title('Suburb % growth (Mar/2020 - Mar/2021)')
+    ax.set_xticklabels(['{:,.2%}'.format(x) for x in ax.get_xticks()])
+
+    # for bar in ax.patches:
+    #     bar.set_facecolor('#888888')
+    highlight = 'kurrajong'
+    pos = df0.index.get_loc(highlight)
+
+    ax.get_yticklabels()[pos].set_color("red")
+    ax.get_yticklabels()[pos].set_weight("bold")
+    ax.patches[pos].set_facecolor('#aa3333')
+
+    plt.show()
+
+
+
+
+plot_historical_growth()
+
+
+
+'''
+
+TODO:
+* geographic plotting
+https://towardsdatascience.com/how-to-create-maps-in-plotly-with-non-us-locations-ca974c3bc997
+https://github.com/KerryHalupka/plotly_choropleth
+https://www.earthdatascience.org/courses/scientists-guide-to-plotting-data-in-python/plot-spatial-data/customize-raster-plots/interactive-maps/
+
+* scatter plot - last month % delta vs last year % delta
+
+'''
