@@ -5,57 +5,37 @@ Visualisations
 geopandas test:
 https://towardsdatascience.com/how-to-create-maps-in-plotly-with-non-us-locations-ca974c3bc997
 
+data sources:
+* "Local Government Areas ASGS Ed 2020 Digital Boundaries in ESRI Shapefile Format"
+    * https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.003June%202020
+
+* "Census 2016, G43 Labour force status by age by sex (LGA)"
+    * http://stat.data.abs.gov.au/
+
 '''
 
 # %%
 
+from read_db import load_data
+import geopandas as gpd
+import pandas as pd
 
-def load_data():
-    # NOTE: Delete function from this file, make read_db importable
-    # NOTE: load_data() should point to ./data/historicalprices.db
-    
-    t0 = time.time()
-
-    con = sqlite3.connect('historicalprices.db')
-    df = pd.read_sql_query("SELECT * FROM prices_counts", con)
-
-    con.close()
-
-    df['date'] = pd.to_datetime(df['date'])
-
-    print(time.time() - t0)
-
-    t0 = time.time()
-    df = df.pivot_table(values=['house_price', 'house_count','unit_price','unit_count'],
-                        index='date',
-                        columns='suburb') \
-        .astype(int, errors='ignore')
-
-    df = df.swaplevel(axis=1) \
-        .sort_index(axis=1, level=0)
-
-    print(time.time() - t0)
-
-    return df
-
+print('start')
 
 df = load_data()
 
 # %%
-import geopandas as gpd
-import pandas as pd
 
-lga_gdf = gpd.read_file('./data/1270055003_lga_2020_aust_shp/LGA_2020_AUST.shp')
+lga_gdf = gpd.read_file('./test_data/1270055003_lga_2020_aust_shp/LGA_2020_AUST.shp')
 lga_gdf = lga_gdf[lga_gdf['STE_NAME16']=='New South Wales']
 lga_gdf['LGA_CODE20'] = lga_gdf['LGA_CODE20'].astype(int).round(0).astype(str) # we will join on this axis, so both dataframes need this to be the same type
 
-lga_gdf['LGA_CODE20']
 # display(lga_gdf.head())
 
 
 
 # %% Load unemployment data
-emp_df = pd.read_csv('./data/ABS_C16_G43_LGA_08052021160518366.csv')
+emp_df = pd.read_csv('./test_data/ABS_C16_G43_LGA_18052021104154762.csv')
 emp_df = emp_df[['LGA_2016', 'Labour force status', 'Region', 'Value']]
 
 emp_df = emp_df[emp_df['LGA_2016'].notna()]
@@ -89,3 +69,47 @@ tmp.plot(column='percent_unemployed', ax=ax,cax=cax,  legend=True,
          legend_kwds={'label': "Unemployment rate"})
 tmp.geometry.boundary.plot(color='#BABABA', ax=ax, linewidth=0.3)
 ax.axis('off')
+
+
+# %% Convert the data frame to a GeoJSON, plot with plotly
+import plotly.graph_objects as go
+
+df_merged = df_merged.to_crs(epsg=4326) # convert the coordinate reference system to lat/long
+lga_json = df_merged.__geo_interface__ #covert to geoJSON
+
+MAPBOX_ACCESSTOKEN = 'pk.eyJ1IjoibGF3cmVuY2VmY2hhbiIsImEiOiJjazdlNnl4c3IwZnV1M2xxc2I4NXRmZ3hiIn0.j6nePQcJV0bckBFgH19ZPg'
+
+zmin = df_merged['percent_unemployed'].min()
+zmax = df_merged['percent_unemployed'].max()
+
+# Set the data for the map
+data = go.Choroplethmapbox(
+        geojson = lga_json,             #this is your GeoJSON
+        locations = df_merged.index,    #the index of this dataframe should align with the 'id' element in your geojson
+        z = df_merged.percent_unemployed, #sets the color value
+        text = df_merged.LGA_NAME20,    #sets text for each shape
+        colorbar=dict(thickness=20, ticklen=3, tickformat='%',outlinewidth=0), #adjusts the format of the colorbar
+        marker_line_width=1, marker_opacity=0.7, colorscale="Viridis", #adjust format of the plot
+        zmin=zmin, zmax=zmax,           #sets min and max of the colorbar
+        hovertemplate = "<b>%{text}</b><br>" +
+                    "%{z:.0%}<br>" +
+                    "<extra></extra>")  # sets the format of the text shown when you hover over each shape
+
+# Set the layout for the map
+layout = go.Layout(
+    title = {'text': f"Population of Victoria, Australia",
+            'font': {'size':24}},       #format the plot title
+    mapbox1 = dict(
+        domain = {'x': [0, 1],'y': [0, 1]}, 
+        center = dict(lat=-36.5 , lon=145.5),
+        accesstoken = MAPBOX_ACCESSTOKEN, 
+        zoom = 6),                      
+    autosize=True,
+    height=650,
+    margin=dict(l=0, r=0, t=40, b=0))
+
+# Generate the map
+fig=go.Figure(data=data, layout=layout)
+fig.show()
+
+input('hit enter to end')

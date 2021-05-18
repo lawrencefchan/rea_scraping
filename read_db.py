@@ -19,7 +19,7 @@ EDA - points of interest
 * areas of highest growth (range of years)
 * areas of lowest growth (range of years)
 * areas of highest yield 
-* r^2 against linear fit (another measure of variance?)
+* measures of variance: z-score, r^2 against linear fit
 * discard series with low count values and lots mising data 
 
 
@@ -41,6 +41,8 @@ from scipy import stats
 import matplotlib.pyplot as plt
 
 def load_data():
+    # NOTE: load_data() should point to ./data/historicalprices.db
+    
     t0 = time.time()
 
     con = sqlite3.connect('historicalprices.db')
