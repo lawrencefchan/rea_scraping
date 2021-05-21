@@ -1,14 +1,13 @@
 # %%
 from read_db import load_data, filter_dataset
+import geopandas as gpd
+import pandas as pd
 
-df = load_data()
-df0 = filter_dataset(df)
+import numpy as np
 
-
-
-
-df.loc[:, 'allawah']
-# df.head()
+# df = load_data()
+# df0 = filter_dataset(df)
+# df.loc[:, 'allawah']
 
 # # %% plots (OLD, broken by new multiindex)
 # df['house_price'].plot(legend=False)
@@ -22,6 +21,38 @@ df.loc[:, 'allawah']
 
 # df0 = df0[df0.apply(z_score) < 3]
 
+# %% get geometry for each suburb
+
+
+def get_suburb_geom(df) -> pd.DataFrame:
+    '''
+    df from read_db.load_data()
+
+    TODO:
+    * do something about suburbs appearing multiple times
+    '''
+    suburb_list = df.columns.get_level_values(0)
+
+    # https://data.gov.au/dataset/ds-dga-91e70237-d9d1-4719-a82f-e71b811154c6/details
+    df_geom = gpd.read_file("./test_data/NSW_LOC_POLYGON_shp/NSW_LOC_POLYGON_shp.shp")
+    # df_geom = pd.concat([df_geom['NSW_LOCA_2'].apply(str.title),
+    #                     df_geom['geometry']], axis=1)
+    df_geom = df_geom[['NSW_LOCA_2', 'geometry']]
+    df_geom['NSW_LOCA_2'] = df_geom['NSW_LOCA_2'].apply(str.title)
+    df_geom.columns = ['Suburb', 'geometry']
+
+    burbs = pd.read_csv('suburb_postcodes.csv')
+
+    burbs = df_geom.merge(burbs,
+                        how='right',
+                        on='Suburb')
+
+    # set index to slice by index
+    burbs['Suburb'] = burbs['Suburb'].apply(lambda x: x.replace('-', ' '))
+    burbs = burbs.set_index('Suburb')
+    burbs = burbs.loc[[i.title() for i in suburb_list.unique()], :]
+
+    return burbs.reset_index()
 
 
 # %% standard deviation (WIP)
@@ -46,42 +77,3 @@ def detect_outliers(df):
 
     return nparray.std(ddof=1), np.mean(nparray)
 
-detect_outliers(df)
-
-# %%
-fig, axes = plt.subplots(nrows=2)
-
-parra = df['parramatta']
-
-parra.columns = pd.MultiIndex.from_product(
-    [['house', 'unit'], ['count', 'price']],
-    names=['dwelling', 'meas'])
-
-
-sm = plt.cm.ScalarMappable(cmap='viridis', 
-                           norm=plt.Normalize(vmin=parra.index.min().year,
-                                              vmax=parra.index.max().year))
-parra['house'].plot.scatter('count', 'price', c=parra.index, cmap='viridis', ax=axes[0])
-parra['unit'].plot.scatter('count', 'price', c=parra.index, cmap='viridis', ax=axes[1])
-fig.colorbar(sm, ax=axes.ravel().tolist())
-axes[0].ticklabel_format(style='plain')
-axes[1].yaxis.set_major_locator(plt.MultipleLocator(50000))
-
-plt.show()
-
-# %%
-ax = df0.loc[:, pd.IndexSlice[:, 'unit_price']].plot(legend=False)
-# ax.get_xaxis().set_ticks([])
-
-
-# %% growth to date
-
-df.loc[:, pd.IndexSlice[:, 'house_price']].plot(legend=False)
-
-# df0 = df['house_price'].std(axis=0).sort_values()[-10:-1]
-# df0.plot.bar(legend=False)
-
-# df['house_price']['st leonards']
-# df['house_count'][df0.index]
-
-# df0.loc[:, pd.IndexSlice[:, 'house_count']].plot(legend=False)
