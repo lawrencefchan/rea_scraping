@@ -1,19 +1,87 @@
+'''multiindex slicing:
+df.loc[
+    rows,
+    columns
+]
+
+Example:
+idx = pd.IndexSlice
+df.loc[
+    idx[level_0_slice, level_1_slice, ["C1", "C3"]],
+    idx[:, "foo"]
+]
+
+
+'''
+
+
+
+
+
+
 # %%
-from read_db import load_data, filter_dataset
+from pandas.io.formats.format import return_docstring
+from read_db import load_data
 import geopandas as gpd
 import pandas as pd
 
 import numpy as np
 
+
 # df = load_data()
-# df0 = filter_dataset(df)
 # df.loc[:, 'allawah']
 
 # # %% plots (OLD, broken by new multiindex)
 # df['house_price'].plot(legend=False)
 # df['unit_price'].plot(legend=False)
 
-# # %% outlier detection (OLD, broken by new multiindex)
+
+def filter_dataset(df=None, max_missing_years=2, min_listed_count=10):
+    '''
+    Criteria:
+    * >=10 sales per year
+    * at least 7/9 years of data
+
+    TODO: list dropped suburbs for sanity check
+    '''
+    if df is None:
+        df = load_data()
+
+    # add another level to multiindex
+    df.columns = pd.MultiIndex.from_tuples([(i, j, k) for i, (j, k) in zip(
+        df.columns.get_level_values(0),
+        df.columns.get_level_values(1).str.split('_', 1))
+    ])
+
+    # only run conditional on data reported annually
+    # calculating mean on df (not df0) weights recent sales activity more highly (desirable?)
+    df0 = df.loc[[d for d in df.index if d.month == 12], :]
+
+    num_missing_years = df0.isna().sum(axis=0)
+    drop_list = num_missing_years[num_missing_years > max_missing_years].index \
+        # .droplevel(2)  # only want (suburb, dwelling type)
+    df0 = df0.drop(drop_list, axis=1)
+
+    avg_annual_sales = df0.loc[:, pd.IndexSlice[:, :, 'count']].mean(axis=0)
+    drop_list = avg_annual_sales[avg_annual_sales < min_listed_count].index \
+        .droplevel(2)
+    df0 = df0.drop(drop_list, axis=1)
+
+    return df.loc[:, df0.columns]
+
+    ''' TODO: Return drop_list:
+    * simplify list to [(suburb, dwelling type), ...]
+    '''
+
+    return df0 # , dropped_list
+
+filter_dataset()
+
+
+# %%
+
+# outlier detection (OLD, broken by new multiindex)
+# df0 = filter_dataset(df)
 # df0 = df['house_price']
 
 # def z_score(df):
@@ -21,9 +89,8 @@ import numpy as np
 
 # df0 = df0[df0.apply(z_score) < 3]
 
-# %% get geometry for each suburb
 
-
+# get geometry for each suburb
 def get_suburb_geom(df) -> pd.DataFrame:
     '''
     df from read_db.load_data()
@@ -53,6 +120,7 @@ def get_suburb_geom(df) -> pd.DataFrame:
     burbs = burbs.loc[[i.title() for i in suburb_list.unique()], :]
 
     return burbs.reset_index()
+
 
 
 # %% standard deviation (WIP)

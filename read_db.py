@@ -68,53 +68,6 @@ def load_data():
     return df
 
 
-def filter_dataset(df=None, max_missing_years=2, min_listed_count=10):
-    '''
-    Criteria:
-    * >=10 sales per year
-    * at least 7/9 years of data
-
-    TODO: list dropped suburbs for sanity check
-    '''
-    if df is None:
-        df = load_data()
-
-    # --- count missing years of data
-    # max_missing_years = 2
-    df0 = df.loc[[d for d in df.index if d.month == 12], :].isna().sum(axis=0)
-    drop_index = df0[df0 > max_missing_years].index
-
-    # ax = df0.plot.bar(legend=False)
-    # ax.get_xaxis().set_ticks([])
-
-    # # Q: do _price and _count have the same number of nans? (A: yes)
-    # df0 = df0.unstack()
-    # df0[~(df0.max(axis=1) == df0.min(axis=1))]
-
-    # --- count mean number of sales per year
-    # min_listed_count = 10
-    # df0 = df.loc[:, pd.IndexSlice[:, 'house_count']].mean()
-    # drop_index = drop_index.append(df0[df0 < min_listed_count].index)
-
-    df0 = df.drop(drop_index, axis=1)
-
-    '''
-    Check dropped data:
-    * x_price and x_count are both dropped (result of having the same number of nans)
-    * simplify list to [(suburb, dwelling type), ...]
-    '''
-
-    assert len(drop_index) % 2 ==0
-
-    dropped_list = []
-    for i in range(int(len(drop_index)/2)):
-        dwelling = drop_index[2*i][1].split('_')[0]
-        
-        if dwelling == drop_index[2*i+1][1].split('_')[0]:
-            dropped_list += [(drop_index[2*i][0], dwelling)]
-
-    return df0 # , dropped_list
-
 def query_test():
     con = sqlite3.connect('historicalprices.db')
     cur = con.cursor()

@@ -15,7 +15,7 @@ import numpy as np
 from scipy import stats
 
 from read_db import load_data
-from munge import get_suburb_geom
+from munge import get_suburb_geom, filter_dataset
 
 
 def pricevscount(df, suburb=None):
@@ -72,10 +72,11 @@ def bar_charts(df):
     # df0.loc[:, pd.IndexSlice[:, 'house_count']].plot(legend=False)
 
 
-# %% prepare df
-price_data = load_data()
+# prepare df
+price_data = filter_dataset(load_data(), max_missing_years=2, min_listed_count=10)
 burbs = get_suburb_geom(price_data)
-price_data = price_data.loc[:, pd.IndexSlice[:, 'house_price']]
+
+price_data = price_data.loc[:, pd.IndexSlice[:, 'house', 'price']]
 price_data.columns = price_data.columns.get_level_values(0)
 
 timedelta = (price_data.index - price_data.index[0]).astype('timedelta64[D]')
@@ -93,7 +94,6 @@ for i, suburb in enumerate(burbs['Suburb']):
         * t = r * np.sqrt(df / ((1.0 - r + TINY)*(1.0 + r + TINY)))
         * slope_stderr = np.sqrt((1 - r**2) * ssym / ssxm / df)
     '''
-    print(suburb)
 
     try:
         data = price_data.loc[:, suburb.lower()]
@@ -103,7 +103,7 @@ for i, suburb in enumerate(burbs['Suburb']):
 
         # display(price_data.loc[:, suburb.lower()].head())
     except Error as e:
-        print(e)
+        print(suburb, e)
         growth = np.nan
     finally:
         growthlist += [[suburb, growth]]
@@ -118,11 +118,7 @@ for i, suburb in enumerate(burbs['Suburb']):
 
 # %% munge2
 df = burbs.merge(pd.DataFrame(growthlist, columns=['Suburb', 'Growth']), on='Suburb') \
-          .drop('Postcode', axis=1) #   .set_index('Suburb')
-
-
-
-print(df['Growth'].min(), df['Growth'].max())
+          .drop('Postcode', axis=1).set_index('Suburb')
 
 # # %%# Plot using geopandas
 # ''' Working but:
@@ -170,14 +166,14 @@ data = go.Choroplethmapbox(
     marker_line_width=1,
     marker_opacity=0.7,
     colorscale="Viridis",  # adjust format of the plot
-    zmin=zmin,
-    zmax=zmax,  # sets min and max of the colorbar
+    zmin=zmin,  # sets min and max of the colorbar
+    zmax=zmax,  
     hovertemplate=hovertemplate  # sets the format of the text shown when you hover over each shape
     )
 
 # Set the layout for the map
 layout = go.Layout(
-    title={'text': f"Avg. Annual Growth Rates (2012-2021)",
+    title={'text': f"Avg. Annual Growth Rates - Houses (2012-2021)",
             'font': {'size':24}},  # format the plot title
     mapbox1=dict(
         domain={'x': [0, 1],'y': [0, 1]}, 
@@ -189,7 +185,7 @@ layout = go.Layout(
     margin=dict(l=0, r=0, t=40, b=0))
 
 # Generate the map
-fig=go.Figure(data=data, layout=layout)
+fig = go.Figure(data=data, layout=layout)
 fig.show()
 
 input('hit enter to end')
