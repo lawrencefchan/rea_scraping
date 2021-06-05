@@ -1,11 +1,6 @@
 '''
-Working test code for generating interacitve map
-
-
-
-Visualisations
-
-geopandas test:
+Working test code for generating interacitve map.
+Code taken from:
 https://towardsdatascience.com/how-to-create-maps-in-plotly-with-non-us-locations-ca974c3bc997
 
 data sources:

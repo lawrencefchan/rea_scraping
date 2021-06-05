@@ -36,14 +36,14 @@ import numpy as np
 # df['unit_price'].plot(legend=False)
 
 
-def filter_dataset(df=None, max_missing_years=2, min_listed_count=10):
+def filter_dataset(df=None, max_missing_years=2, min_listed_count=10) -> pd.DataFrame:
     '''
-    Criteria:
+    Default criteria:
     * >=10 sales per year
     * at least 7/9 years of data
-
-    TODO: list dropped suburbs for sanity check
     '''
+
+    # TODO: list dropped suburbs for sanity check
     if df is None:
         df = load_data()
 
@@ -74,20 +74,6 @@ def filter_dataset(df=None, max_missing_years=2, min_listed_count=10):
     '''
 
     return df0 # , dropped_list
-
-filter_dataset()
-
-
-# %%
-
-# outlier detection (OLD, broken by new multiindex)
-# df0 = filter_dataset(df)
-# df0 = df['house_price']
-
-# def z_score(df):
-#     return (df-df.mean())/df.std(ddof=0)
-
-# df0 = df0[df0.apply(z_score) < 3]
 
 
 # get geometry for each suburb
@@ -122,14 +108,7 @@ def get_suburb_geom(df) -> pd.DataFrame:
     return burbs.reset_index()
 
 
-
-# %% standard deviation (WIP)
-
-# df_std = df.loc[:, pd.IndexSlice[:, 'unit_price']].std(axis=0).sort_values()[:-5]
-# ax = df_std.plot.bar(legend=False, figsize=(10,5))
-# ax.set_title('House Price Variance (2012-2021)')
-# ax.get_xaxis().set_ticks([])
-
+# --- outlier detection / standard deviation / (WIP)
 def detect_outliers(df):
     '''
     Remove price outliers >3 standard deviations
@@ -144,4 +123,24 @@ def detect_outliers(df):
     nparray = nparray[~np.isnan(nparray)]
 
     return nparray.std(ddof=1), np.mean(nparray)
+
+def z_score(df):
+    return (df-df.mean())/df.std(ddof=0)
+
+
+df = filter_dataset()
+# df = df['house_price']
+
+
+# df = df[df.apply(z_score) < 3
+
+# df_std = df.loc[:, pd.IndexSlice[:, 'unit_price']].std(axis=0).sort_values()[:-5]
+# ax = df_std.plot.bar(legend=False, figsize=(10,5))
+# ax.set_title('House Price Variance (2012-2021)')
+# ax.get_xaxis().set_ticks([])
+
+# %% 
+
+
+df.head()
 
