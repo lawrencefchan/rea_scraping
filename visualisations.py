@@ -227,6 +227,9 @@ def generate_geomap(dwelling_type):
     plotly.offline.plot(fig, filename=f'{dwelling_type}.html')
 
 
+# if __name__ == '__main__':
+    # df = filter_dataset(load_data(), max_missing_years=10, min_listed_count=0)
+    # plot_single(df, suburb='marsden park', dwelling_type=None)
+
 if __name__ == '__main__':
-    df = filter_dataset(load_data(), max_missing_years=10, min_listed_count=0)
-    plot_single(df, suburb='marsden park', dwelling_type=None)
+    generate_geomap('house')

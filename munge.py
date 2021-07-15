@@ -127,20 +127,32 @@ def detect_outliers(df):
 def z_score(df):
     return (df-df.mean())/df.std(ddof=0)
 
-
-df = filter_dataset()
-# df = df['house_price']
-
-
-# df = df[df.apply(z_score) < 3
-
-# df_std = df.loc[:, pd.IndexSlice[:, 'unit_price']].std(axis=0).sort_values()[:-5]
-# ax = df_std.plot.bar(legend=False, figsize=(10,5))
-# ax.set_title('House Price Variance (2012-2021)')
-# ax.get_xaxis().set_ticks([])
-
-# %% 
+if __name__ == '__main__':
+    df = filter_dataset()
+    # df = df['house_price']
 
 
-df.head()
+    # df = df[df.apply(z_score) < 3
 
+    # df_std = df.loc[:, pd.IndexSlice[:, 'unit_price']].std(axis=0).sort_values()[:-5]
+    # ax = df_std.plot.bar(legend=False, figsize=(10,5))
+    # ax.set_title('House Price Variance (2012-2021)')
+    # ax.get_xaxis().set_ticks([])
+
+    # %% 
+    #  check correlation between house and unit price changes
+
+    price_data = df.loc[:, pd.IndexSlice[:, :, 'price']]
+
+    suburbs = price_data.columns.get_level_values(0)  # suburbs with both house and unit data
+
+    price_data = price_data[suburbs[suburbs.duplicated()]]
+    price_data.columns = price_data.columns.droplevel(2)
+
+    # price_data.corr()
+
+    import seaborn as sns
+
+    Var_Corr = df.corr()
+    # plot the heatmap and annotation on it
+    sns.heatmap(Var_Corr, xticklabels=Var_Corr.columns, yticklabels=Var_Corr.columns, annot=True)
