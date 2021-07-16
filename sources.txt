@@ -1,0 +1,6 @@
+NSW postcode regions: https://www.training.nsw.gov.au/about_us/postcodes_byregion.html
+NSW regions maps: https://www.training.nsw.gov.au/about_us/sts_contacts.html
+
+
+Sydney postcode regions: https://docs.google.com/spreadsheets/d/1tHCxouhyM4edDvF60VG7nzs5QxID3ADwr3DGJh71qFg
+Method: https://greenash.net.au/thoughts/2014/07/australian-lga-to-postcode-mappings-with-postgis-and-intersects/
