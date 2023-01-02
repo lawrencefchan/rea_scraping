@@ -109,43 +109,60 @@ df.head()
 check_str = "We couldn't find any history for this property."
 url_base = 'https://www.allhomes.com.au/ah/research/property-and-past-sales'
 
+
+def interruption_check():
+    '''
+    
+    '''
+
+# %%
 for row in df.itertuples():  # List of streets in suburb
+    if row.Index > 0:
+        break
+
     try:  # checks if results is defined so script can pick up where it broke
         results
-        if row.Suburb not in results.keys():
-            continue  # skip to the suburb being parsed when script broke
     except NameError:
         try:
             results = check_results(row.Suburb)
         except FileNotFoundError:
             results = {}
 
-    if results.get(row.Suburb, {}).get('complete') is True:
-        continue  # already parsed
-    else:
-        print(row.Postcode, row.Suburb)
-        if results.get(row.Suburb) is None:
-            results[row.Suburb] = {'complete': False}
+    if row.Suburb in results.keys():  # suburb has been parsed
+        continue  # skip to the suburb being parsed when script broke
 
-    streets = get_street_urls(row)
+results
 
-    for street in streets:  # List of properties in street
+#     if results.get(row.Suburb, {}).get('complete') is True:
+#         continue  # already parsed
+#     else:
+#         print(row.Postcode, row.Suburb)
+#         if results.get(row.Suburb) is None:
+#             results[row.Suburb] = {'complete': False}
 
-        s = street.name
-        s_url = street.url
+#     streets = get_street_urls(row)
+
+#     for street in streets:  # List of properties in street
+
+#         s = street.name
+#         s_url = street.url
         
-        try:
-            properties = get_property_urls(results, row, street)
-        except StopIteration:
-            continue
+#         try:
+#             properties = get_property_urls(results, row, street)
+#         except StopIteration:
+#             continue
 
-        for p, p_url in properties:  # individual property history data
+#         for p, p_url in properties:  # individual property history data
 
-            print(p)
-            break
-        break
-    break
-print('sad')
+#             print(p)
+#             break
+#         break
+#     break
+# print('sad')
+
+
+
+
 
 # %%
             if results[row.Suburb][s].get(p, False) is not False:
