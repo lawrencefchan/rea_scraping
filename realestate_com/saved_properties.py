@@ -51,12 +51,18 @@ def get_saved_listings(driver):
         * the web version of realestate.com.au doesn't split collections, so
         all saved listings are parsed.
     '''
+
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
+        
+    class_name = 'Card__Box-sc-g1378g-0'
+    listing_urls = []
 
-    class_name = 'Card__Box-sc-g1378g-0 fNGfHf ModifiedConstruct__ListingCard-sc-1ybj4lx-2 jcskAp'
-    listing_urls = [i.find('a', href=True)['href']
-                    for i in soup.find_all(class_=class_name)]
+    for i in soup.find_all(class_=class_name):
+        link_element = i.find('a', href=True)
+        if link_element is not None:
+            if 'https:' in link_element['href']:
+                listing_urls += [link_element['href']]
 
     return listing_urls
 
@@ -79,6 +85,7 @@ def scrape_listing(driver, url):
 
     '''
     driver.get(url)
+    delay_driver(1)
 
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
@@ -115,7 +122,7 @@ def munge(listing_details: list, saveas: str):
     Munges scraped listings into a nicer format.
 
     listing_details: list of dicts
-    saveas: string to save .csv file as
+    saveas: string to save .csv file as. Returns df without saving if saveas is None
     '''
     df = pd.DataFrame(listing_details)
 
@@ -134,19 +141,30 @@ def munge(listing_details: list, saveas: str):
 
     if saveas is not None:
         df.to_csv(saveas, index=False)
+
     return df
+
+
+def delay_driver(t):
+    import time
+    # todo: use implicit wait to check load status of listing cards
+    # from selenium.webdriver.common.by import By
+    # from selenium.webdriver.support.ui import WebDriverWait
+    # from selenium.webdriver.support import expected_conditions as EC
+
+    time.sleep(t)
 
 
 if __name__ == '__main__':
     driver = load_uc_session()
+    delay_driver(2)
     listing_urls = get_saved_listings(driver)
-        
+
     details = []
     for url in listing_urls:
         details += [scrape_listing(driver, url)]
 
     saveas = f'saved_properties_{datetime.now().strftime("%Y%m%d")}.csv'
-    df = munge(details, saveas=saveas)
+    df = munge(details, saveas=None)
 
     driver.quit()
-
