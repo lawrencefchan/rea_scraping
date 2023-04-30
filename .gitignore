@@ -7,6 +7,6 @@ chromedriver*
 settings.json
 __pycache__/
 
-currentprices/
+current_prices/*
 *.jpg
-*.csv
+
