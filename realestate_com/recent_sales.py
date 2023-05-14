@@ -1,3 +1,17 @@
+'''
+Scrapes realestate.com.au for Recent Sales results, i.e. properties:
+    Sold at auction
+    Sold prior to auction
+    Sold after auction
+    Withdrawn
+    Passed in
+    Private sales
+
+Note: 
+* undetected_chromedriver requires Chrome to be updated to the latest version
+
+'''
+
 # %%
 
 import pandas as pd
@@ -7,13 +21,24 @@ from bs4 import BeautifulSoup
 
 import undetected_chromedriver as uc  # anti-bot selenium patch
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.common.exceptions import (
-    TimeoutException,
-    ElementNotVisibleException,
-    ElementNotSelectableException
+from selenium.common.exceptions import TimeoutException
+
+from utils.selenium_utils import (
+    fluent_wait,
+    find_sibling_by_text
 )
-from selenium.webdriver.support import expected_conditions as EC
+from utils.sqlite_utils import write_recent_sales_to_db
+
+
+def get_property_val(driver, text):
+    '''
+    Extracts the value of a property by searching for that string.
+    '''
+    element_tag = 'p'
+    element = find_sibling_by_text(driver, text, element_tag, element_tag)
+    val = int(element.text.replace(',', ''))  # handle thousands comma
+
+    return val
 
 
 def get_state_profile(driver):
@@ -25,18 +50,6 @@ def get_state_profile(driver):
 
     '''
 
-    def find_sibling_by_text(driver, text: str):
-        '''
-        Searches elements that contain a given string and returns text of
-        the preceding sibling.
-        '''
-
-        xpath_str = f"//*[contains(text(), '{text}')]/preceding-sibling::p[1]"
-
-        # value = driver.find_element(By.XPATH, xpath_str).text
-        value = fluent_wait(driver, By.XPATH, xpath_str).text
-        return int(value.replace(',', ''))
-
     properties = [
         'Sold at auction',
         'Sold prior to auction',
@@ -46,12 +59,14 @@ def get_state_profile(driver):
         'Private sales'
     ]
 
-    profile = {p: find_sibling_by_text(driver, p) for p in properties}
+    profile = {p: get_property_val(driver, p)
+               for p in properties}
 
     # get clearance rate
     try:  # NA when no houses are auctioned (fluent_wait will timeout)
         cr = fluent_wait(driver, By.XPATH, "//p[@data-testid='number-pie']").text
-        profile['clearance rate'] = int(cr.replace('%', '')) * 0.01
+        cr = round(int(cr.replace('%', '')) * 0.01, 2)  # round floating point error
+        profile['clearance rate'] = cr
     except TimeoutException:
         profile['clearance rate'] = None
 
@@ -104,46 +119,41 @@ def munge_profile_output(d):
     return df
 
 
-def fluent_wait(driver, *wait_args):
-    '''
-    wait_args: same args as find_element, e.g. (By.XPATH, "//p[@data='clearance-']")
-    '''
-    ignore = [ElementNotVisibleException, ElementNotSelectableException]
-    wait = WebDriverWait(driver, timeout=6, poll_frequency=0.1, ignored_exceptions=ignore)
-    element = wait.until(EC.element_to_be_clickable((wait_args)))
-    return element
+def scrape_suburb_sales():
+    # WIP
+
+    # get suburb links 
+    # bs4 seems faster than selenium)
+    html = driver.page_source
+    soup = BeautifulSoup(html, 'html.parser')
+
+    suburb_links = [f"https://www.realestate.com.au{l['href']}"
+                    for l in soup.find_all('a', href=True)
+                    if '/auction-results/' in l['href']][1:]
+
+    suburb_links
+
+    return
 
 
 if __name__ == "__main__":
-    
     driver = uc.Chrome()
     driver.minimize_window()
-
-    # # --- debugging
-    # url = 'https://www.realestate.com.au/auction-results/wa'
-    # driver.get(url)
-    # d = get_state_profile(driver)
 
     d = profile_all_states(driver)
     df = munge_profile_output(d)
 
+    # %% --- write
+    write_recent_sales_to_db(df)
 
-# %%
+    # %% --- debugging
+    url = 'https://www.realestate.com.au/auction-results/nsw'
+    driver.get(url)
 
+    get_state_profile(driver)
 
-# %% get suburb links (bs4 is faster)
+    get_property_val(driver, 'Sold at auction')
 
-html = driver.page_source
-soup = BeautifulSoup(html, 'html.parser')
-
-suburb_links = [f"https://www.realestate.com.au{l['href']}"
-                for l in soup.find_all('a', href=True)
-                if '/auction-results/' in l['href']][1:]
-
-suburb_links
-
-
-# %% Close the driver
-driver.quit()
-
+    # %% Close the driver
+    driver.quit()
 
