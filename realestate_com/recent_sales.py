@@ -64,14 +64,14 @@ def get_state_profile(driver):
 
     # get clearance rate
     try:  # NA when no houses are auctioned (fluent_wait will timeout)
-        cr = fluent_wait(driver, By.XPATH, "//p[@data-testid='number-pie']").text
+        cr = fluent_wait(driver, mark=(By.XPATH, "//p[@data-testid='number-pie']")).text
         cr = round(int(cr.replace('%', '')) * 0.01, 2)  # round floating point error
         profile['clearance rate'] = cr
     except TimeoutException:
         profile['clearance rate'] = None
 
     # get date last updated
-    t = fluent_wait(driver, By.XPATH, "//p[@data-testid='clearance-rate-updated']").text
+    t = fluent_wait(driver, mark=(By.XPATH, "//p[@data-testid='clearance-rate-updated']")).text
     t = t.replace('Updated ', '')[:-5]  # [-5] drops timezone info
 
     t = datetime.strptime(t, "%a %d %b %H:%M %p") \

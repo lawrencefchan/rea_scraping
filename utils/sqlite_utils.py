@@ -92,5 +92,6 @@ def read_historical_prices():
 
 
 if __name__ == "__main__":
-    df = read_historical_prices()
+    df = read_recent_sales()
+    # df = read_historical_prices()
     display(df.head())

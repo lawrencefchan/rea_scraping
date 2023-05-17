@@ -9,8 +9,8 @@ def plot_recent_sales(df):
 
     df['updated'] = pd.to_datetime(df['updated'])
 
-    # plot_var = 'clearance_rate'
-    plot_var = 'private_sales'
+    plot_var = 'clearance_rate'
+    # plot_var = 'private_sales'
     ax = df.pivot_table(
         index='updated',
         columns='state',

@@ -13,13 +13,20 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 
-def fluent_wait(driver, *wait_args):
+def fluent_wait(driver, mark, condition='click'):
     '''
-    wait_args: same args as find_element, e.g. (By.XPATH, ".//p[@data='clearance-']")
+    condition: 
+    mark: same args as find_element, e.g. (By.XPATH, ".//p[@data='clearance-']")
     '''
+    if condition == 'click':
+        cond = EC.element_to_be_clickable
+    elif condition == 'locate':
+        cond = EC.presence_of_element_located
+
     ignore = [ElementNotVisibleException, ElementNotSelectableException]
     wait = WebDriverWait(driver, timeout=6, poll_frequency=0.1, ignored_exceptions=ignore)
-    element = wait.until(EC.element_to_be_clickable((wait_args)))
+    element = wait.until(cond((mark)))
+
     return element
 
 
@@ -40,6 +47,6 @@ def find_sibling_by_text(driver, text: str,
     target_xpath = f".//{target_tag}[contains(text(), '{text}')]"
     sibling_xpath = f"/{sibling_position}-sibling::{sibling_tag}[1]"  # [1] gets the immediate closest sibling
 
-    element = fluent_wait(driver, By.XPATH, target_xpath+sibling_xpath)
+    element = fluent_wait(driver, mark=(By.XPATH, target_xpath+sibling_xpath))
 
     return element
