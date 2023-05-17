@@ -50,8 +50,6 @@ from utils.selenium_utils import (
     find_sibling_by_text
 )
 
-driver = uc.Chrome()
-
 
 def get_suburb_from_url(url):
     '''
@@ -79,6 +77,10 @@ def get_suburb_payload(driver):
     '''
     Parses current page html to find json payload and munge into dict
     '''
+
+    fluent_wait(driver, condition='locate',
+                mark=(By.XPATH, "/html/body/script"))
+
     soup = BeautifulSoup(driver.page_source, "html.parser")
 
     payload = [s.contents[0] for
@@ -214,8 +216,6 @@ def d_recursive_del(d, key):
 #     df.columns = ['_'.join(x) if len(x) == 2 else x for x in df.columns]
 
 #     return df
-
-
 url_base = r'https://www.realestate.com.au/neighbourhoods/'
 # https://www.realestate.com.au/neighbourhoods/north-epping-2121-nsw
 
@@ -229,56 +229,71 @@ urls = [f'{url_base}{s.lower().replace(" ", "-")}-{p}-nsw'
 
 broken = []
 
+driver = uc.Chrome()
+
 # for url in urls:
 #     driver = get_suburb_driver(url)
 
 # debugging
 driver = get_suburb_driver(urls[12])
+d = get_suburb_payload(driver)
+
+# %%%
+soup = BeautifulSoup(driver.page_source, "html.parser")
+
+payload = [s.contents[0] for
+        s in soup.findAll('script')
+        if len(s.contents) == 1
+        and 'window.ArgonautExchange' in s.contents[0]][0]
+
+# driver.find_element(By.XPATH, "/html/body/script")
+# wait = WebDriverWait(driver, timeout=6, poll_frequency=0.1)
+# wait.until(EC.presence_of_element_located())
+
+fluent_wait(driver, condition='locate', mark=(By.XPATH, "/html/body/script"))
 
 
-# %% scrape prices: house/unit buy/rent
+# %%%
 
-buy_elements = {
-    'available': 'available in the past month',
-    'sold': 'in the past 12 months',
-    'time_on_market': 'median time on market',
-    'interested': 'interested',
-    'yield': 'rental yield',
-}
+# # %% scrape prices: house/unit buy/rent
+# NOTE: this can be done by parsing json payload
 
-rent_elements = {
-    'available': 'available in the past month',
-    'leased': 'in the past 12 months',
-    'time_on_market': 'median time on market',
-    'interested': 'interested',
-}
+# buy_elements = {
+#     'available': 'available in the past month',
+#     'sold': 'in the past 12 months',
+#     'time_on_market': 'median time on market',
+#     'interested': 'interested',
+#     'yield': 'rental yield',
+# }
 
-# # --- buy - house
-xpath_str = ".//div[@id='house-price-guide-buy']"
-element = fluent_wait(driver, By.XPATH, xpath_str)
+# rent_elements = {
+#     'available': 'available in the past month',
+#     'leased': 'in the past 12 months',
+#     'time_on_market': 'median time on market',
+#     'interested': 'interested',
+# }
 
-# element_tag = 'span'
-# for k, v in buy_elements.items():
-#     print(k, find_sibling_by_text(element, v, element_tag, element_tag).text)
+# # # --- buy - house
+# xpath_str = ".//div[@id='house-price-guide-buy']"
+# element = fluent_wait(driver, By.XPATH, xpath_str)
 
-# --- 5 yr median prices house
+# # element_tag = 'span'
+# # for k, v in buy_elements.items():
+# #     print(k, find_sibling_by_text(element, v, element_tag, element_tag).text)
 
-# --- rent - house
+# # --- 5 yr median prices house
 
+# # --- rent - house
 
+# # --- buy - apartment
+# xpath_str = ".//div[@id='unit-price-guide-buy']"
+# element = fluent_wait(driver, By.XPATH, xpath_str)
 
+# # element_tag = 'span'
+# # for k, v in buy_elements.items():
+# #     print(k, find_sibling_by_text(element, v, element_tag, element_tag).text)
 
-
-
-# --- buy - apartment
-xpath_str = ".//div[@id='unit-price-guide-buy']"
-element = fluent_wait(driver, By.XPATH, xpath_str)
-
-# element_tag = 'span'
-# for k, v in buy_elements.items():
-#     print(k, find_sibling_by_text(element, v, element_tag, element_tag).text)
-
-# --- rent - apartment
+# # --- rent - apartment
 
 
 
@@ -291,66 +306,238 @@ element = fluent_wait(driver, By.XPATH, xpath_str)
             ["marketProfileBySlug"]
                 ["insights"].keys()
 
-<measure>: (<temporal_key>, <val_key>)
---------------------------------------
-'medianPrice': ('yearly', 'value') chart data
-'transactionVolume': ('yearly', 'value') number sold in the past 12 months
-'daysOnSite': ('yearly', 'value') median time on market
-'rentalYield': ('yearly', 'display') rental yield (only applies to "Buy" toggle)
-'supplyDemand': ('monthly', ['supply', 'demand']) properties available vs. interested buyers
+<measure>: <description>
+    {<temporal_key>: <val_key(s)>}
+----------------------------------
+'medianPrice': yearly: latest summary data (median over past 12mths)
+               trends: chart data (median price and volume over past 12 mths)
+    {'yearly': ['display', 'volume']  # NOTE: redundant: equal to last trend element
+     'trends': ['value', 'volume'] }  # list of dicts
+'transactionVolume': number sold in the past 12 months
+    {'yearly': 'value'}
+
+    "buy": {
+      "house": {
+        "allBed": {
+          "yearly": {
+            "value": 10
+
+'daysOnSite': median time on market
+    {'yearly': 'value'}
+
+    "buy": {
+      "house": {
+        "allBed": {
+          "yearly": {
+            "value": 47
+
+'rentalYield': rental yield (only applies to "Buy" toggle)
+    {'yearly': 'display'}
+
+    "house": {
+      "allBed": {
+        "yearly": {
+          "display": "2.7%"
+
+
+'supplyDemand': supply: properties available in the past month
+                demand: interested buyers in the past 12 months
+    {'monthly': ['supply', 'demand']}  # NOTE: 2 value keys
+
+    "buy": {
+      "house": {
+        "allBed": {
+          "monthly": {
+            "supply": 5,
+            "demand": 688
+
 '''
 
-d = get_suburb_payload(driver)
+measures = {
+    'medianPrice': {
+        'temporal_key': 'trends',
+        'val_key': ''
+    },
+    'transactionVolume': {
+        'temporal_key': 'yearly',
+        'val_key': 'value'
+    },
+    'daysOnSite': {
+        'temporal_key': 'yearly',
+        'val_key': 'value'
+    },
+    'rentalYield': {
+        'temporal_key': 'yearly',
+        'val_key': 'display'
+    },
+    'supplyDemand': {
+        'temporal_key': 'monthly',
+        'val_key': ['supply', 'demand']
+    },
+}
+
 
 # %% parsing payload
 
-def parse_payload_for_measure(measure, ownership, dwelling,
-                              temporal_key, val_key):
+def parse_payload_for_measure(measure, ownership, dwelling, **m_keys):
     '''
     Extracts specific data from the json payload. Returns it in a long df.
+
+
+    The json payload has [____]. This function collapses those temporal
+    and value keys
+
 
     meausure: Type of data to pull. One of: [medianPrice,
         transactionVolume, daysOnSite, rentalYield, supplyDemand]
     ownership: ownership type. One of [buy, rent]
     dwelling: dwelling type. One of [house, unit]
-    temporal_key:
-    val_key:
+
+    m_keys: kwargs for measure keys
+        temporal_key:
+        val_key:
     '''
-    output = {}
+    temporal_key = m_keys['temporal_key']
+    val_key = m_keys['val_key']
 
-    # collapse temporal and value keys
-    d_filtered = d[measure][ownership][dwelling]
+    output_cols = ['ownership_type', 'dwelling_type', 'n_beds', 'value']
 
-    # init dict keys
-    output[ownership] = output.get(ownership, {})
-    output[ownership][dwelling] = output[ownership].get(dwelling, {})
+    if type(val_key) is str:
+        # transactionVolume, daysOnSite and rentalYield
 
-    output[ownership][dwelling] = {
-        k: (None if v[temporal_key] is None
-            else v[temporal_key]['value'])
-            for k, v in d_filtered.items()
-        }
+        output = {}
 
-    # process dict to longform df
-    output = pd.DataFrame(
-        [[k1, k2, k3, v]
-        for k1, d in output.items()
-        for k2, dd in d.items()
-        for k3, v in dd.items()],
-        columns=['ownership_type', 'dwelling_type', 'n_beds', 'value'])
+        # init dict keys as dicts
+        output[ownership] = output.get(ownership, {})
+        output[ownership][dwelling] = output[ownership].get(dwelling, {})
 
-    output['measure'] = measure
+        if measure == 'rentalYield':
+            d_filtered = d[measure][dwelling]
+        else:
+            d_filtered = d[measure][ownership][dwelling]
+
+        output[ownership][dwelling] = {
+            k: (None if n_beds[temporal_key] is None
+                else n_beds[temporal_key][val_key])
+                for k, n_beds in d_filtered.items()
+            }
+        return pd.DataFrame(
+            [[ownership, dwelling, n_beds, val]
+            for ownership, v in d[measure].items()
+            for dwelling, vv in v.items()
+            for n_beds, vvv in vv.items()
+            for _, vvvv in vvv.items()
+            for _, val in vvvv.items()],
+            columns=output_cols)
+
+        # process dict to longform df
+        output = pd.DataFrame(
+            [[_ownership, _dwelling, n_beds, val]
+            for _ownership, d in output.items()
+            for _dwelling, dd in d.items()
+            for n_beds, val in dd.items()],
+            columns=output_cols)
+
+        output['measure'] = measure
+
+    elif measure == 'supplyDemand':
+        d_filtered = d[measure][ownership][dwelling]
+
+        output = pd.DataFrame(
+            [[ownership, dwelling, n_beds, val, meas]
+             for n_beds, v in d_filtered.items()
+             for _, vv in v.items()
+             for meas, val in vv.items()],
+            columns=[*output_cols, 'measure'])
+
+        return output
+
+    elif measure == 'medianPrice':
+        return
+    else:
+        raise ValueError('Unexpected measure')
+
     output['queried'] = datetime.today()
 
     return output
 
 
-for ownership, dwelling in itertools.product(['buy', 'rent'], ['house', 'unit']):
-    temp = parse_payload_for_measure('daysOnSite', ownership, dwelling,
-                                     temporal_key='yearly', val_key='value')
+output = []
+for measure, m_keys in measures.items():
+    # if measure != 'transactionVolume':
+    if measure != 'daysOnSite':
+    # if measure != 'rentalYield':
+    # if measure != 'medianPrice':
+    # if measure != 'supplyDemand':
+         continue  # debugging
+ 
+    for ownership, dwelling in itertools.product(['buy', 'rent'], ['house', 'unit']):
+        if (measure == 'rentalYield') and (ownership == 'rent'):
+            continue  # yield only available when "buy" is toggled
+        temp = parse_payload_for_measure(measure, ownership, dwelling, **m_keys)
+        # output += [temp]
 
-temp['suburb'] = get_suburb_from_url(urls[12])
+    break
+
+    # temp['suburb'] = get_suburb_from_url(urls[12])
 temp
+# pd.concat(output, axis=0, ignore_index=True)
+
+# %% -- testing json flattening
+
+temp = d['daysOnSite']
+
+
+def flatten_json(d, keys=[], flattened=[]):
+    '''
+    Takes a json and returns it as a list so it can be converted to
+    table format and written into a database.
+
+    Parameters:
+    -----------
+    d: the dictionary to flatten
+    keys: unused arg to pass down recursive variables
+    flattened: unused arg to pass down recursive variables
+
+    Example:
+    --------
+    In: {'buy': {'house': {'allBed': {'yearly': {'value': 47}},
+                'twoBed': {'yearly': {'value': 44}},
+                'threeBed': {'yearly': {'value': 225}},
+                'fourBed': {'yearly': None}},
+            'rent': {'house': {'allBed': {'yearly': {'value': 21}},
+                'twoBed': {'yearly': {'value': 20}},
+                'threeBed': {'yearly': {'value': 26}},
+                'fourBed': {'yearly': {'value': 33}}}
+        }
+
+    Out: [['buy', 'house', 'allBed', 'yearly', 'value', 47],
+        ['buy', 'house', 'twoBed', 'yearly', 'value', 44],
+        ['buy', 'house', 'threeBed', 'yearly', 'value', 225],
+        ['buy', 'house', 'fourBed', 'yearly', None],
+        ['rent', 'house', 'allBed', 'yearly', 'value', 21],
+        ['rent', 'house', 'twoBed', 'yearly', 'value', 20],
+        ['rent', 'house', 'threeBed', 'yearly', 'value', 26],
+        ['rent', 'house', 'fourBed', 'yearly', 'value', 33]
+        ]
+    '''
+
+    for k, v in d.items():
+        new_keys = [*keys, k]
+        if isinstance(v, dict):
+            flatten_json(v, new_keys)
+        else:
+            # print([*new_keys, v])
+            flattened += [[*new_keys, v]]
+            new_keys = new_keys[:-1]
+
+    return flattened
+
+flattened = flatten_json(temp)
+# print(pd.DataFrame(flattened))
+
+flattened
+
 
 # %%
 # time.sleep(1)

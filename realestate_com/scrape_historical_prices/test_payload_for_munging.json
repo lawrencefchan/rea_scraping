@@ -1,0 +1,4733 @@
+{
+  "medianPrice": {
+    "buy": {
+      "house": {
+        "allBed": {
+          "yearly": {
+            "startDate": "2022-05-01",
+            "endDate": "2023-04-30",
+            "display": "$1,505,000",
+            "volume": 10,
+            "changePercentage": {
+              "value": -12.423625254582483,
+              "display": "-12.4%"
+            }
+          },
+          "trends": null
+        },
+        "twoBed": {
+          "yearly": null,
+          "trends": null
+        },
+        "threeBed": {
+          "yearly": null,
+          "trends": null
+        },
+        "fourBed": {
+          "yearly": null,
+          "trends": null
+        }
+      },
+      "unit": {
+        "allBed": {
+          "yearly": {
+            "startDate": "2022-05-01",
+            "endDate": "2023-04-30",
+            "display": "$698,500",
+            "volume": 152,
+            "changePercentage": {
+              "value": -8.09210526315789,
+              "display": "-8.1%"
+            }
+          },
+          "trends": [
+            {
+              "value": 722500,
+              "display": "$722,500",
+              "volume": 118,
+              "endDate": "2018-05-31",
+              "startDate": "2017-06-01"
+            },
+            {
+              "value": 720000,
+              "display": "$720,000",
+              "volume": 109,
+              "endDate": "2018-06-30",
+              "startDate": "2017-07-01"
+            },
+            {
+              "value": 710000,
+              "display": "$710,000",
+              "volume": 102,
+              "endDate": "2018-07-31",
+              "startDate": "2017-08-01"
+            },
+            {
+              "value": 707500,
+              "display": "$707,500",
+              "volume": 102,
+              "endDate": "2018-08-31",
+              "startDate": "2017-09-01"
+            },
+            {
+              "value": 700000,
+              "display": "$700,000",
+              "volume": 101,
+              "endDate": "2018-09-30",
+              "startDate": "2017-10-01"
+            },
+            {
+              "value": 700000,
+              "display": "$700,000",
+              "volume": 99,
+              "endDate": "2018-10-31",
+              "startDate": "2017-11-01"
+            },
+            {
+              "value": 700000,
+              "display": "$700,000",
+              "volume": 92,
+              "endDate": "2018-11-30",
+              "startDate": "2017-12-01"
+            },
+            {
+              "value": 700000,
+              "display": "$700,000",
+              "volume": 91,
+              "endDate": "2018-12-31",
+              "startDate": "2018-01-01"
+            },
+            {
+              "value": 692500,
+              "display": "$692,500",
+              "volume": 88,
+              "endDate": "2019-01-31",
+              "startDate": "2018-02-01"
+            },
+            {
+              "value": 680000,
+              "display": "$680,000",
+              "volume": 86,
+              "endDate": "2019-02-28",
+              "startDate": "2018-03-01"
+            },
+            {
+              "value": 680000,
+              "display": "$680,000",
+              "volume": 88,
+              "endDate": "2019-03-31",
+              "startDate": "2018-04-01"
+            },
+            {
+              "value": 670000,
+              "display": "$670,000",
+              "volume": 87,
+              "endDate": "2019-04-30",
+              "startDate": "2018-05-01"
+            },
+            {
+              "value": 675000,
+              "display": "$675,000",
+              "volume": 90,
+              "endDate": "2019-05-31",
+              "startDate": "2018-06-01"
+            },
+            {
+              "value": 675000,
+              "display": "$675,000",
+              "volume": 84,
+              "endDate": "2019-06-30",
+              "startDate": "2018-07-01"
+            },
+            {
+              "value": 657500,
+              "display": "$657,500",
+              "volume": 85,
+              "endDate": "2019-07-31",
+              "startDate": "2018-08-01"
+            },
+            {
+              "value": 673500,
+              "display": "$673,500",
+              "volume": 86,
+              "endDate": "2019-08-31",
+              "startDate": "2018-09-01"
+            },
+            {
+              "value": 673500,
+              "display": "$673,500",
+              "volume": 88,
+              "endDate": "2019-09-30",
+              "startDate": "2018-10-01"
+            },
+            {
+              "value": 680000,
+              "display": "$680,000",
+              "volume": 95,
+              "endDate": "2019-10-31",
+              "startDate": "2018-11-01"
+            },
+            {
+              "value": 680000,
+              "display": "$680,000",
+              "volume": 113,
+              "endDate": "2019-11-30",
+              "startDate": "2018-12-01"
+            },
+            {
+              "value": 680000,
+              "display": "$680,000",
+              "volume": 120,
+              "endDate": "2019-12-31",
+              "startDate": "2019-01-01"
+            },
+            {
+              "value": 680000,
+              "display": "$680,000",
+              "volume": 122,
+              "endDate": "2020-01-31",
+              "startDate": "2019-02-01"
+            },
+            {
+              "value": 687500,
+              "display": "$687,500",
+              "volume": 120,
+              "endDate": "2020-02-29",
+              "startDate": "2019-03-01"
+            },
+            {
+              "value": 742000,
+              "display": "$742,000",
+              "volume": 127,
+              "endDate": "2020-03-31",
+              "startDate": "2019-04-01"
+            },
+            {
+              "value": 767500,
+              "display": "$767,500",
+              "volume": 128,
+              "endDate": "2020-04-30",
+              "startDate": "2019-05-01"
+            },
+            {
+              "value": 760000,
+              "display": "$760,000",
+              "volume": 127,
+              "endDate": "2020-05-31",
+              "startDate": "2019-06-01"
+            },
+            {
+              "value": 775000,
+              "display": "$775,000",
+              "volume": 130,
+              "endDate": "2020-06-30",
+              "startDate": "2019-07-01"
+            },
+            {
+              "value": 775000,
+              "display": "$775,000",
+              "volume": 123,
+              "endDate": "2020-07-31",
+              "startDate": "2019-08-01"
+            },
+            {
+              "value": 753750,
+              "display": "$753,750",
+              "volume": 116,
+              "endDate": "2020-08-31",
+              "startDate": "2019-09-01"
+            },
+            {
+              "value": 775000,
+              "display": "$775,000",
+              "volume": 111,
+              "endDate": "2020-09-30",
+              "startDate": "2019-10-01"
+            },
+            {
+              "value": 762500,
+              "display": "$762,500",
+              "volume": 106,
+              "endDate": "2020-10-31",
+              "startDate": "2019-11-01"
+            },
+            {
+              "value": 746250,
+              "display": "$746,250",
+              "volume": 92,
+              "endDate": "2020-11-30",
+              "startDate": "2019-12-01"
+            },
+            {
+              "value": 747500,
+              "display": "$747,500",
+              "volume": 89,
+              "endDate": "2020-12-31",
+              "startDate": "2020-01-01"
+            },
+            {
+              "value": 750000,
+              "display": "$750,000",
+              "volume": 90,
+              "endDate": "2021-01-31",
+              "startDate": "2020-02-01"
+            },
+            {
+              "value": 745000,
+              "display": "$745,000",
+              "volume": 96,
+              "endDate": "2021-02-28",
+              "startDate": "2020-03-01"
+            },
+            {
+              "value": 747500,
+              "display": "$747,500",
+              "volume": 92,
+              "endDate": "2021-03-31",
+              "startDate": "2020-04-01"
+            },
+            {
+              "value": 730000,
+              "display": "$730,000",
+              "volume": 89,
+              "endDate": "2021-04-30",
+              "startDate": "2020-05-01"
+            },
+            {
+              "value": 720000,
+              "display": "$720,000",
+              "volume": 90,
+              "endDate": "2021-05-31",
+              "startDate": "2020-06-01"
+            },
+            {
+              "value": 705000,
+              "display": "$705,000",
+              "volume": 97,
+              "endDate": "2021-06-30",
+              "startDate": "2020-07-01"
+            },
+            {
+              "value": 712500,
+              "display": "$712,500",
+              "volume": 102,
+              "endDate": "2021-07-31",
+              "startDate": "2020-08-01"
+            },
+            {
+              "value": 717000,
+              "display": "$717,000",
+              "volume": 107,
+              "endDate": "2021-08-31",
+              "startDate": "2020-09-01"
+            },
+            {
+              "value": 730500,
+              "display": "$730,500",
+              "volume": 110,
+              "endDate": "2021-09-30",
+              "startDate": "2020-10-01"
+            },
+            {
+              "value": 745000,
+              "display": "$745,000",
+              "volume": 117,
+              "endDate": "2021-10-31",
+              "startDate": "2020-11-01"
+            },
+            {
+              "value": 736000,
+              "display": "$736,000",
+              "volume": 119,
+              "endDate": "2021-11-30",
+              "startDate": "2020-12-01"
+            },
+            {
+              "value": 747500,
+              "display": "$747,500",
+              "volume": 124,
+              "endDate": "2021-12-31",
+              "startDate": "2021-01-01"
+            },
+            {
+              "value": 745000,
+              "display": "$745,000",
+              "volume": 124,
+              "endDate": "2022-01-31",
+              "startDate": "2021-02-01"
+            },
+            {
+              "value": 755000,
+              "display": "$755,000",
+              "volume": 120,
+              "endDate": "2022-02-28",
+              "startDate": "2021-03-01"
+            },
+            {
+              "value": 755000,
+              "display": "$755,000",
+              "volume": 122,
+              "endDate": "2022-03-31",
+              "startDate": "2021-04-01"
+            },
+            {
+              "value": 760000,
+              "display": "$760,000",
+              "volume": 127,
+              "endDate": "2022-04-30",
+              "startDate": "2021-05-01"
+            },
+            {
+              "value": 780000,
+              "display": "$780,000",
+              "volume": 129,
+              "endDate": "2022-05-31",
+              "startDate": "2021-06-01"
+            },
+            {
+              "value": 800000,
+              "display": "$800,000",
+              "volume": 125,
+              "endDate": "2022-06-30",
+              "startDate": "2021-07-01"
+            },
+            {
+              "value": 782500,
+              "display": "$782,500",
+              "volume": 128,
+              "endDate": "2022-07-31",
+              "startDate": "2021-08-01"
+            },
+            {
+              "value": 770000,
+              "display": "$770,000",
+              "volume": 135,
+              "endDate": "2022-08-31",
+              "startDate": "2021-09-01"
+            },
+            {
+              "value": 760000,
+              "display": "$760,000",
+              "volume": 137,
+              "endDate": "2022-09-30",
+              "startDate": "2021-10-01"
+            },
+            {
+              "value": 750000,
+              "display": "$750,000",
+              "volume": 139,
+              "endDate": "2022-10-31",
+              "startDate": "2021-11-01"
+            },
+            {
+              "value": 749500,
+              "display": "$749,500",
+              "volume": 142,
+              "endDate": "2022-11-30",
+              "startDate": "2021-12-01"
+            },
+            {
+              "value": 725000,
+              "display": "$725,000",
+              "volume": 146,
+              "endDate": "2022-12-31",
+              "startDate": "2022-01-01"
+            },
+            {
+              "value": 720000,
+              "display": "$720,000",
+              "volume": 151,
+              "endDate": "2023-01-31",
+              "startDate": "2022-02-01"
+            },
+            {
+              "value": 705400,
+              "display": "$705,400",
+              "volume": 164,
+              "endDate": "2023-02-28",
+              "startDate": "2022-03-01"
+            },
+            {
+              "value": 700000,
+              "display": "$700,000",
+              "volume": 162,
+              "endDate": "2023-03-31",
+              "startDate": "2022-04-01"
+            },
+            {
+              "value": 698500,
+              "display": "$698,500",
+              "volume": 152,
+              "endDate": "2023-04-30",
+              "startDate": "2022-05-01"
+            }
+          ]
+        },
+        "oneBed": {
+          "yearly": {
+            "startDate": "2022-05-01",
+            "endDate": "2023-04-30",
+            "display": "$535,000",
+            "volume": 80,
+            "changePercentage": {
+              "value": -20.149253731343286,
+              "display": "-20.1%"
+            }
+          },
+          "trends": [
+            {
+              "value": 600000,
+              "display": "$600,000",
+              "volume": 75,
+              "endDate": "2018-05-31",
+              "startDate": "2017-06-01"
+            },
+            {
+              "value": 600000,
+              "display": "$600,000",
+              "volume": 69,
+              "endDate": "2018-06-30",
+              "startDate": "2017-07-01"
+            },
+            {
+              "value": 340000,
+              "display": "$340,000",
+              "volume": 65,
+              "endDate": "2018-07-31",
+              "startDate": "2017-08-01"
+            },
+            {
+              "value": 340000,
+              "display": "$340,000",
+              "volume": 63,
+              "endDate": "2018-08-31",
+              "startDate": "2017-09-01"
+            },
+            {
+              "value": 437500,
+              "display": "$437,500",
+              "volume": 62,
+              "endDate": "2018-09-30",
+              "startDate": "2017-10-01"
+            },
+            {
+              "value": 570000,
+              "display": "$570,000",
+              "volume": 61,
+              "endDate": "2018-10-31",
+              "startDate": "2017-11-01"
+            },
+            {
+              "value": 600000,
+              "display": "$600,000",
+              "volume": 59,
+              "endDate": "2018-11-30",
+              "startDate": "2017-12-01"
+            },
+            {
+              "value": 612500,
+              "display": "$612,500",
+              "volume": 58,
+              "endDate": "2018-12-31",
+              "startDate": "2018-01-01"
+            },
+            {
+              "value": 600000,
+              "display": "$600,000",
+              "volume": 57,
+              "endDate": "2019-01-31",
+              "startDate": "2018-02-01"
+            },
+            {
+              "value": 612500,
+              "display": "$612,500",
+              "volume": 52,
+              "endDate": "2019-02-28",
+              "startDate": "2018-03-01"
+            },
+            {
+              "value": 585000,
+              "display": "$585,000",
+              "volume": 52,
+              "endDate": "2019-03-31",
+              "startDate": "2018-04-01"
+            },
+            {
+              "value": 570000,
+              "display": "$570,000",
+              "volume": 49,
+              "endDate": "2019-04-30",
+              "startDate": "2018-05-01"
+            },
+            {
+              "value": 550000,
+              "display": "$550,000",
+              "volume": 45,
+              "endDate": "2019-05-31",
+              "startDate": "2018-06-01"
+            },
+            {
+              "value": 570000,
+              "display": "$570,000",
+              "volume": 41,
+              "endDate": "2019-06-30",
+              "startDate": "2018-07-01"
+            },
+            {
+              "value": 570000,
+              "display": "$570,000",
+              "volume": 39,
+              "endDate": "2019-07-31",
+              "startDate": "2018-08-01"
+            },
+            {
+              "value": 570000,
+              "display": "$570,000",
+              "volume": 37,
+              "endDate": "2019-08-31",
+              "startDate": "2018-09-01"
+            },
+            {
+              "value": 575000,
+              "display": "$575,000",
+              "volume": 38,
+              "endDate": "2019-09-30",
+              "startDate": "2018-10-01"
+            },
+            {
+              "value": 550000,
+              "display": "$550,000",
+              "volume": 40,
+              "endDate": "2019-10-31",
+              "startDate": "2018-11-01"
+            },
+            {
+              "value": 280000,
+              "display": "$280,000",
+              "volume": 43,
+              "endDate": "2019-11-30",
+              "startDate": "2018-12-01"
+            },
+            {
+              "value": 271750,
+              "display": "$271,750",
+              "volume": 46,
+              "endDate": "2019-12-31",
+              "startDate": "2019-01-01"
+            },
+            {
+              "value": 262500,
+              "display": "$262,500",
+              "volume": 48,
+              "endDate": "2020-01-31",
+              "startDate": "2019-02-01"
+            },
+            {
+              "value": 260000,
+              "display": "$260,000",
+              "volume": 47,
+              "endDate": "2020-02-29",
+              "startDate": "2019-03-01"
+            },
+            {
+              "value": 285000,
+              "display": "$285,000",
+              "volume": 50,
+              "endDate": "2020-03-31",
+              "startDate": "2019-04-01"
+            },
+            {
+              "value": 285000,
+              "display": "$285,000",
+              "volume": 46,
+              "endDate": "2020-04-30",
+              "startDate": "2019-05-01"
+            },
+            {
+              "value": 285000,
+              "display": "$285,000",
+              "volume": 50,
+              "endDate": "2020-05-31",
+              "startDate": "2019-06-01"
+            },
+            {
+              "value": 280000,
+              "display": "$280,000",
+              "volume": 51,
+              "endDate": "2020-06-30",
+              "startDate": "2019-07-01"
+            },
+            {
+              "value": 274250,
+              "display": "$274,250",
+              "volume": 50,
+              "endDate": "2020-07-31",
+              "startDate": "2019-08-01"
+            },
+            {
+              "value": 266750,
+              "display": "$266,750",
+              "volume": 50,
+              "endDate": "2020-08-31",
+              "startDate": "2019-09-01"
+            },
+            {
+              "value": 245000,
+              "display": "$245,000",
+              "volume": 46,
+              "endDate": "2020-09-30",
+              "startDate": "2019-10-01"
+            },
+            {
+              "value": 285000,
+              "display": "$285,000",
+              "volume": 44,
+              "endDate": "2020-10-31",
+              "startDate": "2019-11-01"
+            },
+            {
+              "value": 424000,
+              "display": "$424,000",
+              "volume": 40,
+              "endDate": "2020-11-30",
+              "startDate": "2019-12-01"
+            },
+            {
+              "value": 565000,
+              "display": "$565,000",
+              "volume": 38,
+              "endDate": "2020-12-31",
+              "startDate": "2020-01-01"
+            },
+            {
+              "value": 580000,
+              "display": "$580,000",
+              "volume": 37,
+              "endDate": "2021-01-31",
+              "startDate": "2020-02-01"
+            },
+            {
+              "value": 565000,
+              "display": "$565,000",
+              "volume": 40,
+              "endDate": "2021-02-28",
+              "startDate": "2020-03-01"
+            },
+            {
+              "value": 550000,
+              "display": "$550,000",
+              "volume": 36,
+              "endDate": "2021-03-31",
+              "startDate": "2020-04-01"
+            },
+            {
+              "value": 554000,
+              "display": "$554,000",
+              "volume": 38,
+              "endDate": "2021-04-30",
+              "startDate": "2020-05-01"
+            },
+            {
+              "value": 585000,
+              "display": "$585,000",
+              "volume": 37,
+              "endDate": "2021-05-31",
+              "startDate": "2020-06-01"
+            },
+            {
+              "value": 587500,
+              "display": "$587,500",
+              "volume": 42,
+              "endDate": "2021-06-30",
+              "startDate": "2020-07-01"
+            },
+            {
+              "value": 600000,
+              "display": "$600,000",
+              "volume": 44,
+              "endDate": "2021-07-31",
+              "startDate": "2020-08-01"
+            },
+            {
+              "value": 624000,
+              "display": "$624,000",
+              "volume": 44,
+              "endDate": "2021-08-31",
+              "startDate": "2020-09-01"
+            },
+            {
+              "value": 630000,
+              "display": "$630,000",
+              "volume": 45,
+              "endDate": "2021-09-30",
+              "startDate": "2020-10-01"
+            },
+            {
+              "value": 643500,
+              "display": "$643,500",
+              "volume": 48,
+              "endDate": "2021-10-31",
+              "startDate": "2020-11-01"
+            },
+            {
+              "value": 643500,
+              "display": "$643,500",
+              "volume": 54,
+              "endDate": "2021-11-30",
+              "startDate": "2020-12-01"
+            },
+            {
+              "value": 665000,
+              "display": "$665,000",
+              "volume": 56,
+              "endDate": "2021-12-31",
+              "startDate": "2021-01-01"
+            },
+            {
+              "value": 670000,
+              "display": "$670,000",
+              "volume": 57,
+              "endDate": "2022-01-31",
+              "startDate": "2021-02-01"
+            },
+            {
+              "value": 670000,
+              "display": "$670,000",
+              "volume": 56,
+              "endDate": "2022-02-28",
+              "startDate": "2021-03-01"
+            },
+            {
+              "value": 675000,
+              "display": "$675,000",
+              "volume": 59,
+              "endDate": "2022-03-31",
+              "startDate": "2021-04-01"
+            },
+            {
+              "value": 670000,
+              "display": "$670,000",
+              "volume": 59,
+              "endDate": "2022-04-30",
+              "startDate": "2021-05-01"
+            },
+            {
+              "value": 690000,
+              "display": "$690,000",
+              "volume": 57,
+              "endDate": "2022-05-31",
+              "startDate": "2021-06-01"
+            },
+            {
+              "value": 700000,
+              "display": "$700,000",
+              "volume": 55,
+              "endDate": "2022-06-30",
+              "startDate": "2021-07-01"
+            },
+            {
+              "value": 680000,
+              "display": "$680,000",
+              "volume": 59,
+              "endDate": "2022-07-31",
+              "startDate": "2021-08-01"
+            },
+            {
+              "value": 675000,
+              "display": "$675,000",
+              "volume": 65,
+              "endDate": "2022-08-31",
+              "startDate": "2021-09-01"
+            },
+            {
+              "value": 665000,
+              "display": "$665,000",
+              "volume": 69,
+              "endDate": "2022-09-30",
+              "startDate": "2021-10-01"
+            },
+            {
+              "value": 659000,
+              "display": "$659,000",
+              "volume": 68,
+              "endDate": "2022-10-31",
+              "startDate": "2021-11-01"
+            },
+            {
+              "value": 656500,
+              "display": "$656,500",
+              "volume": 68,
+              "endDate": "2022-11-30",
+              "startDate": "2021-12-01"
+            },
+            {
+              "value": 644000,
+              "display": "$644,000",
+              "volume": 73,
+              "endDate": "2022-12-31",
+              "startDate": "2022-01-01"
+            },
+            {
+              "value": 610000,
+              "display": "$610,000",
+              "volume": 73,
+              "endDate": "2023-01-31",
+              "startDate": "2022-02-01"
+            },
+            {
+              "value": 575000,
+              "display": "$575,000",
+              "volume": 82,
+              "endDate": "2023-02-28",
+              "startDate": "2022-03-01"
+            },
+            {
+              "value": 540000,
+              "display": "$540,000",
+              "volume": 81,
+              "endDate": "2023-03-31",
+              "startDate": "2022-04-01"
+            },
+            {
+              "value": 535000,
+              "display": "$535,000",
+              "volume": 80,
+              "endDate": "2023-04-30",
+              "startDate": "2022-05-01"
+            }
+          ]
+        },
+        "twoBed": {
+          "yearly": {
+            "startDate": "2022-05-01",
+            "endDate": "2023-04-30",
+            "display": "$917,000",
+            "volume": 30,
+            "changePercentage": {
+              "value": -16.064073226544618,
+              "display": "-16.1%"
+            }
+          },
+          "trends": [
+            {
+              "value": 911500,
+              "display": "$911,500",
+              "volume": 22,
+              "endDate": "2018-05-31",
+              "startDate": "2017-06-01"
+            },
+            {
+              "value": 910000,
+              "display": "$910,000",
+              "volume": 20,
+              "endDate": "2018-06-30",
+              "startDate": "2017-07-01"
+            },
+            {
+              "value": 913000,
+              "display": "$913,000",
+              "volume": 21,
+              "endDate": "2018-07-31",
+              "startDate": "2017-08-01"
+            },
+            {
+              "value": 911500,
+              "display": "$911,500",
+              "volume": 22,
+              "endDate": "2018-08-31",
+              "startDate": "2017-09-01"
+            },
+            {
+              "value": 910000,
+              "display": "$910,000",
+              "volume": 21,
+              "endDate": "2018-09-30",
+              "startDate": "2017-10-01"
+            },
+            {
+              "value": 910000,
+              "display": "$910,000",
+              "volume": 21,
+              "endDate": "2018-10-31",
+              "startDate": "2017-11-01"
+            },
+            {
+              "value": 965000,
+              "display": "$965,000",
+              "volume": 16,
+              "endDate": "2018-11-30",
+              "startDate": "2017-12-01"
+            },
+            {
+              "value": 965000,
+              "display": "$965,000",
+              "volume": 14,
+              "endDate": "2018-12-31",
+              "startDate": "2018-01-01"
+            },
+            {
+              "value": 950000,
+              "display": "$950,000",
+              "volume": 13,
+              "endDate": "2019-01-31",
+              "startDate": "2018-02-01"
+            },
+            {
+              "value": 950000,
+              "display": "$950,000",
+              "volume": 13,
+              "endDate": "2019-02-28",
+              "startDate": "2018-03-01"
+            },
+            {
+              "value": 950000,
+              "display": "$950,000",
+              "volume": 15,
+              "endDate": "2019-03-31",
+              "startDate": "2018-04-01"
+            },
+            {
+              "value": 900000,
+              "display": "$900,000",
+              "volume": 15,
+              "endDate": "2019-04-30",
+              "startDate": "2018-05-01"
+            },
+            {
+              "value": 900000,
+              "display": "$900,000",
+              "volume": 19,
+              "endDate": "2019-05-31",
+              "startDate": "2018-06-01"
+            },
+            {
+              "value": 900000,
+              "display": "$900,000",
+              "volume": 19,
+              "endDate": "2019-06-30",
+              "startDate": "2018-07-01"
+            },
+            {
+              "value": 880000,
+              "display": "$880,000",
+              "volume": 19,
+              "endDate": "2019-07-31",
+              "startDate": "2018-08-01"
+            },
+            {
+              "value": 894000,
+              "display": "$894,000",
+              "volume": 22,
+              "endDate": "2019-08-31",
+              "startDate": "2018-09-01"
+            },
+            {
+              "value": 884000,
+              "display": "$884,000",
+              "volume": 22,
+              "endDate": "2019-09-30",
+              "startDate": "2018-10-01"
+            },
+            {
+              "value": 884000,
+              "display": "$884,000",
+              "volume": 22,
+              "endDate": "2019-10-31",
+              "startDate": "2018-11-01"
+            },
+            {
+              "value": 889000,
+              "display": "$889,000",
+              "volume": 28,
+              "endDate": "2019-11-30",
+              "startDate": "2018-12-01"
+            },
+            {
+              "value": 895000,
+              "display": "$895,000",
+              "volume": 30,
+              "endDate": "2019-12-31",
+              "startDate": "2019-01-01"
+            },
+            {
+              "value": 895000,
+              "display": "$895,000",
+              "volume": 30,
+              "endDate": "2020-01-31",
+              "startDate": "2019-02-01"
+            },
+            {
+              "value": 890000,
+              "display": "$890,000",
+              "volume": 31,
+              "endDate": "2020-02-29",
+              "startDate": "2019-03-01"
+            },
+            {
+              "value": 895000,
+              "display": "$895,000",
+              "volume": 32,
+              "endDate": "2020-03-31",
+              "startDate": "2019-04-01"
+            },
+            {
+              "value": 910000,
+              "display": "$910,000",
+              "volume": 33,
+              "endDate": "2020-04-30",
+              "startDate": "2019-05-01"
+            },
+            {
+              "value": 920000,
+              "display": "$920,000",
+              "volume": 29,
+              "endDate": "2020-05-31",
+              "startDate": "2019-06-01"
+            },
+            {
+              "value": 921000,
+              "display": "$921,000",
+              "volume": 30,
+              "endDate": "2020-06-30",
+              "startDate": "2019-07-01"
+            },
+            {
+              "value": 925000,
+              "display": "$925,000",
+              "volume": 27,
+              "endDate": "2020-07-31",
+              "startDate": "2019-08-01"
+            },
+            {
+              "value": 927500,
+              "display": "$927,500",
+              "volume": 24,
+              "endDate": "2020-08-31",
+              "startDate": "2019-09-01"
+            },
+            {
+              "value": 925000,
+              "display": "$925,000",
+              "volume": 25,
+              "endDate": "2020-09-30",
+              "startDate": "2019-10-01"
+            },
+            {
+              "value": 920000,
+              "display": "$920,000",
+              "volume": 27,
+              "endDate": "2020-10-31",
+              "startDate": "2019-11-01"
+            },
+            {
+              "value": 910000,
+              "display": "$910,000",
+              "volume": 25,
+              "endDate": "2020-11-30",
+              "startDate": "2019-12-01"
+            },
+            {
+              "value": 891500,
+              "display": "$891,500",
+              "volume": 26,
+              "endDate": "2020-12-31",
+              "startDate": "2020-01-01"
+            },
+            {
+              "value": 879000,
+              "display": "$879,000",
+              "volume": 27,
+              "endDate": "2021-01-31",
+              "startDate": "2020-02-01"
+            },
+            {
+              "value": 894500,
+              "display": "$894,500",
+              "volume": 28,
+              "endDate": "2021-02-28",
+              "startDate": "2020-03-01"
+            },
+            {
+              "value": 910000,
+              "display": "$910,000",
+              "volume": 27,
+              "endDate": "2021-03-31",
+              "startDate": "2020-04-01"
+            },
+            {
+              "value": 884500,
+              "display": "$884,500",
+              "volume": 26,
+              "endDate": "2021-04-30",
+              "startDate": "2020-05-01"
+            },
+            {
+              "value": 890000,
+              "display": "$890,000",
+              "volume": 27,
+              "endDate": "2021-05-31",
+              "startDate": "2020-06-01"
+            },
+            {
+              "value": 890000,
+              "display": "$890,000",
+              "volume": 29,
+              "endDate": "2021-06-30",
+              "startDate": "2020-07-01"
+            },
+            {
+              "value": 928500,
+              "display": "$928,500",
+              "volume": 32,
+              "endDate": "2021-07-31",
+              "startDate": "2020-08-01"
+            },
+            {
+              "value": 911500,
+              "display": "$911,500",
+              "volume": 34,
+              "endDate": "2021-08-31",
+              "startDate": "2020-09-01"
+            },
+            {
+              "value": 938000,
+              "display": "$938,000",
+              "volume": 35,
+              "endDate": "2021-09-30",
+              "startDate": "2020-10-01"
+            },
+            {
+              "value": 975000,
+              "display": "$975,000",
+              "volume": 36,
+              "endDate": "2021-10-31",
+              "startDate": "2020-11-01"
+            },
+            {
+              "value": 976000,
+              "display": "$976,000",
+              "volume": 32,
+              "endDate": "2021-11-30",
+              "startDate": "2020-12-01"
+            },
+            {
+              "value": 978500,
+              "display": "$978,500",
+              "volume": 34,
+              "endDate": "2021-12-31",
+              "startDate": "2021-01-01"
+            },
+            {
+              "value": 980000,
+              "display": "$980,000",
+              "volume": 33,
+              "endDate": "2022-01-31",
+              "startDate": "2021-02-01"
+            },
+            {
+              "value": 995000,
+              "display": "$995,000",
+              "volume": 33,
+              "endDate": "2022-02-28",
+              "startDate": "2021-03-01"
+            },
+            {
+              "value": 1062500,
+              "display": "$1,062,500",
+              "volume": 35,
+              "endDate": "2022-03-31",
+              "startDate": "2021-04-01"
+            },
+            {
+              "value": 1092500,
+              "display": "$1,092,500",
+              "volume": 38,
+              "endDate": "2022-04-30",
+              "startDate": "2021-05-01"
+            },
+            {
+              "value": 1075000,
+              "display": "$1,075,000",
+              "volume": 38,
+              "endDate": "2022-05-31",
+              "startDate": "2021-06-01"
+            },
+            {
+              "value": 1090000,
+              "display": "$1,090,000",
+              "volume": 35,
+              "endDate": "2022-06-30",
+              "startDate": "2021-07-01"
+            },
+            {
+              "value": 1110000,
+              "display": "$1,110,000",
+              "volume": 34,
+              "endDate": "2022-07-31",
+              "startDate": "2021-08-01"
+            },
+            {
+              "value": 1120000,
+              "display": "$1,120,000",
+              "volume": 32,
+              "endDate": "2022-08-31",
+              "startDate": "2021-09-01"
+            },
+            {
+              "value": 1120000,
+              "display": "$1,120,000",
+              "volume": 29,
+              "endDate": "2022-09-30",
+              "startDate": "2021-10-01"
+            },
+            {
+              "value": 1120000,
+              "display": "$1,120,000",
+              "volume": 29,
+              "endDate": "2022-10-31",
+              "startDate": "2021-11-01"
+            },
+            {
+              "value": 1120000,
+              "display": "$1,120,000",
+              "volume": 33,
+              "endDate": "2022-11-30",
+              "startDate": "2021-12-01"
+            },
+            {
+              "value": 1090000,
+              "display": "$1,090,000",
+              "volume": 32,
+              "endDate": "2022-12-31",
+              "startDate": "2022-01-01"
+            },
+            {
+              "value": 1080000,
+              "display": "$1,080,000",
+              "volume": 33,
+              "endDate": "2023-01-31",
+              "startDate": "2022-02-01"
+            },
+            {
+              "value": 975000,
+              "display": "$975,000",
+              "volume": 35,
+              "endDate": "2023-02-28",
+              "startDate": "2022-03-01"
+            },
+            {
+              "value": 955000,
+              "display": "$955,000",
+              "volume": 35,
+              "endDate": "2023-03-31",
+              "startDate": "2022-04-01"
+            },
+            {
+              "value": 917000,
+              "display": "$917,000",
+              "volume": 30,
+              "endDate": "2023-04-30",
+              "startDate": "2022-05-01"
+            }
+          ]
+        },
+        "threeBed": {
+          "yearly": null,
+          "trends": null
+        }
+      }
+    },
+    "rent": {
+      "house": {
+        "allBed": {
+          "yearly": {
+            "startDate": "2022-05-01",
+            "endDate": "2023-04-30",
+            "display": "$835",
+            "volume": 80,
+            "changePercentage": {
+              "value": 17.6056338028169,
+              "display": "17.6%"
+            }
+          },
+          "trends": [
+            {
+              "value": 770,
+              "display": "$770",
+              "volume": 38,
+              "endDate": "2018-05-31",
+              "startDate": "2017-06-01"
+            },
+            {
+              "value": 770,
+              "display": "$770",
+              "volume": 38,
+              "endDate": "2018-06-30",
+              "startDate": "2017-07-01"
+            },
+            {
+              "value": 770,
+              "display": "$770",
+              "volume": 34,
+              "endDate": "2018-07-31",
+              "startDate": "2017-08-01"
+            },
+            {
+              "value": 770,
+              "display": "$770",
+              "volume": 30,
+              "endDate": "2018-08-31",
+              "startDate": "2017-09-01"
+            },
+            {
+              "value": 760,
+              "display": "$760",
+              "volume": 37,
+              "endDate": "2018-09-30",
+              "startDate": "2017-10-01"
+            },
+            {
+              "value": 760,
+              "display": "$760",
+              "volume": 38,
+              "endDate": "2018-10-31",
+              "startDate": "2017-11-01"
+            },
+            {
+              "value": 775,
+              "display": "$775",
+              "volume": 38,
+              "endDate": "2018-11-30",
+              "startDate": "2017-12-01"
+            },
+            {
+              "value": 760,
+              "display": "$760",
+              "volume": 35,
+              "endDate": "2018-12-31",
+              "startDate": "2018-01-01"
+            },
+            {
+              "value": 760,
+              "display": "$760",
+              "volume": 42,
+              "endDate": "2019-01-31",
+              "startDate": "2018-02-01"
+            },
+            {
+              "value": 760,
+              "display": "$760",
+              "volume": 39,
+              "endDate": "2019-02-28",
+              "startDate": "2018-03-01"
+            },
+            {
+              "value": 760,
+              "display": "$760",
+              "volume": 42,
+              "endDate": "2019-03-31",
+              "startDate": "2018-04-01"
+            },
+            {
+              "value": 760,
+              "display": "$760",
+              "volume": 41,
+              "endDate": "2019-04-30",
+              "startDate": "2018-05-01"
+            },
+            {
+              "value": 760,
+              "display": "$760",
+              "volume": 39,
+              "endDate": "2019-05-31",
+              "startDate": "2018-06-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 45,
+              "endDate": "2019-06-30",
+              "startDate": "2018-07-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 45,
+              "endDate": "2019-07-31",
+              "startDate": "2018-08-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 50,
+              "endDate": "2019-08-31",
+              "startDate": "2018-09-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 44,
+              "endDate": "2019-09-30",
+              "startDate": "2018-10-01"
+            },
+            {
+              "value": 755,
+              "display": "$755",
+              "volume": 48,
+              "endDate": "2019-10-31",
+              "startDate": "2018-11-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 51,
+              "endDate": "2019-11-30",
+              "startDate": "2018-12-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 53,
+              "endDate": "2019-12-31",
+              "startDate": "2019-01-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 50,
+              "endDate": "2020-01-31",
+              "startDate": "2019-02-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 52,
+              "endDate": "2020-02-29",
+              "startDate": "2019-03-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 53,
+              "endDate": "2020-03-31",
+              "startDate": "2019-04-01"
+            },
+            {
+              "value": 700,
+              "display": "$700",
+              "volume": 53,
+              "endDate": "2020-04-30",
+              "startDate": "2019-05-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 64,
+              "endDate": "2020-05-31",
+              "startDate": "2019-06-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 65,
+              "endDate": "2020-06-30",
+              "startDate": "2019-07-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 68,
+              "endDate": "2020-07-31",
+              "startDate": "2019-08-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 73,
+              "endDate": "2020-08-31",
+              "startDate": "2019-09-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 77,
+              "endDate": "2020-09-30",
+              "startDate": "2019-10-01"
+            },
+            {
+              "value": 740,
+              "display": "$740",
+              "volume": 76,
+              "endDate": "2020-10-31",
+              "startDate": "2019-11-01"
+            },
+            {
+              "value": 725,
+              "display": "$725",
+              "volume": 74,
+              "endDate": "2020-11-30",
+              "startDate": "2019-12-01"
+            },
+            {
+              "value": 730,
+              "display": "$730",
+              "volume": 75,
+              "endDate": "2020-12-31",
+              "startDate": "2020-01-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 79,
+              "endDate": "2021-01-31",
+              "startDate": "2020-02-01"
+            },
+            {
+              "value": 730,
+              "display": "$730",
+              "volume": 77,
+              "endDate": "2021-02-28",
+              "startDate": "2020-03-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 74,
+              "endDate": "2021-03-31",
+              "startDate": "2020-04-01"
+            },
+            {
+              "value": 775,
+              "display": "$775",
+              "volume": 77,
+              "endDate": "2021-04-30",
+              "startDate": "2020-05-01"
+            },
+            {
+              "value": 740,
+              "display": "$740",
+              "volume": 70,
+              "endDate": "2021-05-31",
+              "startDate": "2020-06-01"
+            },
+            {
+              "value": 725,
+              "display": "$725",
+              "volume": 65,
+              "endDate": "2021-06-30",
+              "startDate": "2020-07-01"
+            },
+            {
+              "value": 722.5,
+              "display": "$722",
+              "volume": 62,
+              "endDate": "2021-07-31",
+              "startDate": "2020-08-01"
+            },
+            {
+              "value": 720,
+              "display": "$720",
+              "volume": 56,
+              "endDate": "2021-08-31",
+              "startDate": "2020-09-01"
+            },
+            {
+              "value": 720,
+              "display": "$720",
+              "volume": 54,
+              "endDate": "2021-09-30",
+              "startDate": "2020-10-01"
+            },
+            {
+              "value": 700,
+              "display": "$700",
+              "volume": 55,
+              "endDate": "2021-10-31",
+              "startDate": "2020-11-01"
+            },
+            {
+              "value": 697.5,
+              "display": "$697",
+              "volume": 54,
+              "endDate": "2021-11-30",
+              "startDate": "2020-12-01"
+            },
+            {
+              "value": 682.5,
+              "display": "$682",
+              "volume": 56,
+              "endDate": "2021-12-31",
+              "startDate": "2021-01-01"
+            },
+            {
+              "value": 720,
+              "display": "$720",
+              "volume": 53,
+              "endDate": "2022-01-31",
+              "startDate": "2021-02-01"
+            },
+            {
+              "value": 700,
+              "display": "$700",
+              "volume": 55,
+              "endDate": "2022-02-28",
+              "startDate": "2021-03-01"
+            },
+            {
+              "value": 705,
+              "display": "$705",
+              "volume": 54,
+              "endDate": "2022-03-31",
+              "startDate": "2021-04-01"
+            },
+            {
+              "value": 710,
+              "display": "$710",
+              "volume": 51,
+              "endDate": "2022-04-30",
+              "startDate": "2021-05-01"
+            },
+            {
+              "value": 720,
+              "display": "$720",
+              "volume": 54,
+              "endDate": "2022-05-31",
+              "startDate": "2021-06-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 51,
+              "endDate": "2022-06-30",
+              "startDate": "2021-07-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 61,
+              "endDate": "2022-07-31",
+              "startDate": "2021-08-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 61,
+              "endDate": "2022-08-31",
+              "startDate": "2021-09-01"
+            },
+            {
+              "value": 775,
+              "display": "$775",
+              "volume": 61,
+              "endDate": "2022-09-30",
+              "startDate": "2021-10-01"
+            },
+            {
+              "value": 790,
+              "display": "$790",
+              "volume": 61,
+              "endDate": "2022-10-31",
+              "startDate": "2021-11-01"
+            },
+            {
+              "value": 795,
+              "display": "$795",
+              "volume": 62,
+              "endDate": "2022-11-30",
+              "startDate": "2021-12-01"
+            },
+            {
+              "value": 795,
+              "display": "$795",
+              "volume": 61,
+              "endDate": "2022-12-31",
+              "startDate": "2022-01-01"
+            },
+            {
+              "value": 790,
+              "display": "$790",
+              "volume": 62,
+              "endDate": "2023-01-31",
+              "startDate": "2022-02-01"
+            },
+            {
+              "value": 795,
+              "display": "$795",
+              "volume": 63,
+              "endDate": "2023-02-28",
+              "startDate": "2022-03-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 63,
+              "endDate": "2023-03-31",
+              "startDate": "2022-04-01"
+            },
+            {
+              "value": 835,
+              "display": "$835",
+              "volume": 80,
+              "endDate": "2023-04-30",
+              "startDate": "2022-05-01"
+            }
+          ]
+        },
+        "twoBed": {
+          "yearly": {
+            "startDate": "2022-05-01",
+            "endDate": "2023-04-30",
+            "display": "$700",
+            "volume": 23,
+            "changePercentage": {
+              "value": 10.236220472440948,
+              "display": "10.2%"
+            }
+          },
+          "trends": [
+            {
+              "value": 730,
+              "display": "$730",
+              "volume": 21,
+              "endDate": "2018-05-31",
+              "startDate": "2017-06-01"
+            },
+            {
+              "value": 730,
+              "display": "$730",
+              "volume": 20,
+              "endDate": "2018-06-30",
+              "startDate": "2017-07-01"
+            },
+            {
+              "value": 730,
+              "display": "$730",
+              "volume": 19,
+              "endDate": "2018-07-31",
+              "startDate": "2017-08-01"
+            },
+            {
+              "value": 735,
+              "display": "$735",
+              "volume": 16,
+              "endDate": "2018-08-31",
+              "startDate": "2017-09-01"
+            },
+            {
+              "value": 745,
+              "display": "$745",
+              "volume": 16,
+              "endDate": "2018-09-30",
+              "startDate": "2017-10-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 15,
+              "endDate": "2018-10-31",
+              "startDate": "2017-11-01"
+            },
+            {
+              "value": 755,
+              "display": "$755",
+              "volume": 14,
+              "endDate": "2018-11-30",
+              "startDate": "2017-12-01"
+            },
+            {
+              "value": 745,
+              "display": "$745",
+              "volume": 12,
+              "endDate": "2018-12-31",
+              "startDate": "2018-01-01"
+            },
+            {
+              "value": 735,
+              "display": "$735",
+              "volume": 14,
+              "endDate": "2019-01-31",
+              "startDate": "2018-02-01"
+            },
+            {
+              "value": 755,
+              "display": "$755",
+              "volume": 14,
+              "endDate": "2019-02-28",
+              "startDate": "2018-03-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 16,
+              "endDate": "2019-03-31",
+              "startDate": "2018-04-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 14,
+              "endDate": "2019-04-30",
+              "startDate": "2018-05-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 13,
+              "endDate": "2019-05-31",
+              "startDate": "2018-06-01"
+            },
+            {
+              "value": 735,
+              "display": "$735",
+              "volume": 18,
+              "endDate": "2019-06-30",
+              "startDate": "2018-07-01"
+            },
+            {
+              "value": 735,
+              "display": "$735",
+              "volume": 18,
+              "endDate": "2019-07-31",
+              "startDate": "2018-08-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 20,
+              "endDate": "2019-08-31",
+              "startDate": "2018-09-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 19,
+              "endDate": "2019-09-30",
+              "startDate": "2018-10-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 20,
+              "endDate": "2019-10-31",
+              "startDate": "2018-11-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 21,
+              "endDate": "2019-11-30",
+              "startDate": "2018-12-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 22,
+              "endDate": "2019-12-31",
+              "startDate": "2019-01-01"
+            },
+            {
+              "value": 735,
+              "display": "$735",
+              "volume": 22,
+              "endDate": "2020-01-31",
+              "startDate": "2019-02-01"
+            },
+            {
+              "value": 720,
+              "display": "$720",
+              "volume": 21,
+              "endDate": "2020-02-29",
+              "startDate": "2019-03-01"
+            },
+            {
+              "value": 700,
+              "display": "$700",
+              "volume": 21,
+              "endDate": "2020-03-31",
+              "startDate": "2019-04-01"
+            },
+            {
+              "value": 690,
+              "display": "$690",
+              "volume": 21,
+              "endDate": "2020-04-30",
+              "startDate": "2019-05-01"
+            },
+            {
+              "value": 685,
+              "display": "$685",
+              "volume": 24,
+              "endDate": "2020-05-31",
+              "startDate": "2019-06-01"
+            },
+            {
+              "value": 687.5,
+              "display": "$687",
+              "volume": 20,
+              "endDate": "2020-06-30",
+              "startDate": "2019-07-01"
+            },
+            {
+              "value": 670,
+              "display": "$670",
+              "volume": 21,
+              "endDate": "2020-07-31",
+              "startDate": "2019-08-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 22,
+              "endDate": "2020-08-31",
+              "startDate": "2019-09-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 23,
+              "endDate": "2020-09-30",
+              "startDate": "2019-10-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 23,
+              "endDate": "2020-10-31",
+              "startDate": "2019-11-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 21,
+              "endDate": "2020-11-30",
+              "startDate": "2019-12-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 21,
+              "endDate": "2020-12-31",
+              "startDate": "2020-01-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 22,
+              "endDate": "2021-01-31",
+              "startDate": "2020-02-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 22,
+              "endDate": "2021-02-28",
+              "startDate": "2020-03-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 21,
+              "endDate": "2021-03-31",
+              "startDate": "2020-04-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 22,
+              "endDate": "2021-04-30",
+              "startDate": "2020-05-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 21,
+              "endDate": "2021-05-31",
+              "startDate": "2020-06-01"
+            },
+            {
+              "value": 640,
+              "display": "$640",
+              "volume": 22,
+              "endDate": "2021-06-30",
+              "startDate": "2020-07-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 23,
+              "endDate": "2021-07-31",
+              "startDate": "2020-08-01"
+            },
+            {
+              "value": 677.5,
+              "display": "$677",
+              "volume": 20,
+              "endDate": "2021-08-31",
+              "startDate": "2020-09-01"
+            },
+            {
+              "value": 670,
+              "display": "$670",
+              "volume": 19,
+              "endDate": "2021-09-30",
+              "startDate": "2020-10-01"
+            },
+            {
+              "value": 620,
+              "display": "$620",
+              "volume": 19,
+              "endDate": "2021-10-31",
+              "startDate": "2020-11-01"
+            },
+            {
+              "value": 635,
+              "display": "$635",
+              "volume": 20,
+              "endDate": "2021-11-30",
+              "startDate": "2020-12-01"
+            },
+            {
+              "value": 620,
+              "display": "$620",
+              "volume": 21,
+              "endDate": "2021-12-31",
+              "startDate": "2021-01-01"
+            },
+            {
+              "value": 620,
+              "display": "$620",
+              "volume": 17,
+              "endDate": "2022-01-31",
+              "startDate": "2021-02-01"
+            },
+            {
+              "value": 620,
+              "display": "$620",
+              "volume": 19,
+              "endDate": "2022-02-28",
+              "startDate": "2021-03-01"
+            },
+            {
+              "value": 620,
+              "display": "$620",
+              "volume": 19,
+              "endDate": "2022-03-31",
+              "startDate": "2021-04-01"
+            },
+            {
+              "value": 635,
+              "display": "$635",
+              "volume": 18,
+              "endDate": "2022-04-30",
+              "startDate": "2021-05-01"
+            },
+            {
+              "value": 637.5,
+              "display": "$637",
+              "volume": 20,
+              "endDate": "2022-05-31",
+              "startDate": "2021-06-01"
+            },
+            {
+              "value": 637.5,
+              "display": "$637",
+              "volume": 18,
+              "endDate": "2022-06-30",
+              "startDate": "2021-07-01"
+            },
+            {
+              "value": 625,
+              "display": "$625",
+              "volume": 19,
+              "endDate": "2022-07-31",
+              "startDate": "2021-08-01"
+            },
+            {
+              "value": 637.5,
+              "display": "$637",
+              "volume": 20,
+              "endDate": "2022-08-31",
+              "startDate": "2021-09-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 21,
+              "endDate": "2022-09-30",
+              "startDate": "2021-10-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 20,
+              "endDate": "2022-10-31",
+              "startDate": "2021-11-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 20,
+              "endDate": "2022-11-30",
+              "startDate": "2021-12-01"
+            },
+            {
+              "value": 665,
+              "display": "$665",
+              "volume": 20,
+              "endDate": "2022-12-31",
+              "startDate": "2022-01-01"
+            },
+            {
+              "value": 680,
+              "display": "$680",
+              "volume": 23,
+              "endDate": "2023-01-31",
+              "startDate": "2022-02-01"
+            },
+            {
+              "value": 680,
+              "display": "$680",
+              "volume": 21,
+              "endDate": "2023-02-28",
+              "startDate": "2022-03-01"
+            },
+            {
+              "value": 680,
+              "display": "$680",
+              "volume": 22,
+              "endDate": "2023-03-31",
+              "startDate": "2022-04-01"
+            },
+            {
+              "value": 700,
+              "display": "$700",
+              "volume": 23,
+              "endDate": "2023-04-30",
+              "startDate": "2022-05-01"
+            }
+          ]
+        },
+        "threeBed": {
+          "yearly": {
+            "startDate": "2022-05-01",
+            "endDate": "2023-04-30",
+            "display": "$872",
+            "volume": 36,
+            "changePercentage": {
+              "value": 33.716475095785434,
+              "display": "33.7%"
+            }
+          },
+          "trends": [
+            {
+              "value": 825,
+              "display": "$825",
+              "volume": 10,
+              "endDate": "2018-05-31",
+              "startDate": "2017-06-01"
+            },
+            {
+              "value": 850,
+              "display": "$850",
+              "volume": 11,
+              "endDate": "2018-06-30",
+              "startDate": "2017-07-01"
+            },
+            {
+              "value": 850,
+              "display": "$850",
+              "volume": 10,
+              "endDate": "2018-07-31",
+              "startDate": "2017-08-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 15,
+              "endDate": "2018-09-30",
+              "startDate": "2017-10-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 16,
+              "endDate": "2018-10-31",
+              "startDate": "2017-11-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 16,
+              "endDate": "2018-11-30",
+              "startDate": "2017-12-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 15,
+              "endDate": "2018-12-31",
+              "startDate": "2018-01-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 19,
+              "endDate": "2019-01-31",
+              "startDate": "2018-02-01"
+            },
+            {
+              "value": 785,
+              "display": "$785",
+              "volume": 18,
+              "endDate": "2019-02-28",
+              "startDate": "2018-03-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 20,
+              "endDate": "2019-03-31",
+              "startDate": "2018-04-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 19,
+              "endDate": "2019-04-30",
+              "startDate": "2018-05-01"
+            },
+            {
+              "value": 770,
+              "display": "$770",
+              "volume": 17,
+              "endDate": "2019-05-31",
+              "startDate": "2018-06-01"
+            },
+            {
+              "value": 785,
+              "display": "$785",
+              "volume": 18,
+              "endDate": "2019-06-30",
+              "startDate": "2018-07-01"
+            },
+            {
+              "value": 770,
+              "display": "$770",
+              "volume": 17,
+              "endDate": "2019-07-31",
+              "startDate": "2018-08-01"
+            },
+            {
+              "value": 770,
+              "display": "$770",
+              "volume": 17,
+              "endDate": "2019-08-31",
+              "startDate": "2018-09-01"
+            },
+            {
+              "value": 770,
+              "display": "$770",
+              "volume": 13,
+              "endDate": "2019-09-30",
+              "startDate": "2018-10-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 17,
+              "endDate": "2019-10-31",
+              "startDate": "2018-11-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 20,
+              "endDate": "2019-11-30",
+              "startDate": "2018-12-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 21,
+              "endDate": "2019-12-31",
+              "startDate": "2019-01-01"
+            },
+            {
+              "value": 860,
+              "display": "$860",
+              "volume": 18,
+              "endDate": "2020-01-31",
+              "startDate": "2019-02-01"
+            },
+            {
+              "value": 887.5,
+              "display": "$887",
+              "volume": 20,
+              "endDate": "2020-02-29",
+              "startDate": "2019-03-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 20,
+              "endDate": "2020-03-31",
+              "startDate": "2019-04-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 22,
+              "endDate": "2020-04-30",
+              "startDate": "2019-05-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 25,
+              "endDate": "2020-05-31",
+              "startDate": "2019-06-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 28,
+              "endDate": "2020-06-30",
+              "startDate": "2019-07-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 29,
+              "endDate": "2020-07-31",
+              "startDate": "2019-08-01"
+            },
+            {
+              "value": 862.5,
+              "display": "$862",
+              "volume": 32,
+              "endDate": "2020-08-31",
+              "startDate": "2019-09-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 35,
+              "endDate": "2020-09-30",
+              "startDate": "2019-10-01"
+            },
+            {
+              "value": 787.5,
+              "display": "$787",
+              "volume": 32,
+              "endDate": "2020-10-31",
+              "startDate": "2019-11-01"
+            },
+            {
+              "value": 775,
+              "display": "$775",
+              "volume": 31,
+              "endDate": "2020-11-30",
+              "startDate": "2019-12-01"
+            },
+            {
+              "value": 752.5,
+              "display": "$752",
+              "volume": 32,
+              "endDate": "2020-12-31",
+              "startDate": "2020-01-01"
+            },
+            {
+              "value": 730,
+              "display": "$730",
+              "volume": 33,
+              "endDate": "2021-01-31",
+              "startDate": "2020-02-01"
+            },
+            {
+              "value": 710,
+              "display": "$710",
+              "volume": 32,
+              "endDate": "2021-02-28",
+              "startDate": "2020-03-01"
+            },
+            {
+              "value": 725,
+              "display": "$725",
+              "volume": 30,
+              "endDate": "2021-03-31",
+              "startDate": "2020-04-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 31,
+              "endDate": "2021-04-30",
+              "startDate": "2020-05-01"
+            },
+            {
+              "value": 777.5,
+              "display": "$777",
+              "volume": 30,
+              "endDate": "2021-05-31",
+              "startDate": "2020-06-01"
+            },
+            {
+              "value": 780,
+              "display": "$780",
+              "volume": 25,
+              "endDate": "2021-06-30",
+              "startDate": "2020-07-01"
+            },
+            {
+              "value": 730,
+              "display": "$730",
+              "volume": 23,
+              "endDate": "2021-07-31",
+              "startDate": "2020-08-01"
+            },
+            {
+              "value": 700,
+              "display": "$700",
+              "volume": 20,
+              "endDate": "2021-08-31",
+              "startDate": "2020-09-01"
+            },
+            {
+              "value": 740,
+              "display": "$740",
+              "volume": 16,
+              "endDate": "2021-09-30",
+              "startDate": "2020-10-01"
+            },
+            {
+              "value": 700,
+              "display": "$700",
+              "volume": 17,
+              "endDate": "2021-10-31",
+              "startDate": "2020-11-01"
+            },
+            {
+              "value": 682.5,
+              "display": "$682",
+              "volume": 16,
+              "endDate": "2021-11-30",
+              "startDate": "2020-12-01"
+            },
+            {
+              "value": 657.5,
+              "display": "$657",
+              "volume": 14,
+              "endDate": "2021-12-31",
+              "startDate": "2021-01-01"
+            },
+            {
+              "value": 665,
+              "display": "$665",
+              "volume": 15,
+              "endDate": "2022-01-31",
+              "startDate": "2021-02-01"
+            },
+            {
+              "value": 665,
+              "display": "$665",
+              "volume": 15,
+              "endDate": "2022-02-28",
+              "startDate": "2021-03-01"
+            },
+            {
+              "value": 722.5,
+              "display": "$722",
+              "volume": 16,
+              "endDate": "2022-03-31",
+              "startDate": "2021-04-01"
+            },
+            {
+              "value": 652.5,
+              "display": "$652",
+              "volume": 14,
+              "endDate": "2022-04-30",
+              "startDate": "2021-05-01"
+            },
+            {
+              "value": 727.5,
+              "display": "$727",
+              "volume": 14,
+              "endDate": "2022-05-31",
+              "startDate": "2021-06-01"
+            },
+            {
+              "value": 792.5,
+              "display": "$792",
+              "volume": 14,
+              "endDate": "2022-06-30",
+              "startDate": "2021-07-01"
+            },
+            {
+              "value": 790,
+              "display": "$790",
+              "volume": 22,
+              "endDate": "2022-07-31",
+              "startDate": "2021-08-01"
+            },
+            {
+              "value": 790,
+              "display": "$790",
+              "volume": 23,
+              "endDate": "2022-08-31",
+              "startDate": "2021-09-01"
+            },
+            {
+              "value": 792.5,
+              "display": "$792",
+              "volume": 24,
+              "endDate": "2022-09-30",
+              "startDate": "2021-10-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 25,
+              "endDate": "2022-10-31",
+              "startDate": "2021-11-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 25,
+              "endDate": "2022-11-30",
+              "startDate": "2021-12-01"
+            },
+            {
+              "value": 810,
+              "display": "$810",
+              "volume": 26,
+              "endDate": "2022-12-31",
+              "startDate": "2022-01-01"
+            },
+            {
+              "value": 820,
+              "display": "$820",
+              "volume": 27,
+              "endDate": "2023-01-31",
+              "startDate": "2022-02-01"
+            },
+            {
+              "value": 850,
+              "display": "$850",
+              "volume": 29,
+              "endDate": "2023-02-28",
+              "startDate": "2022-03-01"
+            },
+            {
+              "value": 850,
+              "display": "$850",
+              "volume": 29,
+              "endDate": "2023-03-31",
+              "startDate": "2022-04-01"
+            },
+            {
+              "value": 872.5,
+              "display": "$872",
+              "volume": 36,
+              "endDate": "2023-04-30",
+              "startDate": "2022-05-01"
+            }
+          ]
+        },
+        "fourBed": {
+          "yearly": {
+            "startDate": "2022-05-01",
+            "endDate": "2023-04-30",
+            "display": "$1,000",
+            "volume": 11,
+            "changePercentage": {
+              "value": 11.731843575418988,
+              "display": "11.7%"
+            }
+          },
+          "trends": null
+        }
+      },
+      "unit": {
+        "allBed": {
+          "yearly": {
+            "startDate": "2022-05-01",
+            "endDate": "2023-04-30",
+            "display": "$630",
+            "volume": 583,
+            "changePercentage": {
+              "value": 16.666666666666675,
+              "display": "16.7%"
+            }
+          },
+          "trends": [
+            {
+              "value": 620,
+              "display": "$620",
+              "volume": 276,
+              "endDate": "2018-05-31",
+              "startDate": "2017-06-01"
+            },
+            {
+              "value": 620,
+              "display": "$620",
+              "volume": 287,
+              "endDate": "2018-06-30",
+              "startDate": "2017-07-01"
+            },
+            {
+              "value": 610,
+              "display": "$610",
+              "volume": 298,
+              "endDate": "2018-07-31",
+              "startDate": "2017-08-01"
+            },
+            {
+              "value": 620,
+              "display": "$620",
+              "volume": 301,
+              "endDate": "2018-08-31",
+              "startDate": "2017-09-01"
+            },
+            {
+              "value": 620,
+              "display": "$620",
+              "volume": 306,
+              "endDate": "2018-09-30",
+              "startDate": "2017-10-01"
+            },
+            {
+              "value": 620,
+              "display": "$620",
+              "volume": 322,
+              "endDate": "2018-10-31",
+              "startDate": "2017-11-01"
+            },
+            {
+              "value": 620,
+              "display": "$620",
+              "volume": 324,
+              "endDate": "2018-11-30",
+              "startDate": "2017-12-01"
+            },
+            {
+              "value": 620,
+              "display": "$620",
+              "volume": 323,
+              "endDate": "2018-12-31",
+              "startDate": "2018-01-01"
+            },
+            {
+              "value": 610,
+              "display": "$610",
+              "volume": 330,
+              "endDate": "2019-01-31",
+              "startDate": "2018-02-01"
+            },
+            {
+              "value": 610,
+              "display": "$610",
+              "volume": 330,
+              "endDate": "2019-02-28",
+              "startDate": "2018-03-01"
+            },
+            {
+              "value": 610,
+              "display": "$610",
+              "volume": 336,
+              "endDate": "2019-03-31",
+              "startDate": "2018-04-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 325,
+              "endDate": "2019-04-30",
+              "startDate": "2018-05-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 334,
+              "endDate": "2019-05-31",
+              "startDate": "2018-06-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 336,
+              "endDate": "2019-06-30",
+              "startDate": "2018-07-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 335,
+              "endDate": "2019-07-31",
+              "startDate": "2018-08-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 345,
+              "endDate": "2019-08-31",
+              "startDate": "2018-09-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 349,
+              "endDate": "2019-09-30",
+              "startDate": "2018-10-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 346,
+              "endDate": "2019-10-31",
+              "startDate": "2018-11-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 352,
+              "endDate": "2019-11-30",
+              "startDate": "2018-12-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 359,
+              "endDate": "2019-12-31",
+              "startDate": "2019-01-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 353,
+              "endDate": "2020-01-31",
+              "startDate": "2019-02-01"
+            },
+            {
+              "value": 590,
+              "display": "$590",
+              "volume": 364,
+              "endDate": "2020-02-29",
+              "startDate": "2019-03-01"
+            },
+            {
+              "value": 580,
+              "display": "$580",
+              "volume": 388,
+              "endDate": "2020-03-31",
+              "startDate": "2019-04-01"
+            },
+            {
+              "value": 580,
+              "display": "$580",
+              "volume": 408,
+              "endDate": "2020-04-30",
+              "startDate": "2019-05-01"
+            },
+            {
+              "value": 590,
+              "display": "$590",
+              "volume": 447,
+              "endDate": "2020-05-31",
+              "startDate": "2019-06-01"
+            },
+            {
+              "value": 580,
+              "display": "$580",
+              "volume": 470,
+              "endDate": "2020-06-30",
+              "startDate": "2019-07-01"
+            },
+            {
+              "value": 580,
+              "display": "$580",
+              "volume": 488,
+              "endDate": "2020-07-31",
+              "startDate": "2019-08-01"
+            },
+            {
+              "value": 575,
+              "display": "$575",
+              "volume": 543,
+              "endDate": "2020-08-31",
+              "startDate": "2019-09-01"
+            },
+            {
+              "value": 570,
+              "display": "$570",
+              "volume": 575,
+              "endDate": "2020-09-30",
+              "startDate": "2019-10-01"
+            },
+            {
+              "value": 570,
+              "display": "$570",
+              "volume": 594,
+              "endDate": "2020-10-31",
+              "startDate": "2019-11-01"
+            },
+            {
+              "value": 560,
+              "display": "$560",
+              "volume": 609,
+              "endDate": "2020-11-30",
+              "startDate": "2019-12-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 636,
+              "endDate": "2020-12-31",
+              "startDate": "2020-01-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 680,
+              "endDate": "2021-01-31",
+              "startDate": "2020-02-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 686,
+              "endDate": "2021-02-28",
+              "startDate": "2020-03-01"
+            },
+            {
+              "value": 540,
+              "display": "$540",
+              "volume": 683,
+              "endDate": "2021-03-31",
+              "startDate": "2020-04-01"
+            },
+            {
+              "value": 525,
+              "display": "$525",
+              "volume": 690,
+              "endDate": "2021-04-30",
+              "startDate": "2020-05-01"
+            },
+            {
+              "value": 520,
+              "display": "$520",
+              "volume": 673,
+              "endDate": "2021-05-31",
+              "startDate": "2020-06-01"
+            },
+            {
+              "value": 500,
+              "display": "$500",
+              "volume": 643,
+              "endDate": "2021-06-30",
+              "startDate": "2020-07-01"
+            },
+            {
+              "value": 500,
+              "display": "$500",
+              "volume": 619,
+              "endDate": "2021-07-31",
+              "startDate": "2020-08-01"
+            },
+            {
+              "value": 500,
+              "display": "$500",
+              "volume": 565,
+              "endDate": "2021-08-31",
+              "startDate": "2020-09-01"
+            },
+            {
+              "value": 500,
+              "display": "$500",
+              "volume": 542,
+              "endDate": "2021-09-30",
+              "startDate": "2020-10-01"
+            },
+            {
+              "value": 500,
+              "display": "$500",
+              "volume": 537,
+              "endDate": "2021-10-31",
+              "startDate": "2020-11-01"
+            },
+            {
+              "value": 500,
+              "display": "$500",
+              "volume": 530,
+              "endDate": "2021-11-30",
+              "startDate": "2020-12-01"
+            },
+            {
+              "value": 500,
+              "display": "$500",
+              "volume": 493,
+              "endDate": "2021-12-31",
+              "startDate": "2021-01-01"
+            },
+            {
+              "value": 520,
+              "display": "$520",
+              "volume": 478,
+              "endDate": "2022-01-31",
+              "startDate": "2021-02-01"
+            },
+            {
+              "value": 525,
+              "display": "$525",
+              "volume": 472,
+              "endDate": "2022-02-28",
+              "startDate": "2021-03-01"
+            },
+            {
+              "value": 530,
+              "display": "$530",
+              "volume": 450,
+              "endDate": "2022-03-31",
+              "startDate": "2021-04-01"
+            },
+            {
+              "value": 540,
+              "display": "$540",
+              "volume": 424,
+              "endDate": "2022-04-30",
+              "startDate": "2021-05-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 408,
+              "endDate": "2022-05-31",
+              "startDate": "2021-06-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 410,
+              "endDate": "2022-06-30",
+              "startDate": "2021-07-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 448,
+              "endDate": "2022-07-31",
+              "startDate": "2021-08-01"
+            },
+            {
+              "value": 560,
+              "display": "$560",
+              "volume": 446,
+              "endDate": "2022-08-31",
+              "startDate": "2021-09-01"
+            },
+            {
+              "value": 572.5,
+              "display": "$572",
+              "volume": 432,
+              "endDate": "2022-09-30",
+              "startDate": "2021-10-01"
+            },
+            {
+              "value": 580,
+              "display": "$580",
+              "volume": 431,
+              "endDate": "2022-10-31",
+              "startDate": "2021-11-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 434,
+              "endDate": "2022-11-30",
+              "startDate": "2021-12-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 446,
+              "endDate": "2022-12-31",
+              "startDate": "2022-01-01"
+            },
+            {
+              "value": 615,
+              "display": "$615",
+              "volume": 428,
+              "endDate": "2023-01-31",
+              "startDate": "2022-02-01"
+            },
+            {
+              "value": 625,
+              "display": "$625",
+              "volume": 429,
+              "endDate": "2023-02-28",
+              "startDate": "2022-03-01"
+            },
+            {
+              "value": 630,
+              "display": "$630",
+              "volume": 433,
+              "endDate": "2023-03-31",
+              "startDate": "2022-04-01"
+            },
+            {
+              "value": 630,
+              "display": "$630",
+              "volume": 583,
+              "endDate": "2023-04-30",
+              "startDate": "2022-05-01"
+            }
+          ]
+        },
+        "oneBed": {
+          "yearly": {
+            "startDate": "2022-05-01",
+            "endDate": "2023-04-30",
+            "display": "$560",
+            "volume": 334,
+            "changePercentage": {
+              "value": 14.28571428571428,
+              "display": "14.3%"
+            }
+          },
+          "trends": [
+            {
+              "value": 595,
+              "display": "$595",
+              "volume": 183,
+              "endDate": "2018-05-31",
+              "startDate": "2017-06-01"
+            },
+            {
+              "value": 590,
+              "display": "$590",
+              "volume": 193,
+              "endDate": "2018-06-30",
+              "startDate": "2017-07-01"
+            },
+            {
+              "value": 590,
+              "display": "$590",
+              "volume": 203,
+              "endDate": "2018-07-31",
+              "startDate": "2017-08-01"
+            },
+            {
+              "value": 590,
+              "display": "$590",
+              "volume": 199,
+              "endDate": "2018-08-31",
+              "startDate": "2017-09-01"
+            },
+            {
+              "value": 590,
+              "display": "$590",
+              "volume": 198,
+              "endDate": "2018-09-30",
+              "startDate": "2017-10-01"
+            },
+            {
+              "value": 582.5,
+              "display": "$582",
+              "volume": 206,
+              "endDate": "2018-10-31",
+              "startDate": "2017-11-01"
+            },
+            {
+              "value": 580,
+              "display": "$580",
+              "volume": 208,
+              "endDate": "2018-11-30",
+              "startDate": "2017-12-01"
+            },
+            {
+              "value": 580,
+              "display": "$580",
+              "volume": 204,
+              "endDate": "2018-12-31",
+              "startDate": "2018-01-01"
+            },
+            {
+              "value": 580,
+              "display": "$580",
+              "volume": 207,
+              "endDate": "2019-01-31",
+              "startDate": "2018-02-01"
+            },
+            {
+              "value": 580,
+              "display": "$580",
+              "volume": 203,
+              "endDate": "2019-02-28",
+              "startDate": "2018-03-01"
+            },
+            {
+              "value": 575,
+              "display": "$575",
+              "volume": 205,
+              "endDate": "2019-03-31",
+              "startDate": "2018-04-01"
+            },
+            {
+              "value": 570,
+              "display": "$570",
+              "volume": 194,
+              "endDate": "2019-04-30",
+              "startDate": "2018-05-01"
+            },
+            {
+              "value": 560,
+              "display": "$560",
+              "volume": 198,
+              "endDate": "2019-05-31",
+              "startDate": "2018-06-01"
+            },
+            {
+              "value": 570,
+              "display": "$570",
+              "volume": 199,
+              "endDate": "2019-06-30",
+              "startDate": "2018-07-01"
+            },
+            {
+              "value": 560,
+              "display": "$560",
+              "volume": 193,
+              "endDate": "2019-07-31",
+              "startDate": "2018-08-01"
+            },
+            {
+              "value": 560,
+              "display": "$560",
+              "volume": 201,
+              "endDate": "2019-08-31",
+              "startDate": "2018-09-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 208,
+              "endDate": "2019-09-30",
+              "startDate": "2018-10-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 206,
+              "endDate": "2019-10-31",
+              "startDate": "2018-11-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 207,
+              "endDate": "2019-11-30",
+              "startDate": "2018-12-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 209,
+              "endDate": "2019-12-31",
+              "startDate": "2019-01-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 205,
+              "endDate": "2020-01-31",
+              "startDate": "2019-02-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 213,
+              "endDate": "2020-02-29",
+              "startDate": "2019-03-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 230,
+              "endDate": "2020-03-31",
+              "startDate": "2019-04-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 234,
+              "endDate": "2020-04-30",
+              "startDate": "2019-05-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 244,
+              "endDate": "2020-05-31",
+              "startDate": "2019-06-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 245,
+              "endDate": "2020-06-30",
+              "startDate": "2019-07-01"
+            },
+            {
+              "value": 540,
+              "display": "$540",
+              "volume": 249,
+              "endDate": "2020-07-31",
+              "startDate": "2019-08-01"
+            },
+            {
+              "value": 520,
+              "display": "$520",
+              "volume": 280,
+              "endDate": "2020-08-31",
+              "startDate": "2019-09-01"
+            },
+            {
+              "value": 515,
+              "display": "$515",
+              "volume": 300,
+              "endDate": "2020-09-30",
+              "startDate": "2019-10-01"
+            },
+            {
+              "value": 500,
+              "display": "$500",
+              "volume": 308,
+              "endDate": "2020-10-31",
+              "startDate": "2019-11-01"
+            },
+            {
+              "value": 500,
+              "display": "$500",
+              "volume": 312,
+              "endDate": "2020-11-30",
+              "startDate": "2019-12-01"
+            },
+            {
+              "value": 500,
+              "display": "$500",
+              "volume": 318,
+              "endDate": "2020-12-31",
+              "startDate": "2020-01-01"
+            },
+            {
+              "value": 495,
+              "display": "$495",
+              "volume": 341,
+              "endDate": "2021-01-31",
+              "startDate": "2020-02-01"
+            },
+            {
+              "value": 490,
+              "display": "$490",
+              "volume": 342,
+              "endDate": "2021-02-28",
+              "startDate": "2020-03-01"
+            },
+            {
+              "value": 480,
+              "display": "$480",
+              "volume": 335,
+              "endDate": "2021-03-31",
+              "startDate": "2020-04-01"
+            },
+            {
+              "value": 480,
+              "display": "$480",
+              "volume": 346,
+              "endDate": "2021-04-30",
+              "startDate": "2020-05-01"
+            },
+            {
+              "value": 477.5,
+              "display": "$477",
+              "volume": 342,
+              "endDate": "2021-05-31",
+              "startDate": "2020-06-01"
+            },
+            {
+              "value": 475,
+              "display": "$475",
+              "volume": 330,
+              "endDate": "2021-06-30",
+              "startDate": "2020-07-01"
+            },
+            {
+              "value": 475,
+              "display": "$475",
+              "volume": 323,
+              "endDate": "2021-07-31",
+              "startDate": "2020-08-01"
+            },
+            {
+              "value": 475,
+              "display": "$475",
+              "volume": 283,
+              "endDate": "2021-08-31",
+              "startDate": "2020-09-01"
+            },
+            {
+              "value": 470,
+              "display": "$470",
+              "volume": 267,
+              "endDate": "2021-09-30",
+              "startDate": "2020-10-01"
+            },
+            {
+              "value": 470,
+              "display": "$470",
+              "volume": 266,
+              "endDate": "2021-10-31",
+              "startDate": "2020-11-01"
+            },
+            {
+              "value": 470,
+              "display": "$470",
+              "volume": 265,
+              "endDate": "2021-11-30",
+              "startDate": "2020-12-01"
+            },
+            {
+              "value": 470,
+              "display": "$470",
+              "volume": 254,
+              "endDate": "2021-12-31",
+              "startDate": "2021-01-01"
+            },
+            {
+              "value": 475,
+              "display": "$475",
+              "volume": 236,
+              "endDate": "2022-01-31",
+              "startDate": "2021-02-01"
+            },
+            {
+              "value": 480,
+              "display": "$480",
+              "volume": 234,
+              "endDate": "2022-02-28",
+              "startDate": "2021-03-01"
+            },
+            {
+              "value": 480,
+              "display": "$480",
+              "volume": 227,
+              "endDate": "2022-03-31",
+              "startDate": "2021-04-01"
+            },
+            {
+              "value": 490,
+              "display": "$490",
+              "volume": 214,
+              "endDate": "2022-04-30",
+              "startDate": "2021-05-01"
+            },
+            {
+              "value": 500,
+              "display": "$500",
+              "volume": 206,
+              "endDate": "2022-05-31",
+              "startDate": "2021-06-01"
+            },
+            {
+              "value": 500,
+              "display": "$500",
+              "volume": 208,
+              "endDate": "2022-06-30",
+              "startDate": "2021-07-01"
+            },
+            {
+              "value": 500,
+              "display": "$500",
+              "volume": 230,
+              "endDate": "2022-07-31",
+              "startDate": "2021-08-01"
+            },
+            {
+              "value": 500,
+              "display": "$500",
+              "volume": 239,
+              "endDate": "2022-08-31",
+              "startDate": "2021-09-01"
+            },
+            {
+              "value": 520,
+              "display": "$520",
+              "volume": 231,
+              "endDate": "2022-09-30",
+              "startDate": "2021-10-01"
+            },
+            {
+              "value": 530,
+              "display": "$530",
+              "volume": 232,
+              "endDate": "2022-10-31",
+              "startDate": "2021-11-01"
+            },
+            {
+              "value": 540,
+              "display": "$540",
+              "volume": 230,
+              "endDate": "2022-11-30",
+              "startDate": "2021-12-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 233,
+              "endDate": "2022-12-31",
+              "startDate": "2022-01-01"
+            },
+            {
+              "value": 550,
+              "display": "$550",
+              "volume": 236,
+              "endDate": "2023-01-31",
+              "startDate": "2022-02-01"
+            },
+            {
+              "value": 560,
+              "display": "$560",
+              "volume": 236,
+              "endDate": "2023-02-28",
+              "startDate": "2022-03-01"
+            },
+            {
+              "value": 575,
+              "display": "$575",
+              "volume": 238,
+              "endDate": "2023-03-31",
+              "startDate": "2022-04-01"
+            },
+            {
+              "value": 560,
+              "display": "$560",
+              "volume": 334,
+              "endDate": "2023-04-30",
+              "startDate": "2022-05-01"
+            }
+          ]
+        },
+        "twoBed": {
+          "yearly": {
+            "startDate": "2022-05-01",
+            "endDate": "2023-04-30",
+            "display": "$800",
+            "volume": 209,
+            "changePercentage": {
+              "value": 29.032258064516125,
+              "display": "29.0%"
+            }
+          },
+          "trends": [
+            {
+              "value": 780,
+              "display": "$780",
+              "volume": 77,
+              "endDate": "2018-05-31",
+              "startDate": "2017-06-01"
+            },
+            {
+              "value": 777.5,
+              "display": "$777",
+              "volume": 76,
+              "endDate": "2018-06-30",
+              "startDate": "2017-07-01"
+            },
+            {
+              "value": 775,
+              "display": "$775",
+              "volume": 77,
+              "endDate": "2018-07-31",
+              "startDate": "2017-08-01"
+            },
+            {
+              "value": 760,
+              "display": "$760",
+              "volume": 83,
+              "endDate": "2018-08-31",
+              "startDate": "2017-09-01"
+            },
+            {
+              "value": 777.5,
+              "display": "$777",
+              "volume": 86,
+              "endDate": "2018-09-30",
+              "startDate": "2017-10-01"
+            },
+            {
+              "value": 777.5,
+              "display": "$777",
+              "volume": 92,
+              "endDate": "2018-10-31",
+              "startDate": "2017-11-01"
+            },
+            {
+              "value": 777.5,
+              "display": "$777",
+              "volume": 94,
+              "endDate": "2018-11-30",
+              "startDate": "2017-12-01"
+            },
+            {
+              "value": 777.5,
+              "display": "$777",
+              "volume": 96,
+              "endDate": "2018-12-31",
+              "startDate": "2018-01-01"
+            },
+            {
+              "value": 767.5,
+              "display": "$767",
+              "volume": 100,
+              "endDate": "2019-01-31",
+              "startDate": "2018-02-01"
+            },
+            {
+              "value": 775,
+              "display": "$775",
+              "volume": 103,
+              "endDate": "2019-02-28",
+              "startDate": "2018-03-01"
+            },
+            {
+              "value": 775,
+              "display": "$775",
+              "volume": 109,
+              "endDate": "2019-03-31",
+              "startDate": "2018-04-01"
+            },
+            {
+              "value": 770,
+              "display": "$770",
+              "volume": 109,
+              "endDate": "2019-04-30",
+              "startDate": "2018-05-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 113,
+              "endDate": "2019-05-31",
+              "startDate": "2018-06-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 115,
+              "endDate": "2019-06-30",
+              "startDate": "2018-07-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 119,
+              "endDate": "2019-07-31",
+              "startDate": "2018-08-01"
+            },
+            {
+              "value": 740,
+              "display": "$740",
+              "volume": 121,
+              "endDate": "2019-08-31",
+              "startDate": "2018-09-01"
+            },
+            {
+              "value": 727.5,
+              "display": "$727",
+              "volume": 122,
+              "endDate": "2019-09-30",
+              "startDate": "2018-10-01"
+            },
+            {
+              "value": 730,
+              "display": "$730",
+              "volume": 120,
+              "endDate": "2019-10-31",
+              "startDate": "2018-11-01"
+            },
+            {
+              "value": 730,
+              "display": "$730",
+              "volume": 125,
+              "endDate": "2019-11-30",
+              "startDate": "2018-12-01"
+            },
+            {
+              "value": 727.5,
+              "display": "$727",
+              "volume": 128,
+              "endDate": "2019-12-31",
+              "startDate": "2019-01-01"
+            },
+            {
+              "value": 720,
+              "display": "$720",
+              "volume": 127,
+              "endDate": "2020-01-31",
+              "startDate": "2019-02-01"
+            },
+            {
+              "value": 720,
+              "display": "$720",
+              "volume": 133,
+              "endDate": "2020-02-29",
+              "startDate": "2019-03-01"
+            },
+            {
+              "value": 700,
+              "display": "$700",
+              "volume": 136,
+              "endDate": "2020-03-31",
+              "startDate": "2019-04-01"
+            },
+            {
+              "value": 690,
+              "display": "$690",
+              "volume": 149,
+              "endDate": "2020-04-30",
+              "startDate": "2019-05-01"
+            },
+            {
+              "value": 675,
+              "display": "$675",
+              "volume": 173,
+              "endDate": "2020-05-31",
+              "startDate": "2019-06-01"
+            },
+            {
+              "value": 660,
+              "display": "$660",
+              "volume": 192,
+              "endDate": "2020-06-30",
+              "startDate": "2019-07-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 205,
+              "endDate": "2020-07-31",
+              "startDate": "2019-08-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 224,
+              "endDate": "2020-08-31",
+              "startDate": "2019-09-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 235,
+              "endDate": "2020-09-30",
+              "startDate": "2019-10-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 246,
+              "endDate": "2020-10-31",
+              "startDate": "2019-11-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 253,
+              "endDate": "2020-11-30",
+              "startDate": "2019-12-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 274,
+              "endDate": "2020-12-31",
+              "startDate": "2020-01-01"
+            },
+            {
+              "value": 627.5,
+              "display": "$627",
+              "volume": 290,
+              "endDate": "2021-01-31",
+              "startDate": "2020-02-01"
+            },
+            {
+              "value": 620,
+              "display": "$620",
+              "volume": 290,
+              "endDate": "2021-02-28",
+              "startDate": "2020-03-01"
+            },
+            {
+              "value": 605,
+              "display": "$605",
+              "volume": 294,
+              "endDate": "2021-03-31",
+              "startDate": "2020-04-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 292,
+              "endDate": "2021-04-30",
+              "startDate": "2020-05-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 281,
+              "endDate": "2021-05-31",
+              "startDate": "2020-06-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 266,
+              "endDate": "2021-06-30",
+              "startDate": "2020-07-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 248,
+              "endDate": "2021-07-31",
+              "startDate": "2020-08-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 238,
+              "endDate": "2021-08-31",
+              "startDate": "2020-09-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 230,
+              "endDate": "2021-09-30",
+              "startDate": "2020-10-01"
+            },
+            {
+              "value": 595,
+              "display": "$595",
+              "volume": 226,
+              "endDate": "2021-10-31",
+              "startDate": "2020-11-01"
+            },
+            {
+              "value": 590,
+              "display": "$590",
+              "volume": 219,
+              "endDate": "2021-11-30",
+              "startDate": "2020-12-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 195,
+              "endDate": "2021-12-31",
+              "startDate": "2021-01-01"
+            },
+            {
+              "value": 600,
+              "display": "$600",
+              "volume": 188,
+              "endDate": "2022-01-31",
+              "startDate": "2021-02-01"
+            },
+            {
+              "value": 610,
+              "display": "$610",
+              "volume": 188,
+              "endDate": "2022-02-28",
+              "startDate": "2021-03-01"
+            },
+            {
+              "value": 610,
+              "display": "$610",
+              "volume": 176,
+              "endDate": "2022-03-31",
+              "startDate": "2021-04-01"
+            },
+            {
+              "value": 620,
+              "display": "$620",
+              "volume": 164,
+              "endDate": "2022-04-30",
+              "startDate": "2021-05-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 157,
+              "endDate": "2022-05-31",
+              "startDate": "2021-06-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 158,
+              "endDate": "2022-06-30",
+              "startDate": "2021-07-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 173,
+              "endDate": "2022-07-31",
+              "startDate": "2021-08-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 164,
+              "endDate": "2022-08-31",
+              "startDate": "2021-09-01"
+            },
+            {
+              "value": 650,
+              "display": "$650",
+              "volume": 156,
+              "endDate": "2022-09-30",
+              "startDate": "2021-10-01"
+            },
+            {
+              "value": 690,
+              "display": "$690",
+              "volume": 156,
+              "endDate": "2022-10-31",
+              "startDate": "2021-11-01"
+            },
+            {
+              "value": 700,
+              "display": "$700",
+              "volume": 165,
+              "endDate": "2022-11-30",
+              "startDate": "2021-12-01"
+            },
+            {
+              "value": 750,
+              "display": "$750",
+              "volume": 172,
+              "endDate": "2022-12-31",
+              "startDate": "2022-01-01"
+            },
+            {
+              "value": 780,
+              "display": "$780",
+              "volume": 165,
+              "endDate": "2023-01-31",
+              "startDate": "2022-02-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 164,
+              "endDate": "2023-02-28",
+              "startDate": "2022-03-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 164,
+              "endDate": "2023-03-31",
+              "startDate": "2022-04-01"
+            },
+            {
+              "value": 800,
+              "display": "$800",
+              "volume": 209,
+              "endDate": "2023-04-30",
+              "startDate": "2022-05-01"
+            }
+          ]
+        },
+        "threeBed": {
+          "yearly": {
+            "startDate": "2022-05-01",
+            "endDate": "2023-04-30",
+            "display": "$1,200",
+            "volume": 32,
+            "changePercentage": {
+              "value": 35.593220338983045,
+              "display": "35.6%"
+            }
+          },
+          "trends": [
+            {
+              "value": 1165,
+              "display": "$1,165",
+              "volume": 14,
+              "endDate": "2018-05-31",
+              "startDate": "2017-06-01"
+            },
+            {
+              "value": 1165,
+              "display": "$1,165",
+              "volume": 16,
+              "endDate": "2018-06-30",
+              "startDate": "2017-07-01"
+            },
+            {
+              "value": 1165,
+              "display": "$1,165",
+              "volume": 16,
+              "endDate": "2018-07-31",
+              "startDate": "2017-08-01"
+            },
+            {
+              "value": 1130,
+              "display": "$1,130",
+              "volume": 17,
+              "endDate": "2018-08-31",
+              "startDate": "2017-09-01"
+            },
+            {
+              "value": 1130,
+              "display": "$1,130",
+              "volume": 19,
+              "endDate": "2018-09-30",
+              "startDate": "2017-10-01"
+            },
+            {
+              "value": 1130,
+              "display": "$1,130",
+              "volume": 21,
+              "endDate": "2018-10-31",
+              "startDate": "2017-11-01"
+            },
+            {
+              "value": 1130,
+              "display": "$1,130",
+              "volume": 19,
+              "endDate": "2018-11-30",
+              "startDate": "2017-12-01"
+            },
+            {
+              "value": 1130,
+              "display": "$1,130",
+              "volume": 20,
+              "endDate": "2018-12-31",
+              "startDate": "2018-01-01"
+            },
+            {
+              "value": 1130,
+              "display": "$1,130",
+              "volume": 20,
+              "endDate": "2019-01-31",
+              "startDate": "2018-02-01"
+            },
+            {
+              "value": 1150,
+              "display": "$1,150",
+              "volume": 20,
+              "endDate": "2019-02-28",
+              "startDate": "2018-03-01"
+            },
+            {
+              "value": 1150,
+              "display": "$1,150",
+              "volume": 18,
+              "endDate": "2019-03-31",
+              "startDate": "2018-04-01"
+            },
+            {
+              "value": 1150,
+              "display": "$1,150",
+              "volume": 17,
+              "endDate": "2019-04-30",
+              "startDate": "2018-05-01"
+            },
+            {
+              "value": 1150,
+              "display": "$1,150",
+              "volume": 18,
+              "endDate": "2019-05-31",
+              "startDate": "2018-06-01"
+            },
+            {
+              "value": 1150,
+              "display": "$1,150",
+              "volume": 17,
+              "endDate": "2019-06-30",
+              "startDate": "2018-07-01"
+            },
+            {
+              "value": 1125,
+              "display": "$1,125",
+              "volume": 18,
+              "endDate": "2019-07-31",
+              "startDate": "2018-08-01"
+            },
+            {
+              "value": 1150,
+              "display": "$1,150",
+              "volume": 17,
+              "endDate": "2019-08-31",
+              "startDate": "2018-09-01"
+            },
+            {
+              "value": 1150,
+              "display": "$1,150",
+              "volume": 14,
+              "endDate": "2019-09-30",
+              "startDate": "2018-10-01"
+            },
+            {
+              "value": 1150,
+              "display": "$1,150",
+              "volume": 13,
+              "endDate": "2019-10-31",
+              "startDate": "2018-11-01"
+            },
+            {
+              "value": 1100,
+              "display": "$1,100",
+              "volume": 14,
+              "endDate": "2019-11-30",
+              "startDate": "2018-12-01"
+            },
+            {
+              "value": 1150,
+              "display": "$1,150",
+              "volume": 16,
+              "endDate": "2019-12-31",
+              "startDate": "2019-01-01"
+            },
+            {
+              "value": 1150,
+              "display": "$1,150",
+              "volume": 16,
+              "endDate": "2020-01-31",
+              "startDate": "2019-02-01"
+            },
+            {
+              "value": 1075,
+              "display": "$1,075",
+              "volume": 14,
+              "endDate": "2020-02-29",
+              "startDate": "2019-03-01"
+            },
+            {
+              "value": 1000,
+              "display": "$1,000",
+              "volume": 17,
+              "endDate": "2020-03-31",
+              "startDate": "2019-04-01"
+            },
+            {
+              "value": 997.5,
+              "display": "$997",
+              "volume": 20,
+              "endDate": "2020-04-30",
+              "startDate": "2019-05-01"
+            },
+            {
+              "value": 985,
+              "display": "$985",
+              "volume": 24,
+              "endDate": "2020-05-31",
+              "startDate": "2019-06-01"
+            },
+            {
+              "value": 925,
+              "display": "$925",
+              "volume": 26,
+              "endDate": "2020-06-30",
+              "startDate": "2019-07-01"
+            },
+            {
+              "value": 950,
+              "display": "$950",
+              "volume": 27,
+              "endDate": "2020-07-31",
+              "startDate": "2019-08-01"
+            },
+            {
+              "value": 850,
+              "display": "$850",
+              "volume": 33,
+              "endDate": "2020-08-31",
+              "startDate": "2019-09-01"
+            },
+            {
+              "value": 872.5,
+              "display": "$872",
+              "volume": 34,
+              "endDate": "2020-09-30",
+              "startDate": "2019-10-01"
+            },
+            {
+              "value": 850,
+              "display": "$850",
+              "volume": 35,
+              "endDate": "2020-10-31",
+              "startDate": "2019-11-01"
+            },
+            {
+              "value": 850,
+              "display": "$850",
+              "volume": 39,
+              "endDate": "2020-11-30",
+              "startDate": "2019-12-01"
+            },
+            {
+              "value": 847.5,
+              "display": "$847",
+              "volume": 38,
+              "endDate": "2020-12-31",
+              "startDate": "2020-01-01"
+            },
+            {
+              "value": 845,
+              "display": "$845",
+              "volume": 43,
+              "endDate": "2021-01-31",
+              "startDate": "2020-02-01"
+            },
+            {
+              "value": 832.5,
+              "display": "$832",
+              "volume": 48,
+              "endDate": "2021-02-28",
+              "startDate": "2020-03-01"
+            },
+            {
+              "value": 845,
+              "display": "$845",
+              "volume": 47,
+              "endDate": "2021-03-31",
+              "startDate": "2020-04-01"
+            },
+            {
+              "value": 832.5,
+              "display": "$832",
+              "volume": 46,
+              "endDate": "2021-04-30",
+              "startDate": "2020-05-01"
+            },
+            {
+              "value": 832.5,
+              "display": "$832",
+              "volume": 44,
+              "endDate": "2021-05-31",
+              "startDate": "2020-06-01"
+            },
+            {
+              "value": 847.5,
+              "display": "$847",
+              "volume": 42,
+              "endDate": "2021-06-30",
+              "startDate": "2020-07-01"
+            },
+            {
+              "value": 810,
+              "display": "$810",
+              "volume": 42,
+              "endDate": "2021-07-31",
+              "startDate": "2020-08-01"
+            },
+            {
+              "value": 835,
+              "display": "$835",
+              "volume": 36,
+              "endDate": "2021-08-31",
+              "startDate": "2020-09-01"
+            },
+            {
+              "value": 835,
+              "display": "$835",
+              "volume": 36,
+              "endDate": "2021-09-30",
+              "startDate": "2020-10-01"
+            },
+            {
+              "value": 850,
+              "display": "$850",
+              "volume": 36,
+              "endDate": "2021-10-31",
+              "startDate": "2020-11-01"
+            },
+            {
+              "value": 850,
+              "display": "$850",
+              "volume": 37,
+              "endDate": "2021-11-30",
+              "startDate": "2020-12-01"
+            },
+            {
+              "value": 850,
+              "display": "$850",
+              "volume": 36,
+              "endDate": "2021-12-31",
+              "startDate": "2021-01-01"
+            },
+            {
+              "value": 865,
+              "display": "$865",
+              "volume": 34,
+              "endDate": "2022-01-31",
+              "startDate": "2021-02-01"
+            },
+            {
+              "value": 865,
+              "display": "$865",
+              "volume": 30,
+              "endDate": "2022-02-28",
+              "startDate": "2021-03-01"
+            },
+            {
+              "value": 890,
+              "display": "$890",
+              "volume": 29,
+              "endDate": "2022-03-31",
+              "startDate": "2021-04-01"
+            },
+            {
+              "value": 885,
+              "display": "$885",
+              "volume": 28,
+              "endDate": "2022-04-30",
+              "startDate": "2021-05-01"
+            },
+            {
+              "value": 900,
+              "display": "$900",
+              "volume": 28,
+              "endDate": "2022-05-31",
+              "startDate": "2021-06-01"
+            },
+            {
+              "value": 950,
+              "display": "$950",
+              "volume": 27,
+              "endDate": "2022-06-30",
+              "startDate": "2021-07-01"
+            },
+            {
+              "value": 950,
+              "display": "$950",
+              "volume": 28,
+              "endDate": "2022-07-31",
+              "startDate": "2021-08-01"
+            },
+            {
+              "value": 950,
+              "display": "$950",
+              "volume": 28,
+              "endDate": "2022-08-31",
+              "startDate": "2021-09-01"
+            },
+            {
+              "value": 950,
+              "display": "$950",
+              "volume": 30,
+              "endDate": "2022-09-30",
+              "startDate": "2021-10-01"
+            },
+            {
+              "value": 950,
+              "display": "$950",
+              "volume": 29,
+              "endDate": "2022-10-31",
+              "startDate": "2021-11-01"
+            },
+            {
+              "value": 1000,
+              "display": "$1,000",
+              "volume": 25,
+              "endDate": "2022-11-30",
+              "startDate": "2021-12-01"
+            },
+            {
+              "value": 1100,
+              "display": "$1,100",
+              "volume": 26,
+              "endDate": "2022-12-31",
+              "startDate": "2022-01-01"
+            },
+            {
+              "value": 1100,
+              "display": "$1,100",
+              "volume": 24,
+              "endDate": "2023-01-31",
+              "startDate": "2022-02-01"
+            },
+            {
+              "value": 1100,
+              "display": "$1,100",
+              "volume": 24,
+              "endDate": "2023-02-28",
+              "startDate": "2022-03-01"
+            },
+            {
+              "value": 1175,
+              "display": "$1,175",
+              "volume": 24,
+              "endDate": "2023-03-31",
+              "startDate": "2022-04-01"
+            },
+            {
+              "value": 1200,
+              "display": "$1,200",
+              "volume": 32,
+              "endDate": "2023-04-30",
+              "startDate": "2022-05-01"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "transactionVolume": {
+    "buy": {
+      "house": {
+        "allBed": {
+          "yearly": {
+            "value": 10
+          }
+        },
+        "twoBed": {
+          "yearly": {
+            "value": 7
+          }
+        },
+        "threeBed": {
+          "yearly": {
+            "value": 2
+          }
+        },
+        "fourBed": {
+          "yearly": {
+            "value": 1
+          }
+        }
+      },
+      "unit": {
+        "allBed": {
+          "yearly": {
+            "value": 152
+          }
+        },
+        "oneBed": {
+          "yearly": {
+            "value": 80
+          }
+        },
+        "twoBed": {
+          "yearly": {
+            "value": 30
+          }
+        },
+        "threeBed": {
+          "yearly": {
+            "value": 7
+          }
+        }
+      }
+    },
+    "rent": {
+      "house": {
+        "allBed": {
+          "yearly": {
+            "value": 84
+          }
+        },
+        "twoBed": {
+          "yearly": {
+            "value": 24
+          }
+        },
+        "threeBed": {
+          "yearly": {
+            "value": 37
+          }
+        },
+        "fourBed": {
+          "yearly": {
+            "value": 11
+          }
+        }
+      },
+      "unit": {
+        "allBed": {
+          "yearly": {
+            "value": 596
+          }
+        },
+        "oneBed": {
+          "yearly": {
+            "value": 339
+          }
+        },
+        "twoBed": {
+          "yearly": {
+            "value": 209
+          }
+        },
+        "threeBed": {
+          "yearly": {
+            "value": 32
+          }
+        }
+      }
+    }
+  },
+  "daysOnSite": {
+    "buy": {
+      "house": {
+        "allBed": {
+          "yearly": {
+            "value": 47
+          }
+        },
+        "twoBed": {
+          "yearly": {
+            "value": 44
+          }
+        },
+        "threeBed": {
+          "yearly": {
+            "value": 225
+          }
+        },
+        "fourBed": {
+          "yearly": null
+        }
+      },
+      "unit": {
+        "allBed": {
+          "yearly": {
+            "value": 61
+          }
+        },
+        "oneBed": {
+          "yearly": {
+            "value": 52
+          }
+        },
+        "twoBed": {
+          "yearly": {
+            "value": 72
+          }
+        },
+        "threeBed": {
+          "yearly": {
+            "value": 74
+          }
+        }
+      }
+    },
+    "rent": {
+      "house": {
+        "allBed": {
+          "yearly": {
+            "value": 21
+          }
+        },
+        "twoBed": {
+          "yearly": {
+            "value": 20
+          }
+        },
+        "threeBed": {
+          "yearly": {
+            "value": 26
+          }
+        },
+        "fourBed": {
+          "yearly": {
+            "value": 33
+          }
+        }
+      },
+      "unit": {
+        "allBed": {
+          "yearly": {
+            "value": 19
+          }
+        },
+        "oneBed": {
+          "yearly": {
+            "value": 18
+          }
+        },
+        "twoBed": {
+          "yearly": {
+            "value": 18
+          }
+        },
+        "threeBed": {
+          "yearly": {
+            "value": 23
+          }
+        }
+      }
+    }
+  },
+  "rentalYield": {
+    "house": {
+      "allBed": {
+        "yearly": {
+          "display": "2.7%"
+        }
+      },
+      "twoBed": {
+        "yearly": {
+          "display": "2.5%"
+        }
+      },
+      "threeBed": {
+        "yearly": {
+          "display": "2.8%"
+        }
+      },
+      "fourBed": {
+        "yearly": {
+          "display": "3.3%"
+        }
+      }
+    },
+    "unit": {
+      "allBed": {
+        "yearly": {
+          "display": "4.6%"
+        }
+      },
+      "oneBed": {
+        "yearly": {
+          "display": "4.8%"
+        }
+      },
+      "twoBed": {
+        "yearly": {
+          "display": "4.3%"
+        }
+      },
+      "threeBed": {
+        "yearly": {
+          "display": "4.6%"
+        }
+      }
+    }
+  },
+  "supplyDemand": {
+    "buy": {
+      "house": {
+        "allBed": {
+          "monthly": {
+            "supply": 5,
+            "demand": 688
+          }
+        },
+        "twoBed": {
+          "monthly": {
+            "supply": 2,
+            "demand": 489
+          }
+        },
+        "threeBed": {
+          "monthly": {
+            "supply": 3,
+            "demand": 238
+          }
+        },
+        "fourBed": {
+          "monthly": {
+            "supply": 0,
+            "demand": 0
+          }
+        }
+      },
+      "unit": {
+        "allBed": {
+          "monthly": {
+            "supply": 65,
+            "demand": 1516
+          }
+        },
+        "oneBed": {
+          "monthly": {
+            "supply": 31,
+            "demand": 488
+          }
+        },
+        "twoBed": {
+          "monthly": {
+            "supply": 25,
+            "demand": 839
+          }
+        },
+        "threeBed": {
+          "monthly": {
+            "supply": 3,
+            "demand": 349
+          }
+        }
+      }
+    },
+    "rent": {
+      "house": {
+        "allBed": {
+          "monthly": {
+            "supply": 7,
+            "demand": 178
+          }
+        },
+        "twoBed": {
+          "monthly": {
+            "supply": 3,
+            "demand": 71
+          }
+        },
+        "threeBed": {
+          "monthly": {
+            "supply": 4,
+            "demand": 116
+          }
+        },
+        "fourBed": {
+          "monthly": {
+            "supply": 0,
+            "demand": 0
+          }
+        }
+      },
+      "unit": {
+        "allBed": {
+          "monthly": {
+            "supply": 91,
+            "demand": 1219
+          }
+        },
+        "oneBed": {
+          "monthly": {
+            "supply": 55,
+            "demand": 811
+          }
+        },
+        "twoBed": {
+          "monthly": {
+            "supply": 23,
+            "demand": 390
+          }
+        },
+        "threeBed": {
+          "monthly": {
+            "supply": 5,
+            "demand": 68
+          }
+        }
+      }
+    }
+  }
+}
