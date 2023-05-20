@@ -27,7 +27,10 @@ from utils.selenium_utils import (
     fluent_wait,
     find_sibling_by_text
 )
-from utils.sqlite_utils import write_recent_sales_to_db
+from utils.sqlite_utils import (
+    write_recent_sales_to_db,
+    read_recent_sales
+)
 
 
 def get_property_val(driver, text):
@@ -153,6 +156,10 @@ if __name__ == "__main__":
     get_state_profile(driver)
 
     get_property_val(driver, 'Sold at auction')
+
+    # %% --- check last appended
+    d = read_recent_sales()
+    d[d['updated'] == d['updated'].max()]
 
     # %% Close the driver
     driver.quit()
