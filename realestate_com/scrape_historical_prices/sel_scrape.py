@@ -20,39 +20,37 @@ Includes:
 '''
 
 # %%
-import pandas as pd
-import re
 import json
-import sqlite3
-import itertools
+import pandas as pd
 from datetime import datetime
 
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import TimeoutException
-
 from bs4 import BeautifulSoup  
-
-
-# from selenium import webdriver
-# options = webdriver.ChromeOptions()
-# options.add_argument("disable-blink-features=AutomationControlled")
-# options.add_argument("--incognito")
-
 import undetected_chromedriver as uc  # anti-bot selenium patch
 
+from utils.sqlite_utils import write_snapshot_to_db
 from utils.selenium_utils import (
     fluent_wait,
     find_sibling_by_text
 )
 
+
 URL_ROOT = r'https://www.realestate.com.au/neighbourhoods/'
 
 
+def sectors():
+    '''
+    returns o, d
+    '''
+    ownership_type = ('buy', 'rent')
+    dwelling_type = ('house', 'unit')
+    return ((o, d) for o in ownership_type for d in dwelling_type)
+
+
 def get_sydney_suburbs_urls():
+    '''
+    Returns [(suburb, suburb_url), ...] for each suburb in the postcode list.
+    '''
     regions = [
         'Central & Northern Sydney',
         'Southern & South Western Sydney',
@@ -61,20 +59,19 @@ def get_sydney_suburbs_urls():
     postcodes = pd.read_csv('postcodes-suburbs-regions.csv')
     postcodes = postcodes.query('Region == @regions').reset_index(drop=True)
 
-    urls = [f'{URL_ROOT}{s.lower().replace(" ", "-")}-{p}-nsw'
+    urls = [(s.lower().replace(" ", "-"), f'{URL_ROOT}{s.lower().replace(" ", "-")}-{p}-nsw')
             for p, s in zip(postcodes['Postcode'], postcodes['Suburb'])]
 
     return urls
 
+# todo:
+# implement a way to find url from suburb name
 
 def get_suburb_from_url(url):
     '''
-    Returns the suburb name given by a realestate neighbourhood url.
-    NOTE: an identical function has been implemented in get_suburb_driver()
+    Returns the suburb name given by a realestate.com neighbourhood url.
     '''
-    return re.match(r'.+?(?=-\d)', url.replace(URL_ROOT, '')).group(0)
-# todo:
-# implement a way to find url from suburb name
+    return (' ').join(url.split(r'/')[-1].split('-')[:-2])
 
 
 def get_suburb_driver(url):
@@ -155,60 +152,6 @@ def scrape_suburb_data(url):
     return d
 
 
-def flatten_json(d, keys=[], flattened=[]):
-    '''
-    Takes a json and returns it as a list so it can be converted to
-    table format and written into a database.
-
-    Parameters:
-    -----------
-    d: the dictionary to flatten
-    keys: unused arg to pass down recursive variables
-    flattened: unused arg to pass down recursive variables
-
-    Example:
-    --------
-    In: {'buy': {'house': {'allBed': {'yearly': {'value': 47}},
-                'twoBed': {'yearly': {'value': 44}},
-                'threeBed': {'yearly': {'value': 225}}},
-            'rent': {'house': {'allBed': {'yearly': {'value': 21}},
-                'twoBed': {'yearly': {'value': 20}},
-                'threeBed': {'yearly': {'value': 26}}}
-        }
-
-    Out: [['buy', 'house', 'allBed', 'yearly', 'value', 47],
-        ['buy', 'house', 'twoBed', 'yearly', 'value', 44],
-        ['buy', 'house', 'threeBed', 'yearly', 'value', 225],
-        ['rent', 'house', 'allBed', 'yearly', 'value', 21],
-        ['rent', 'house', 'twoBed', 'yearly', 'value', 20],
-        ['rent', 'house', 'threeBed', 'yearly', 'value', 26],
-        ]
-    '''
-
-    for k, v in d.items():
-        new_keys = [*keys, k]
-        if isinstance(v, dict):
-            flatten_json(v, new_keys)
-        else:
-            # print([*new_keys, v])
-            flattened += [[*new_keys, v]]
-            new_keys = new_keys[:-1]
-
-    return flattened
-
-
-driver = uc.Chrome()
-
-# broken = []
-# for url in urls:
-#     d = scrape_suburb_data(url)
-
-# --- debugging
-url = urls[12]
-d = scrape_suburb_data(url)
-
-# %%
-
 ''' payload keys:
 >>> payload
     ["resi-property_market-explorer"]
@@ -257,26 +200,140 @@ d = scrape_suburb_data(url)
 
 '''
 
-output = []
-measures = {
-    'medianPrice': [],
-    'transactionVolume': [],
-    'daysOnSite': [],
-    'rentalYield': [],
-    'supplyDemand': [],
-}
+def flatten_json(d, keys=[], flattened_output=[]):
+    '''
+    Takes a json and returns it as a list so it can be converted to
+    table format and written into a database.
 
-for m in measures:
-    # if m == 'medianPrice':
-    #     pass
-    # else:
-    #     try:
-    #         output += [pd.DataFrame(flatten_json(d[m]))]
-    #     except:
-    #         print(m)
+    Usage: (BUG)
+    ------
+    Function MUST be called like `flatten_json(input_df, [], [])` to work.
+    For some reason the output variable is retained across function calls,
+    so successive calls will compound outputs.
 
-    print(m)
-    display(pd.DataFrame(flatten_json(d[m])).head())
+    Parameters:
+    -----------
+    d: the dictionary to flatten
+    keys: unused arg to pass down recursive variables
+    flattened_output: unused arg to pass down recursive variables
+
+    Example:
+    --------
+    In: {'buy': {'house': {'allBed': {'yearly': {'value': 47}},
+                'twoBed': {'yearly': {'value': 44}},
+                'threeBed': {'yearly': {'value': 225}}},
+            'rent': {'house': {'allBed': {'yearly': {'value': 21}},
+                'twoBed': {'yearly': {'value': 20}},
+                'threeBed': {'yearly': {'value': 26}}}
+        }
+
+    Out: [['buy', 'house', 'allBed', 'yearly', 'value', 47],
+        ['buy', 'house', 'twoBed', 'yearly', 'value', 44],
+        ['buy', 'house', 'threeBed', 'yearly', 'value', 225],
+        ['rent', 'house', 'allBed', 'yearly', 'value', 21],
+        ['rent', 'house', 'twoBed', 'yearly', 'value', 20],
+        ['rent', 'house', 'threeBed', 'yearly', 'value', 26],
+        ]
+    '''
+    for k, v in d.items():
+        new_keys = [*keys, k]
+        if isinstance(v, dict):
+            flatten_json(v, new_keys, flattened_output)
+        else:
+            # print([*new_keys, v])
+            flattened_output += [[*new_keys, v]]
+            new_keys = new_keys[:-1]
+
+    return flattened_output
+
+
+def get_measures_from_dict(payload):
+    '''
+    
+    NOTE:
+    * medianPrice, transactionVolume processed separately
+    * for n_beds, 0 is aggregate median of all other n_beds
+    '''
+
+    measures = {  # <measure>: [levels to drop]
+        'daysOnSite': [3, 4],
+        'rentalYield': [2, 3],
+        'supplyDemand': [3],
+    }
+
+    output = []
+    cols = ['ownership_type', 'dwelling_type', 'n_beds']
+
+    for m, v in measures.items():
+        df = pd.DataFrame(flatten_json(payload[m], [], [])) \
+                .drop(v, axis=1)
+
+        if m == 'supplyDemand':
+            df.columns = [*cols, '.', '..']
+            df = df.pivot_table(index=cols, columns='.', values='..')
+        else:
+            if m == 'rentalYield':
+                df.insert(loc=0, column='_', value='buy')
+                df[4] = df[4].str[:-1].astype(float)
+
+            df.columns = [*cols, m]
+            df = df.set_index(cols)
+
+        output += [df]
+
+    # final processing
+    output = pd.concat(output, axis=1).reset_index()
+    output['last_queried'] = datetime.today().date()
+    output['n_beds'] = output['n_beds'].replace({
+        'allBed': 0,
+        'oneBed': 1,
+        'twoBed': 2,
+        'threeBed': 3,
+        'fourBed': 4,
+        'fiveBed': 5,
+        })
+
+    try:
+        assert not output['n_beds'].isnull().any()
+    except AssertionError:
+        raise ValueError('Not all bedroom types have been mapped.')
+
+    return output.sort_values(cols)
+
+
+# driver = uc.Chrome()
+
+# urls = get_sydney_suburbs_urls()
+# # broken = []
+# # for suburb, url in urls:
+# #     d = scrape_suburb_data(url)
+
+# # --- debugging
+# suburb, url = urls[12]
+# payload = scrape_suburb_data(url)
+df = get_measures_from_dict(payload)
+df.insert(loc=0, column='suburb', value=suburb)
+
+write_snapshot_to_db(df)
+
+# %%
+# --- trends
+# get beds
+for ownership_type, dwelling_type in sectors():
+    temp_d = payload['medianPrice'][ownership_type][dwelling_type]
+    for k in temp_d.keys():
+        trends = temp_d[k]['trends']
+        if trends is not None: print(ownership_type, dwelling_type, k, len(trends))
+
 # %%
 
-pd.concat(output, axis=0)
+df_trends = pd.DataFrame(trends) \
+        .drop(['display', 'startDate'], axis=1) \
+        .rename(columns={'endDate': 'yr_ended', 'value': 'median'})
+
+df_trends['ownership_type'] = ownership_type
+df_trends['dwelling_type'] = dwelling_type
+df_trends['n_beds'] = k
+
+# %%
+df_trends[df_trends['yr_ended'] == df_trends['yr_ended'].max()]

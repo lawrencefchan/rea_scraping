@@ -36,7 +36,7 @@ import pandas as pd
 import time
 
 import numpy as np
-from scipy import stats
+# from scipy import stats
 
 import matplotlib.pyplot as plt
 
@@ -45,7 +45,7 @@ def load_data():
     
     t0 = time.time()
 
-    con = sqlite3.connect('historicalprices.db')
+    con = sqlite3.connect('./data/historicalprices.db')
     df = pd.read_sql_query("SELECT * FROM prices_counts", con)
 
     con.close()
@@ -67,9 +67,12 @@ def load_data():
 
     return df
 
+load_data()
+# %%
+
 
 def query_test():
-    con = sqlite3.connect('historicalprices.db')
+    con = sqlite3.connect('./data/historicalprices.db')
     cur = con.cursor()
 
     # --- show column names

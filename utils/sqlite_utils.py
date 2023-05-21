@@ -14,12 +14,44 @@ import sqlite3
 import pandas as pd
 
 
-# def create_db(con):
-#     cur = con.cursor()  # init db cursor to execute statements and fetch results
-#     # create database
-#     cur.execute(f"CREATE TABLE state_profiles{tuple(df.columns)}")
+def get_db_connection(db_path, new_db=False):
+    '''
+    Returns the db connection for a given filepath after first checking that the
+    database exists to avoid sqlite unintentionally creating empty databases.
 
-#     return
+    db_path: file path of the database
+    new_db: flag for creating a new db, skips filepath check
+    '''
+
+    if not new_db:
+        try:
+            assert os.path.exists(db_path)
+        except AssertionError:
+            raise FileNotFoundError('Database not found.')
+
+    return sqlite3.connect(db_path)
+
+
+def create_db(filename, table_name, columns):
+
+    if filename[-3:] != '.db':
+        filename += '.db'
+
+    assert isinstance(columns, tuple)
+
+    con = get_db_connection(f'data\\{filename}', new_db=True)
+    cur = con.cursor()  # init db cursor to execute statements and fetch results
+    # create database
+    cur.execute(f"CREATE TABLE {table_name}{columns}")
+
+    return
+    # create_db('historical_trends', 'current_snapshot', tuple(df.columns))
+
+
+def get_all_tablenames(con):
+    # show all tables in db
+    cur = con.cursor()
+    return cur.execute("SELECT name FROM sqlite_master").fetchall()
 
 
 def write_recent_sales_to_db(df, check_last_updated=True):
@@ -45,8 +77,8 @@ def write_recent_sales_to_db(df, check_last_updated=True):
         else:
             return False
 
-    db_pth = "./data/recent_sales.db"
-    con = get_db_connection(db_pth)
+    db_path = "./data/recent_sales.db"
+    con = get_db_connection(db_path)
 
     if check_last_updated:
         if not new_data_avail(df, con):
@@ -54,31 +86,19 @@ def write_recent_sales_to_db(df, check_last_updated=True):
             return
 
     df.to_sql('recent_sales', con, if_exists='append', index=False)
-    print(f'Data successfully written to {db_pth}')
+    print(f'Data successfully written to {db_path}')
 
     return
 
 
-def get_all_tablenames(con):
-    # show all tables in db
-    cur = con.cursor()
-    return cur.execute("SELECT name FROM sqlite_master").fetchall()
-
-
-def get_db_connection(db_pth):
+def write_snapshot_to_db(df):
     '''
-    Returns the db connection for a given filepath after first checking that the
-    database exists to avoid sqlite unintentionally creating empty databases.
-
-    db_pth: file path of the database
+    Writes measures scraped from json payload
     '''
-
-    try:
-        assert os.path.exists(db_pth)
-    except AssertionError:
-        raise FileNotFoundError('Database not found.')
-
-    return sqlite3.connect(db_pth)
+    db_path = "./data/historical_trends.db"
+    con = get_db_connection(db_path)
+    df.to_sql('current_snapshot', con, if_exists='append', index=False)
+    print(f'Data successfully written to {db_path}')
 
 
 def read_recent_sales():
@@ -87,11 +107,21 @@ def read_recent_sales():
 
 
 def read_historical_prices():
-    con = get_db_connection("./historicalprices.db")
+    con = get_db_connection("./data/historicalprices.db")
     return pd.read_sql_query('select * from prices_counts', con)
 
 
 if __name__ == "__main__":
-    df = read_recent_sales()
-    # df = read_historical_prices()
-    display(df.head())
+    display(read_historical_prices().head())
+    display(read_recent_sales().head())
+
+    # %% --- check contents for each table in db
+    con = get_db_connection("./data/historical_trends.db")
+    for t in [i[0] for i in get_all_tablenames(con)]:
+        print(t)
+        display(pd.read_sql_query(f'select * from {t}', con).head())
+
+    # # %% --- delete
+    # con = get_db_connection("./data/historical_trends.db")
+    # cur = con.cursor()
+    # cur.execute("DROP TABLE current_snapshot")
