@@ -14,8 +14,11 @@ def plot_recent_sales(df):
     ax = df.pivot_table(
         index='updated',
         columns='state',
-        values=plot_var).plot(marker='.')
+        values=plot_var) \
+            .drop(['wa', 'tas', 'nt'], axis=1) \
+            .plot(marker='.')
     ax.set_title(plot_var)
+    ax.grid()
 
 
 if __name__ == "__main__":
