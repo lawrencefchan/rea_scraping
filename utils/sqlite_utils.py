@@ -46,6 +46,7 @@ def create_db(filename, table_name, columns):
 
     return
     # create_db('historical_trends', 'current_snapshot', tuple(df.columns))
+    # create_db('historical_trends', 'prices_volumes', tuple(df_trends.columns))
 
 
 def get_all_tablenames(con):
@@ -101,6 +102,13 @@ def write_snapshot_to_db(df):
     print(f'Data successfully written to {db_path}')
 
 
+def write_trends_to_db(df):
+    db_path = "./data/historical_trends.db"
+    con = get_db_connection(db_path)
+    df.to_sql('prices_volumes', con, if_exists='append', index=False)
+    print(f'Data successfully written to {db_path}')
+
+
 def read_recent_sales():
     con = get_db_connection("./data/recent_sales.db")
     return pd.read_sql_query('select * from recent_sales', con)
@@ -111,9 +119,23 @@ def read_historical_prices():
     return pd.read_sql_query('select * from prices_counts', con)
 
 
+def read_historical_trends(table=None):
+    '''
+    sel_scrape scraper writes data into this db
+    '''
+    con = get_db_connection("./data/historical_trends.db")
+
+    tables = [i[0] for i in get_all_tablenames(con)]
+    if table not in tables:
+        raise ValueError(f'Table name must be on of {tables}')
+    else:
+        return pd.read_sql_query(f'select * from {table}', con)
+
+
 if __name__ == "__main__":
-    display(read_historical_prices().head())
-    display(read_recent_sales().head())
+    pass
+    # display(read_historical_prices().head())
+    # display(read_recent_sales().head())
 
     # %% --- check contents for each table in db
     con = get_db_connection("./data/historical_trends.db")
@@ -121,7 +143,26 @@ if __name__ == "__main__":
         print(t)
         display(pd.read_sql_query(f'select * from {t}', con).head())
 
-    # # %% --- delete
+    # %% --- delete
     # con = get_db_connection("./data/historical_trends.db")
     # cur = con.cursor()
-    # cur.execute("DROP TABLE current_snapshot")
+    # cur.execute("DROP TABLE prices_volumes")
+
+    # # --- delete current query
+    # from datetime import datetime
+    # con = get_db_connection("./data/historical_trends.db")
+
+    # tables = ('prices_volumes', 'current_snapshot')
+    # for t in tables:
+    #     qry = f'''
+    #         DELETE FROM {t}
+    #         WHERE last_queried = '{datetime.today().date().strftime('%Y-%m-%d')}'
+    #         '''
+
+    #     cur = con.cursor()
+    #     cur.execute(qry)
+    #     con.commit()
+    # con.close()
+
+    # %% --- new db
+    create_db('historical_trends', 'prices_volumes', tuple(df_trends.columns))

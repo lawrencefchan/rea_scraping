@@ -28,7 +28,11 @@ from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup  
 import undetected_chromedriver as uc  # anti-bot selenium patch
 
-from utils.sqlite_utils import write_snapshot_to_db
+from utils.sqlite_utils import (
+    get_db_connection,
+    write_snapshot_to_db,
+    write_trends_to_db
+)
 from utils.selenium_utils import (
     fluent_wait,
     find_sibling_by_text
@@ -36,7 +40,14 @@ from utils.selenium_utils import (
 
 
 URL_ROOT = r'https://www.realestate.com.au/neighbourhoods/'
-
+N_BED_MAP = {
+    'allBed': 0,
+    'oneBed': 1,
+    'twoBed': 2,
+    'threeBed': 3,
+    'fourBed': 4,
+    'fiveBed': 5,
+    }
 
 def sectors():
     '''
@@ -247,7 +258,7 @@ def flatten_json(d, keys=[], flattened_output=[]):
     return flattened_output
 
 
-def get_measures_from_dict(payload):
+def get_measures_from_dict(payload, suburb):
     '''
     
     NOTE:
@@ -284,56 +295,115 @@ def get_measures_from_dict(payload):
     # final processing
     output = pd.concat(output, axis=1).reset_index()
     output['last_queried'] = datetime.today().date()
-    output['n_beds'] = output['n_beds'].replace({
-        'allBed': 0,
-        'oneBed': 1,
-        'twoBed': 2,
-        'threeBed': 3,
-        'fourBed': 4,
-        'fiveBed': 5,
-        })
+    output.insert(loc=0, column='suburb', value=suburb)  # inplace
+    output['n_beds'] = output['n_beds'].replace(N_BED_MAP)
 
     try:
         assert not output['n_beds'].isnull().any()
     except AssertionError:
         raise ValueError('Not all bedroom types have been mapped.')
+    
+    write_snapshot_to_db(output.sort_values(cols))
 
-    return output.sort_values(cols)
+    return
 
 
-# driver = uc.Chrome()
+def get_trends_from_dict(payload, suburb):
+    '''
+    NOTE: writes incrementally to db rather than returning all data
+    '''
+    for ownership_type, dwelling_type in sectors():
+        temp_d = payload['medianPrice'][ownership_type][dwelling_type]
+        for n_beds in temp_d.keys():
+            trends = temp_d[n_beds]['trends']
 
-# urls = get_sydney_suburbs_urls()
-# # broken = []
-# # for suburb, url in urls:
-# #     d = scrape_suburb_data(url)
+            if trends is None:
+                continue
+
+            df_trends = pd.DataFrame(trends) \
+                    .drop(['display', 'startDate'], axis=1) \
+                    .rename(columns={'endDate': 'yr_ended', 'value': 'median'})
+
+            df_trends['ownership_type'] = ownership_type
+            df_trends['dwelling_type'] = dwelling_type
+            df_trends['n_beds'] = N_BED_MAP[n_beds]
+
+            df_trends.insert(loc=0, column='suburb', value=suburb)
+            df_trends['last_queried'] = datetime.today().date()
+
+            write_trends_to_db(df_trends)
+
+urls = get_sydney_suburbs_urls()
+
+def check_scraped():
+    # assumes everything is written properly until the last entry
+
+    '''
+    note: scraping prices vs historical trends will give different
+    results where page exists but contains no data. Writing suburb
+    data to db is evidence that the page loaded correctly.
+    '''
+
+    suburbs = [s[0] for s in urls]
+    idx = []
+
+    # check db for every suburb written in today
+    con = get_db_connection("./data/historical_trends.db")
+
+    tables = ('prices_volumes', 'current_snapshot')
+    for t in tables:
+        qry = f'''
+            select * from {t}
+            WHERE last_queried = (
+                select max(last_queried) from {t}
+            )
+            '''
+
+        df = pd.read_sql_query(qry, con)
+        queried = df['suburb'].unique()
+
+        # idx += [[suburbs.index(q) for q in queried]]
+        idx += [max([suburbs.index(q) for q in queried])]
+
+    return idx #  min(idx), suburbs[min(idx)]
+
+
+def delete_last_appended(idx, suburb):
+    # from db
+
+    pass
+
+# idx, suburb =  check_scraped()
+
+# idx = check_scraped()
+# set(idx[1]) - set(idx[0])
+
+[[s[1] for s in urls][i] for i in (set(idx[1]) - set(idx[0]))]
+
+
+# %%
+urls = get_sydney_suburbs_urls()
+
+try:
+    driver
+except NameError:
+    driver = uc.Chrome()
+
+
+broken = []
+for suburb, url in urls:
+    try:
+        payload = scrape_suburb_data(url)
+
+        get_measures_from_dict(payload, suburb)  # suburb snapshot
+        get_trends_from_dict(payload, suburb)  # historical trends
+    except Exception as e:
+        broken += [(suburb, e)]
+
 
 # # --- debugging
 # suburb, url = urls[12]
 # payload = scrape_suburb_data(url)
-df = get_measures_from_dict(payload)
-df.insert(loc=0, column='suburb', value=suburb)
 
-write_snapshot_to_db(df)
-
-# %%
-# --- trends
-# get beds
-for ownership_type, dwelling_type in sectors():
-    temp_d = payload['medianPrice'][ownership_type][dwelling_type]
-    for k in temp_d.keys():
-        trends = temp_d[k]['trends']
-        if trends is not None: print(ownership_type, dwelling_type, k, len(trends))
-
-# %%
-
-df_trends = pd.DataFrame(trends) \
-        .drop(['display', 'startDate'], axis=1) \
-        .rename(columns={'endDate': 'yr_ended', 'value': 'median'})
-
-df_trends['ownership_type'] = ownership_type
-df_trends['dwelling_type'] = dwelling_type
-df_trends['n_beds'] = k
-
-# %%
-df_trends[df_trends['yr_ended'] == df_trends['yr_ended'].max()]
+# get_measures_from_dict(payload, suburb)  # suburb snapshot
+# get_trends_from_dict(payload, suburb)  # historical trends
