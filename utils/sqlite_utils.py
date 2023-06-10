@@ -85,7 +85,7 @@ def write_recent_sales_to_db(df, check_last_updated=True):
         if not new_data_avail(df, con):
             print('No new data to append. Operation aborted.')
             return
-
+    # else: [new data available or force written]
     df.to_sql('recent_sales', con, if_exists='append', index=False)
     print(f'Data successfully written to {db_path}')
 

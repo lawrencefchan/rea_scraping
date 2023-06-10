@@ -147,7 +147,7 @@ if __name__ == "__main__":
     df = munge_profile_output(d)
 
     # %% --- write
-    write_recent_sales_to_db(df)
+    write_recent_sales_to_db(df, check_last_updated=True)
 
     # %% --- debugging
     url = 'https://www.realestate.com.au/auction-results/nsw'
