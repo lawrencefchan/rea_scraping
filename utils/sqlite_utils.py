@@ -92,16 +92,6 @@ def write_recent_sales_to_db(df, check_last_updated=True):
     return
 
 
-# def write_snapshot_to_db(df):
-#     '''
-#     Writes measures scraped from json payload
-#     '''
-#     db_path = "./data/historical_trends.db"
-#     con = get_db_connection(db_path)
-#     df.to_sql('current_snapshot', con, if_exists='append', index=False)
-#     print(f'Data successfully written to {db_path}')
-
-
 def write_trends_to_db(df, table):
     db_path = "./data/historical_trends.db"
     con = get_db_connection(db_path)

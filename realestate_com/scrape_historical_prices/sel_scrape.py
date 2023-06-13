@@ -240,7 +240,7 @@ def flatten_json(d, keys=[], flattened_output=[]):
     return flattened_output
 
 
-def get_measures_from_dict(payload, suburb):
+def get_snapshots_from_dict(payload, suburb, write=True):
     '''
     Pulls snapshot data from the processed payload and writes it to db.
 
@@ -288,12 +288,13 @@ def get_measures_from_dict(payload, suburb):
     except AssertionError:
         raise ValueError('Not all bedroom types have been mapped.')
 
-    write_trends_to_db(output.sort_values(cols), table='current_snapshot')
+    if write:
+        write_trends_to_db(output.sort_values(cols), table='current_snapshot')
 
-    return
+    return output
 
 
-def get_trends_from_dict(payload, suburb):
+def get_trends_from_dict(payload, suburb, write=True):
     '''
     NOTE: writes incrementally to db rather than returning all data
     '''
@@ -315,8 +316,11 @@ def get_trends_from_dict(payload, suburb):
 
             df_prices.insert(loc=0, column='suburb', value=suburb)
             df_prices['last_queried'] = datetime.today().date()
-
-            write_trends_to_db(df_prices, table='prices_volumes')
+            
+            if write:
+                write_trends_to_db(df_prices, table='prices_volumes')
+    
+    return df_prices
 
 
 def check_scraped(urls):
@@ -334,7 +338,6 @@ def check_scraped(urls):
     WARNING:
         - this function needs to be rewritten if you want to check
         data from a specific date
-
     '''
 
     suburbs = [s[0] for s in urls]
@@ -364,29 +367,30 @@ def check_scraped(urls):
     return (last_queried + 1)
 
 
-try:
-    driver
-except NameError:
-    driver = uc.Chrome()
-
-
-urls = get_sydney_suburbs_urls()
-idx = check_scraped(urls)  # check where to start scraping
-
-broken = []
-for suburb, url in urls[idx:]:
+if __name__ == "__main__":
+    urls = get_sydney_suburbs_urls()
     try:
-        payload = scrape_suburb_data(url)
- 
-        get_measures_from_dict(payload, suburb)  # suburb snapshot
-        get_trends_from_dict(payload, suburb)  # historical trends
-    except Exception as e:
-        broken += [(suburb, e)]
+        driver
+    except NameError:
+        driver = uc.Chrome()
+    pass
 
+    # %% --- scrape, write to db
+    idx = check_scraped(urls)  # check where to start scraping
 
-# # --- debugging
-# suburb, url = urls[12]
-# payload = scrape_suburb_data(url)
+    broken = []
+    for suburb, url in urls[idx:]:
+        try:
+            payload = scrape_suburb_data(url)
+    
+            get_snapshots_from_dict(payload, suburb)  # suburb snapshot
+            get_trends_from_dict(payload, suburb)  # historical trends
+        except Exception as e:
+            broken += [(suburb, e)]
 
-# get_measures_from_dict(payload, suburb)  # suburb snapshot
-# get_trends_from_dict(payload, suburb)  # historical trends
+    # %% --- debugging
+    suburb, url = urls[12]
+    payload = scrape_suburb_data(url)
+
+    snapshots = get_snapshots_from_dict(payload, suburb, write=False)  # suburb snapshot
+    trends = get_trends_from_dict(payload, suburb, write=False)  # historical trends
