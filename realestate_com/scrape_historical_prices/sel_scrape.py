@@ -1,22 +1,5 @@
 '''
 Scrapes historical trends from https://www.realestate.com.au/nsw/ultimo-2007/
-
-Includes:
-* Sale and rental price for:
-    - median price for houses/units
-    - 5 year (monthly) median price trend for houses/units
-* Suburb sales summary:
-    - no. houses available (past month)
-    - no. houses sold (past 12 months)
-    - median time on market (past 12 months)
-    - no. buyers (past month)
-    - current rental yield
-* Suburb rental summary:
-    - no. houses available (past month)
-    - no. houses leased (past 12 months)
-    - median time on market (past 12 months)
-    - no. buyers (past month)
-
 '''
 
 # %%
@@ -30,7 +13,6 @@ import undetected_chromedriver as uc  # anti-bot selenium patch
 
 from utils.sqlite_utils import (
     get_db_connection,
-    write_snapshot_to_db,
     write_trends_to_db
 )
 from utils.selenium_utils import (
@@ -175,7 +157,7 @@ def scrape_suburb_data(url):
 ----------------------------------
 'medianPrice': yearly: latest summary data (median over past 12mths)
                trends: chart data (median price and volume over past 12 mths)
-    {'yearly': ['display', 'volume']  # NOTE: redundant: equal to last trend element
+    {'yearly': ['display', 'volume']  # NOTE: redundant: equals last trend element
      'trends': ['value', 'volume'] }  # list of dicts
 
 'transactionVolume': number sold in the past 12 months
@@ -218,9 +200,9 @@ def flatten_json(d, keys=[], flattened_output=[]):
 
     Usage: (BUG)
     ------
-    Function MUST be called like `flatten_json(input_df, [], [])` to work.
-    For some reason the output variable is retained across function calls,
-    so successive calls will compound outputs.
+    Top level function MUST be called like `flatten_json(input_df, [], [])`
+    to work. For some reason the output variable is retained across function 
+    calls, so successive calls will compound outputs.
 
     Parameters:
     -----------
@@ -260,9 +242,11 @@ def flatten_json(d, keys=[], flattened_output=[]):
 
 def get_measures_from_dict(payload, suburb):
     '''
-    
+    Pulls snapshot data from the processed payload and writes it to db.
+
     NOTE:
-    * medianPrice, transactionVolume processed separately
+    * medianPrice processed separately. Also contains more detailed
+    transactionVolume data so both measures are skipped in this function
     * for n_beds, 0 is aggregate median of all other n_beds
     '''
 
@@ -280,13 +264,14 @@ def get_measures_from_dict(payload, suburb):
                 .drop(v, axis=1)
 
         if m == 'supplyDemand':
-            df.columns = [*cols, '.', '..']
+            df.columns = [*cols, '.', '..']  # dummy names to use for pivot
             df = df.pivot_table(index=cols, columns='.', values='..')
         else:
             if m == 'rentalYield':
                 df.insert(loc=0, column='_', value='buy')
                 df[4] = df[4].str[:-1].astype(float)
 
+            # processing for rentalYield, daysOnSite
             df.columns = [*cols, m]
             df = df.set_index(cols)
 
@@ -295,15 +280,15 @@ def get_measures_from_dict(payload, suburb):
     # final processing
     output = pd.concat(output, axis=1).reset_index()
     output['last_queried'] = datetime.today().date()
-    output.insert(loc=0, column='suburb', value=suburb)  # inplace
+    output.insert(loc=0, column='suburb', value=suburb)  # insert inplace to skip reordering cols
     output['n_beds'] = output['n_beds'].replace(N_BED_MAP)
 
     try:
         assert not output['n_beds'].isnull().any()
     except AssertionError:
         raise ValueError('Not all bedroom types have been mapped.')
-    
-    write_snapshot_to_db(output.sort_values(cols))
+
+    write_trends_to_db(output.sort_values(cols), table='current_snapshot')
 
     return
 
@@ -320,28 +305,36 @@ def get_trends_from_dict(payload, suburb):
             if trends is None:
                 continue
 
-            df_trends = pd.DataFrame(trends) \
+            df_prices = pd.DataFrame(trends) \
                     .drop(['display', 'startDate'], axis=1) \
                     .rename(columns={'endDate': 'yr_ended', 'value': 'median'})
 
-            df_trends['ownership_type'] = ownership_type
-            df_trends['dwelling_type'] = dwelling_type
-            df_trends['n_beds'] = N_BED_MAP[n_beds]
+            df_prices['ownership_type'] = ownership_type
+            df_prices['dwelling_type'] = dwelling_type
+            df_prices['n_beds'] = N_BED_MAP[n_beds]
 
-            df_trends.insert(loc=0, column='suburb', value=suburb)
-            df_trends['last_queried'] = datetime.today().date()
+            df_prices.insert(loc=0, column='suburb', value=suburb)
+            df_prices['last_queried'] = datetime.today().date()
 
-            write_trends_to_db(df_trends)
+            write_trends_to_db(df_prices, table='prices_volumes')
 
-urls = get_sydney_suburbs_urls()
 
-def check_scraped():
-    # assumes everything is written properly until the last entry
-
+def check_scraped(urls):
     '''
-    note: scraping prices vs historical trends will give different
-    results where page exists but contains no data. Writing suburb
-    data to db is evidence that the page loaded correctly.
+    Checks scraped data written to db to find the point the scraper broke.
+    Returns index (in the suburb urls list) of the next suburb to scrape.
+
+    NOTE:
+        - Assumes everything is properly scraped and written into db up to
+        and including the last entry
+        - scraping prices vs historical trends will give different
+        results where page exists but contains no data. Writing suburb
+        data to db is evidence that the page loaded correctly.
+    
+    WARNING:
+        - this function needs to be rewritten if you want to check
+        data from a specific date
+
     '''
 
     suburbs = [s[0] for s in urls]
@@ -362,27 +355,14 @@ def check_scraped():
         df = pd.read_sql_query(qry, con)
         queried = df['suburb'].unique()
 
-        # idx += [[suburbs.index(q) for q in queried]]
+        # for each suburb in db, get its index in the url list
         idx += [max([suburbs.index(q) for q in queried])]
 
-    return idx #  min(idx), suburbs[min(idx)]
+    last_queried = max(idx)
+    print(f'Last queried suburb: {suburbs[last_queried]}')
 
+    return (last_queried + 1)
 
-def delete_last_appended(idx, suburb):
-    # from db
-
-    pass
-
-# idx, suburb =  check_scraped()
-
-# idx = check_scraped()
-# set(idx[1]) - set(idx[0])
-
-[[s[1] for s in urls][i] for i in (set(idx[1]) - set(idx[0]))]
-
-
-# %%
-urls = get_sydney_suburbs_urls()
 
 try:
     driver
@@ -390,11 +370,14 @@ except NameError:
     driver = uc.Chrome()
 
 
+urls = get_sydney_suburbs_urls()
+idx = check_scraped(urls)  # check where to start scraping
+
 broken = []
-for suburb, url in urls:
+for suburb, url in urls[idx:]:
     try:
         payload = scrape_suburb_data(url)
-
+ 
         get_measures_from_dict(payload, suburb)  # suburb snapshot
         get_trends_from_dict(payload, suburb)  # historical trends
     except Exception as e:

@@ -1,6 +1,36 @@
 # rea_scraping
-Scripts for scraping historical dwelling price data from realestate.com.au
+This library contains scripts for scraping realestate data from:
+- realestate.com.au
+- Allhomes
+- domain.com (to be implemented)
 
+## realestate_com
+### scrape_historical_prices
+Uses `sel_scrape` to pull suburb-level historical data for houses/units. Includes:
+* Historical sales/rental data (written to `prices_volumes`):
+    - **median:** 12 month median price trend for houses/units
+    - **volume:** 12 month total sales/leases
+* Sales/rental summaries (written to `current_snapshot`):
+    - **daysOnSite:** median time on market in the past 12 months
+    - **rentalYield:** current rental yield (owned propreties only)
+    - **demand:** no. buyers/renters interested in the past month
+    - **supply:** no. dwellings available in the past month
+
+Data is saved to `./data/historical_trends.db`.
+
+__TODO__
+- fix multiple print statements on write
+
+### recent_sales
+Scrapes recent sales results for all states including clearance rates and number of homes sold etc.
+
+Data is saved to `./data/recent_sales.db`.
+
+### saved_properties
+Todo
+
+
+### Achive/old scripts
 Uses selenium (download chrome driver 90.0.4430.24 [here](https://chromedriver.storage.googleapis.com/index.html?path=90.0.4430.24/)).
 
 Note: internet connection is required to render mapbox map (house.html and unit.html).

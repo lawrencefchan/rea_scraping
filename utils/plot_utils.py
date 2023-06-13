@@ -39,5 +39,5 @@ def plot_recent_sales(df):
 if __name__ == "__main__":
     from utils.sqlite_utils import read_recent_sales
 
-    df = read_recent_sales()
-    plot_recent_sales(df)
+    plot_df = read_recent_sales()
+    plot_recent_sales(plot_df)
