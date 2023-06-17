@@ -1,5 +1,4 @@
 postcode_munge.py
-test_data/
 
 env/
 chromedriver*
@@ -8,4 +7,3 @@ __pycache__/
 
 current_prices/*
 *.jpg
-

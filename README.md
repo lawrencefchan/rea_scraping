@@ -1,5 +1,5 @@
 # rea_scraping
-This library contains scripts for scraping realestate data from:
+This package contains scripts used to scrape realestate data from:
 - realestate.com.au
 - Allhomes
 - domain.com (to be implemented)
@@ -67,4 +67,14 @@ https://digitalfinanceanalytics.com/blog/mortgage-stress-grinds-higher-before-ra
 https://www.finder.com.au/how-to-find-out-property-past-sales-history
 
 https://www.allhomes.com.au/ah/research/quay-street-haymarket-nsw-2000/1933521212/sale-history
-* faster way to scrape sales history??
+* TODO: check faster way to scrape sales history??
+
+## Data sources
+NSW postcode regions: https://www.training.nsw.gov.au/about_us/postcodes_byregion.html
+
+NSW regions maps: https://www.training.nsw.gov.au/about_us/sts_contacts.html
+
+
+Sydney postcode regions: https://docs.google.com/spreadsheets/d/1tHCxouhyM4edDvF60VG7nzs5QxID3ADwr3DGJh71qFg
+
+Postcode mapping method: https://greenash.net.au/thoughts/2014/07/australian-lga-to-postcode-mappings-with-postgis-and-intersects/

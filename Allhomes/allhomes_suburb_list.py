@@ -9,7 +9,7 @@ Results are saved in allhome_suburb_list.csv
 import pandas as pd
 import requests
 
-df = pd.read_csv('../suburb_postcodes.csv')
+df = pd.read_csv('./data/suburb_postcodes.csv')
 df.sample(5)
 
 # %%
