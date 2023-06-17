@@ -107,7 +107,7 @@ def get_suburb_url(suburb):
     url_base = r'https://www.realestate.com.au/neighbourhoods/'
     # https://www.realestate.com.au/neighbourhoods/north-epping-2121-nsw
 
-    postcodes = pd.read_csv('postcodes-suburbs-regions.csv').query('Suburb == @suburb')
+    postcodes = pd.read_csv('./data/postcodes-suburbs-regions.csv').query('Suburb == @suburb')
 
     display(postcodes)
 

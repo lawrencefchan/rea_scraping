@@ -1,151 +1,7 @@
 '''
 Scrapes historical trends from https://www.realestate.com.au/nsw/ultimo-2007/
-'''
 
-# %%
-import json
-import pandas as pd
-from datetime import datetime
-
-from selenium.webdriver.common.by import By
-from bs4 import BeautifulSoup  
-import undetected_chromedriver as uc  # anti-bot selenium patch
-
-from utils.sqlite_utils import (
-    get_db_connection,
-    write_trends_to_db
-)
-from utils.selenium_utils import (
-    fluent_wait,
-    find_sibling_by_text
-)
-
-
-URL_ROOT = r'https://www.realestate.com.au/neighbourhoods/'
-N_BED_MAP = {
-    'allBed': 0,
-    'oneBed': 1,
-    'twoBed': 2,
-    'threeBed': 3,
-    'fourBed': 4,
-    'fiveBed': 5,
-    }
-
-def sectors():
-    '''
-    returns o, d
-    '''
-    ownership_type = ('buy', 'rent')
-    dwelling_type = ('house', 'unit')
-    return ((o, d) for o in ownership_type for d in dwelling_type)
-
-
-def get_sydney_suburbs_urls():
-    '''
-    Returns [(suburb, suburb_url), ...] for each suburb in the postcode list.
-    '''
-    regions = [
-        'Central & Northern Sydney',
-        'Southern & South Western Sydney',
-        'Western Sydney & Blue Mountains']
-
-    postcodes = pd.read_csv('postcodes-suburbs-regions.csv')
-    postcodes = postcodes.query('Region == @regions').reset_index(drop=True)
-
-    urls = [(s.lower().replace(" ", "-"), f'{URL_ROOT}{s.lower().replace(" ", "-")}-{p}-nsw')
-            for p, s in zip(postcodes['Postcode'], postcodes['Suburb'])]
-
-    return urls
-
-# todo:
-# implement a way to find url from suburb name
-
-def get_suburb_from_url(url):
-    '''
-    Returns the suburb name given by a realestate.com neighbourhood url.
-    '''
-    return (' ').join(url.split(r'/')[-1].split('-')[:-2])
-
-
-def get_suburb_driver(url):
-    '''
-    Returns selenium WebDriver object for a given url.
-    '''
-    suburb = (' ').join(url.split(r'/')[-1].split('-')[:-2])
-    print(suburb)
-
-    driver.get(url)
-
-    return driver
-
-
-def pull_payload(driver):
-    '''
-    Waits for the payload to be delivered and then scrapes the raw json.
-    bs4 is used because it is (faster? easier?) here.
-    '''
-    payload_xpath = "//script[contains(.,'window.ArgonautExchange')]"
-    fluent_wait(driver, condition='locate', mark=(By.XPATH, payload_xpath))
-
-    soup = BeautifulSoup(driver.page_source, "html.parser")
-
-    payload = [s.contents[0] for
-                s in soup.findAll('script')
-                if len(s.contents) == 1
-                and 'window.ArgonautExchange' in s.contents[0]][0]
-
-    return payload
-
-
-def munge_payload(payload):
-    '''
-    Munges json payload into dict
-    '''
-
-    def d_recursive_del(d, key):
-        '''
-        Recursively deletes a given key from a dict and all nested values.
-        Also handles dictionaries nested within lists.
-
-        Usage:
-        ------
-        Parses the suburb summary json payload and remove the "__typename"
-        key from all nested dicts for easier downstream processing.
-        '''
-        if type(d) is list:
-            return [d_recursive_del(element, key) for element in d]
-        elif type(d) is dict:
-            return {k: d_recursive_del(v, key) for k, v in d.items() if k != key}
-        else:
-            return d
-
-    payload = json.loads(payload \
-        .replace('window.ArgonautExchange=', '') \
-        .replace('\\', '') \
-        .replace(';', '') \
-        .replace('"{', '{') \
-        .replace('}}"}}', '}}}}'))
-    
-    payload = payload["resi-property_market-explorer"] \
-                     ["suburb_data"] \
-                     ["marketProfileBySlug"] \
-                     ["insights"]
-
-    return d_recursive_del(payload, '__typename')
-
-
-def scrape_suburb_data(url):
-    '''
-    Simple wrapper to combine multiple functions
-    '''
-    driver = get_suburb_driver(url)
-    payload = pull_payload(driver)
-    d = munge_payload(payload)
-
-    return d
-
-
-''' payload keys:
+NOTE: realestate payload keys:
 >>> payload
     ["resi-property_market-explorer"]
         ["suburb_data"]
@@ -192,6 +48,144 @@ def scrape_suburb_data(url):
             "demand": 688
 
 '''
+
+# %%
+import json
+import pandas as pd
+from datetime import datetime
+
+from selenium.webdriver.common.by import By
+from bs4 import BeautifulSoup  
+import undetected_chromedriver as uc  # anti-bot selenium patch
+
+from utils import sqlite_utils
+from utils import selenium_utils
+
+
+URL_ROOT = r'https://www.realestate.com.au/neighbourhoods/'
+N_BED_MAP = {
+    'allBed': 0,
+    'oneBed': 1,
+    'twoBed': 2,
+    'threeBed': 3,
+    'fourBed': 4,
+    'fiveBed': 5,
+    }
+
+
+def sectors():
+    '''
+    Returns a generator for all ownership and dwelling combinations 
+    '''
+    ownership_type = ('buy', 'rent')
+    dwelling_type = ('house', 'unit')
+    return ((o, d) for o in ownership_type for d in dwelling_type)
+
+
+def get_sydney_suburbs_urls():
+    '''
+    Returns a list containing each suburb in the postcode list and its corresponding url.
+    '''
+    regions = [
+        'Central & Northern Sydney',
+        'Southern & South Western Sydney',
+        'Western Sydney & Blue Mountains']
+
+    postcodes = pd.read_csv('./data/postcodes-suburbs-regions.csv')
+    postcodes = postcodes.query('Region == @regions').reset_index(drop=True)
+
+    urls = [(s.lower().replace(" ", "-"), f'{URL_ROOT}{s.lower().replace(" ", "-")}-{p}-nsw')
+            for p, s in zip(postcodes['Postcode'], postcodes['Suburb'])]
+
+    return urls
+
+
+def get_suburb_from_url(url):
+    '''
+    Returns the suburb name given by a realestate.com neighbourhood url.
+
+    # TODO: implement a way to find url from suburb name
+    '''
+    return (' ').join(url.split(r'/')[-1].split('-')[:-2])
+
+
+def get_suburb_driver(url):
+    '''
+    Returns selenium WebDriver object for a given url.
+    '''
+    suburb = (' ').join(url.split(r'/')[-1].split('-')[:-2])
+    print(suburb)
+
+    driver.get(url)
+
+    return driver
+
+
+def pull_payload(driver):
+    '''
+    Waits for the payload to be delivered and then scrapes the raw json.
+    bs4 is used because it is (faster? easier?) here.
+    '''
+    payload_xpath = "//script[contains(.,'window.ArgonautExchange')]"
+    selenium_utils.fluent_wait(driver, condition='locate', mark=(By.XPATH, payload_xpath))
+
+    soup = BeautifulSoup(driver.page_source, "html.parser")
+
+    payload = [s.contents[0] for
+                s in soup.findAll('script')
+                if len(s.contents) == 1
+                and 'window.ArgonautExchange' in s.contents[0]][0]
+
+    return payload
+
+
+def munge_payload(payload):
+    '''
+    Pre-processes json payload into dict
+    '''
+
+    def d_recursive_del(d, key):
+        '''
+        Recursively deletes a given key from a dict and all nested values.
+        Also handles dictionaries nested within lists.
+
+        Usage:
+        ------
+        Parses the suburb summary json payload and remove the "__typename"
+        key from all nested dicts for easier downstream processing.
+        '''
+        if type(d) is list:
+            return [d_recursive_del(element, key) for element in d]
+        elif type(d) is dict:
+            return {k: d_recursive_del(v, key) for k, v in d.items() if k != key}
+        else:
+            return d
+
+    payload = json.loads(payload \
+        .replace('window.ArgonautExchange=', '') \
+        .replace('\\', '') \
+        .replace(';', '') \
+        .replace('"{', '{') \
+        .replace('}}"}}', '}}}}'))
+    
+    payload = payload["resi-property_market-explorer"] \
+                     ["suburb_data"] \
+                     ["marketProfileBySlug"] \
+                     ["insights"]
+
+    return d_recursive_del(payload, '__typename')
+
+
+def scrape_suburb_data(url):
+    '''
+    Simple wrapper to combine multiple functions
+    '''
+    driver = get_suburb_driver(url)
+    payload = pull_payload(driver)
+    d = munge_payload(payload)
+
+    return d
+
 
 def flatten_json(d, keys=[], flattened_output=[]):
     '''
@@ -289,13 +283,15 @@ def get_snapshots_from_dict(payload, suburb, write=True):
         raise ValueError('Not all bedroom types have been mapped.')
 
     if write:
-        write_trends_to_db(output.sort_values(cols), table='current_snapshot')
+        sqlite_utils.write_trends_to_db(output.sort_values(cols), table='current_snapshot')
 
     return output
 
 
 def get_trends_from_dict(payload, suburb, write=True):
     '''
+    Pulls trend data from cleaned json payload and writes to db.
+
     NOTE: writes incrementally to db rather than returning all data
     '''
     for ownership_type, dwelling_type in sectors():
@@ -318,7 +314,7 @@ def get_trends_from_dict(payload, suburb, write=True):
             df_prices['last_queried'] = datetime.today().date()
             
             if write:
-                write_trends_to_db(df_prices, table='prices_volumes')
+                sqlite_utils.write_trends_to_db(df_prices, table='prices_volumes')
     
     return df_prices
 
@@ -344,7 +340,7 @@ def check_scraped(urls):
     idx = []
 
     # check db for every suburb written in today
-    con = get_db_connection("./data/historical_trends.db")
+    con = sqlite_utils.get_db_connection("./data/historical_trends.db")
 
     tables = ('prices_volumes', 'current_snapshot')
     for t in tables:
@@ -369,11 +365,10 @@ def check_scraped(urls):
 
 if __name__ == "__main__":
     urls = get_sydney_suburbs_urls()
-    try:
+    try:  # avoids initialising multiple driver instances
         driver
     except NameError:
         driver = uc.Chrome()
-    pass
 
     # %% --- scrape, write to db
     idx = check_scraped(urls)  # check where to start scraping

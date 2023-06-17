@@ -1,6 +1,4 @@
 # %%
-
-import os
 import pandas as pd
 import geopandas as gpd
 
@@ -23,7 +21,7 @@ def get_suburb_geom():
     # https://data.gov.au/dataset/ds-dga-91e70237-d9d1-4719-a82f-e71b811154c6/details
     df_geom = gpd.read_file("./data/GDA2020/nsw_localities.shp")
 
-    postcodes = pd.read_csv('postcodes-suburbs-regions.csv')
+    postcodes = pd.read_csv('./data/postcodes-suburbs-regions.csv')
 
     # len(set(postcodes['Suburb']) - set(df_geom['LOC_NAME']))
 

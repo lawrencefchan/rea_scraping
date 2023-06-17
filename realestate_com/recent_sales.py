@@ -18,19 +18,12 @@ import pandas as pd
 from datetime import datetime
 
 from bs4 import BeautifulSoup
-
 import undetected_chromedriver as uc  # anti-bot selenium patch
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 
-from utils.selenium_utils import (
-    fluent_wait,
-    find_sibling_by_text
-)
-from utils.sqlite_utils import (
-    write_recent_sales_to_db,
-    read_recent_sales
-)
+from utils import selenium_utils
+from utils import sqlite_utils
 
 
 def get_property_val(driver, text):
@@ -38,7 +31,7 @@ def get_property_val(driver, text):
     Extracts the value of a property by searching for that string.
     '''
     element_tag = 'p'
-    element = find_sibling_by_text(driver, text, element_tag, element_tag)
+    element = selenium_utils.find_sibling_by_text(driver, text, element_tag, element_tag)
     val = int(element.text.replace(',', ''))  # handle thousands comma
 
     return val
@@ -67,14 +60,14 @@ def get_state_profile(driver):
 
     # get clearance rate
     try:  # NA when no houses are auctioned (fluent_wait will timeout)
-        cr = fluent_wait(driver, mark=(By.XPATH, "//p[@data-testid='number-pie']")).text
+        cr = selenium_utils.fluent_wait(driver, mark=(By.XPATH, "//p[@data-testid='number-pie']")).text
         cr = round(int(cr.replace('%', '')) * 0.01, 2)  # round floating point error
         profile['clearance rate'] = cr
     except TimeoutException:
         profile['clearance rate'] = None
 
     # get date last updated
-    t = fluent_wait(driver, mark=(By.XPATH, "//p[@data-testid='clearance-rate-updated']")).text
+    t = selenium_utils.fluent_wait(driver, mark=(By.XPATH, "//p[@data-testid='clearance-rate-updated']")).text
     t = t.replace('Updated ', '')[:-5]  # [-5] drops timezone info
 
     t = datetime.strptime(t, "%a %d %b %H:%M %p") \
@@ -141,24 +134,22 @@ def scrape_suburb_sales():
 
 if __name__ == "__main__":
     driver = uc.Chrome()
-    driver.minimize_window()
 
     d = profile_all_states(driver)
     df = munge_profile_output(d)
 
     # %% --- write
-    write_recent_sales_to_db(df, check_last_updated=True)
+    sqlite_utils.write_recent_sales_to_db(df, check_last_updated=True)
 
     # %% --- debugging
     url = 'https://www.realestate.com.au/auction-results/nsw'
     driver.get(url)
 
     get_state_profile(driver)
-
     get_property_val(driver, 'Sold at auction')
 
     # %% --- check last appended
-    d = read_recent_sales()
+    d = sqlite_utils.read_recent_sales()
     d[d['updated'] == d['updated'].max()]
 
     # %% Close the driver
