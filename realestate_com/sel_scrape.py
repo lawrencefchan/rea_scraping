@@ -1,51 +1,6 @@
 '''
-Scrapes historical trends from https://www.realestate.com.au/nsw/ultimo-2007/
-
-NOTE: realestate payload keys:
->>> payload
-    ["resi-property_market-explorer"]
-        ["suburb_data"]
-            ["marketProfileBySlug"]
-                ["insights"].keys()
-
-<measure>: <description>
-    {example payload}
-----------------------------------
-'medianPrice': yearly: latest summary data (median over past 12mths)
-               trends: chart data (median price and volume over past 12 mths)
-    {'yearly': ['display', 'volume']  # NOTE: redundant: equals last trend element
-     'trends': ['value', 'volume'] }  # list of dicts
-
-'transactionVolume': number sold in the past 12 months
-    "buy": {
-      "house": {
-        "allBed": {
-          "yearly": {
-            "value": 10
-
-'daysOnSite': median time on market
-    "buy": {
-      "house": {
-        "allBed": {
-          "yearly": {
-            "value": 47
-
-'rentalYield': rental yield (only applies to "Buy" toggle)
-    "house": {
-      "allBed": {
-        "yearly": {
-          "display": "2.7%"
-
-
-'supplyDemand': supply: properties available in the past month
-                demand: interested buyers in the past 12 months
-                # NOTE: 2 value keys
-    "buy": {
-      "house": {
-        "allBed": {
-          "monthly": {
-            "supply": 5,
-            "demand": 688
+Scrapes historical trends and snapshots from all suburbs in NSW using
+https://www.realestate.com.au/nsw/<suburb>/
 
 '''
 
@@ -142,6 +97,51 @@ def pull_payload(driver):
 def munge_payload(payload):
     '''
     Pre-processes json payload into dict
+    
+    Realestate payload keys:
+    >>> payload
+        ["resi-property_market-explorer"]
+            ["suburb_data"]
+                ["marketProfileBySlug"]
+                    ["insights"].keys()
+
+    <measure>: <description>
+        {example payload}
+    ----------------------------------
+    'medianPrice': yearly: latest summary data (median over past 12mths)
+                trends: chart data (median price and volume over past 12 mths)
+        {'yearly': ['display', 'volume']  # NOTE: redundant: equals last trend element
+        'trends': ['value', 'volume'] }  # list of dicts
+
+    'transactionVolume': number sold in the past 12 months
+        "buy": {
+        "house": {
+            "allBed": {
+            "yearly": {
+                "value": 10
+
+    'daysOnSite': median time on market
+        "buy": {
+        "house": {
+            "allBed": {
+            "yearly": {
+                "value": 47
+
+    'rentalYield': rental yield (only applies to "Buy" toggle)
+        "house": {
+        "allBed": {
+            "yearly": {
+            "display": "2.7%"
+
+    'supplyDemand': supply: properties available in the past month
+                    demand: interested buyers in the past 12 months
+                    # NOTE: 2 value keys
+        "buy": {
+        "house": {
+            "allBed": {
+            "monthly": {
+                "supply": 5,
+                "demand": 688
     '''
 
     def d_recursive_del(d, key):

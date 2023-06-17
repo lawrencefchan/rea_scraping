@@ -39,6 +39,8 @@ def plot_recent_sales(df):
     ax.set_title(plot_var)
     # ax.grid()
 
+    plt.show()
+
 
 def plotly_geoplot(df, plot_col):
     '''

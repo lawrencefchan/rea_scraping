@@ -3,7 +3,7 @@ import pandas as pd
 import geopandas as gpd
 
 
-def get_suburb_geom():
+def get_suburb_geom() -> gpd.geodataframe.GeoDataFrame:
     '''
     Get df of suburb names and their respective boundaries
     

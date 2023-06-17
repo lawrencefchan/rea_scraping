@@ -15,8 +15,9 @@ from selenium.webdriver.common.by import By
 
 def fluent_wait(driver, mark, condition='click'):
     '''
-    condition: 
+    driver: webdriver
     mark: same args as find_element, e.g. (By.XPATH, ".//p[@data='clearance-']")
+    condition: condition to wait for
     '''
     if condition == 'click':
         cond = EC.element_to_be_clickable

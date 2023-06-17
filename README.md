@@ -2,7 +2,7 @@
 This package contains scripts used to scrape realestate data from:
 - realestate.com.au
 - Allhomes
-- domain.com (to be implemented)
+- Domain (to be implemented)
 
 ## realestate_com
 ### scrape_historical_prices
@@ -28,12 +28,6 @@ Data is saved to `./data/recent_sales.db`.
 
 ### saved_properties
 Todo
-
-
-### Achive/old scripts
-Uses selenium (download chrome driver 90.0.4430.24 [here](https://chromedriver.storage.googleapis.com/index.html?path=90.0.4430.24/)).
-
-Note: internet connection is required to render mapbox map (house.html and unit.html).
 
 ## Allhomes
 
@@ -78,3 +72,34 @@ NSW regions maps: https://www.training.nsw.gov.au/about_us/sts_contacts.html
 Sydney postcode regions: https://docs.google.com/spreadsheets/d/1tHCxouhyM4edDvF60VG7nzs5QxID3ADwr3DGJh71qFg
 
 Postcode mapping method: https://greenash.net.au/thoughts/2014/07/australian-lga-to-postcode-mappings-with-postgis-and-intersects/
+
+
+## Achive/old scripts/old notes
+Uses selenium (download chrome driver 90.0.4430.24 [here](https://chromedriver.storage.googleapis.com/index.html?path=90.0.4430.24/)).  
+Note: internet connection is required to render mapbox map (house.html and unit.html).
+
+__TODOs__
+
+EDA - points of interest
+* check correlation between house and unit price changes
+* areas of highest growth (range of years)
+* areas of lowest growth (range of years)
+* areas of highest yield 
+* measures of variance: z-score, r^2 against linear fit
+* discard series with low count values and lots mising data 
+
+Hypotheses:
+* low variance implies stable pricing, possibly low growth
+* house and unit prices should be complementary (both in terms of variance and growth). 
+    Deviation from this implies data skewed by outliers (e.g. enormous, 1-off land purchases)
+
+Other:
+* geographic plotting
+    * https://github.com/KerryHalupka/plotly_choropleth
+    * https://www.earthdatascience.org/courses/scientists-guide-to-plotting-data-in-python/plot-spatial-data/customize-raster-plots/interactive-maps/
+
+* scatter plot - last month % delta vs last year % delta
+
+Sources:
+* LGA dataset for test_plot.py:
+https://data.aurin.org.au/dataset/au-govt-abs-census-lga-g43b-labour-force-status-by-age-by-sex-census-2016-lga2016/resource/48cc24f4-c710-4e23-a260-06a5fd573551
