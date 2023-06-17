@@ -21,7 +21,7 @@ def get_suburb_geom():
 
     # NSW Localities SHP GDA20(ZIP):
     # https://data.gov.au/dataset/ds-dga-91e70237-d9d1-4719-a82f-e71b811154c6/details
-    df_geom = gpd.read_file("./test_data/GDA2020/nsw_localities.shp")
+    df_geom = gpd.read_file("./data/GDA2020/nsw_localities.shp")
 
     postcodes = pd.read_csv('postcodes-suburbs-regions.csv')
 

@@ -97,8 +97,8 @@ def query_test():
 
     con.close()
 
-df = load_data()
-df0 = filter_dataset(df)
+# df = load_data()
+# df0 = filter_dataset(df)
 
 
 def get_suburb_url(suburb):
@@ -119,7 +119,7 @@ def get_suburb_url(suburb):
     return url
 
 
-get_suburb_url('north epping')
+# get_suburb_url('north epping')
 
 # df.loc[:, 'allawah']
 # df.head()
@@ -160,36 +160,36 @@ def detect_outliers(df):
 
     return nparray.std(ddof=1), np.mean(nparray)
 
-detect_outliers(df)
+# detect_outliers(df)
 
 # %%
-fig, axes = plt.subplots(ncols=2)
+# fig, axes = plt.subplots(ncols=2)
 
-parra = df['parramatta']
+# parra = df['parramatta']
 
-parra.columns = pd.MultiIndex.from_product(
-    [['house', 'unit'], ['count', 'price']],
-    names=['dwelling', 'meas'])
+# parra.columns = pd.MultiIndex.from_product(
+#     [['house', 'unit'], ['count', 'price']],
+#     names=['dwelling', 'meas'])
 
 
-sm = plt.cm.ScalarMappable(cmap='viridis', 
-                           norm=plt.Normalize(vmin=parra.index.min().year,
-                                              vmax=parra.index.max().year))
-ax = parra['house'].plot.scatter('count', 'price', c=parra.index, cmap='viridis')
-cbar = plt.colorbar(sm)
+# sm = plt.cm.ScalarMappable(cmap='viridis', 
+#                            norm=plt.Normalize(vmin=parra.index.min().year,
+#                                               vmax=parra.index.max().year))
+# ax = parra['house'].plot.scatter('count', 'price', c=parra.index, cmap='viridis')
+# cbar = plt.colorbar(sm)
 
-parra['unit'].plot.scatter('count', 'price', c=parra.index, cmap='viridis')
+# parra['unit'].plot.scatter('count', 'price', c=parra.index, cmap='viridis')
 
-plt.show()
+# plt.show()
 
 # %%
-ax = df0.loc[:, pd.IndexSlice[:, 'unit_price']].plot(legend=False)
+# ax = df0.loc[:, pd.IndexSlice[:, 'unit_price']].plot(legend=False)
 # ax.get_xaxis().set_ticks([])
 
 
 # %% growth to date
 
-df.loc[:, pd.IndexSlice[:, 'house_price']].plot(legend=False)
+# df.loc[:, pd.IndexSlice[:, 'house_price']].plot(legend=False)
 
 # df0 = df['house_price'].std(axis=0).sort_values()[-10:-1]
 # df0.plot.bar(legend=False)
@@ -233,7 +233,7 @@ def plot_historical_growth():
 
 
 
-plot_historical_growth()
+# plot_historical_growth()
 
 
 
