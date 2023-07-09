@@ -10,6 +10,9 @@ Scrapes realestate.com.au for Recent Sales results, i.e. properties:
 Note: 
 * undetected_chromedriver requires Chrome to be updated to the latest version
 
+
+Run with `python -m realestate_com.recent_sales`
+
 '''
 
 # %%
@@ -24,6 +27,7 @@ from selenium.common.exceptions import TimeoutException
 
 from utils import selenium_utils
 from utils import sqlite_utils
+from utils import plot_utils
 
 
 def get_property_val(driver, text):
@@ -141,16 +145,22 @@ if __name__ == "__main__":
     # %% --- write
     sqlite_utils.write_recent_sales_to_db(df, check_last_updated=True)
 
-    # %% --- debugging
-    url = 'https://www.realestate.com.au/auction-results/nsw'
-    driver.get(url)
+    # # %% --- debugging
+    # url = 'https://www.realestate.com.au/auction-results/nsw'
+    # driver.get(url)
 
-    get_state_profile(driver)
-    get_property_val(driver, 'Sold at auction')
+    # get_state_profile(driver)
+    # get_property_val(driver, 'Sold at auction')
 
-    # %% --- check last appended
-    d = sqlite_utils.read_recent_sales()
-    d[d['updated'] == d['updated'].max()]
+    # # %% --- check last appended
+    # d = sqlite_utils.read_recent_sales()
+    # d[d['updated'] == d['updated'].max()]
+
+    # %% Plot
+
+    plot_df = sqlite_utils.read_recent_sales()
+    plot_utils.plot_recent_sales(plot_df)
+
 
     # %% Close the driver
     driver.quit()

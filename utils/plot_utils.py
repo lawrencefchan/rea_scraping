@@ -1,19 +1,24 @@
+'''
+Run with `python -m utils.plot_utils`
+'''
+
 # %%
-from utils.general_utils import get_suburb_geom
+from utils  import general_utils
+from utils import sqlite_utils
 
 import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
 
 
-def plot_recent_sales(df):
+def plot_recent_sales(df, plot_var='private_sales'):
     '''
     df: data from recent_sales.db
     '''
 
     df['updated'] = pd.to_datetime(df['updated'])
 
-    plot_var = 'clearance_rate'
+    # plot_var = 'clearance_rate'
     # plot_var = 'private_sales'
 
     d = df.pivot_table(
@@ -87,14 +92,15 @@ def gpd_geoplot(df):
 
 
 if __name__ == "__main__":
-    from utils.sqlite_utils import read_recent_sales
 
-    plot_df = read_recent_sales()
-    plot_recent_sales(plot_df)
+    plot_df = sqlite_utils.read_recent_sales()
+    plot_recent_sales(plot_df, plot_var='withdrawn')
 
-    # %% spatial plot
-    import numpy as np
-    suburb_geom = get_suburb_geom()
-    suburb_geom['data'] = np.random.randint(1, 100, len(suburb_geom))
+    # display(plot_df.head())
 
-    gpd_geoplot(suburb_geom)
+    # # %% spatial plot (working but long compute)
+    # import numpy as np
+    # suburb_geom = general_utils.get_suburb_geom()
+    # suburb_geom['data'] = np.random.randint(1, 100, len(suburb_geom))
+
+    # gpd_geoplot(suburb_geom)
