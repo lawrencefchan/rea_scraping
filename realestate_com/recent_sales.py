@@ -84,7 +84,7 @@ def get_state_profile(driver):
 
 def profile_all_states(driver):
     home = 'https://www.realestate.com.au/auction-results/'
-    states = ['nsw', 'qld', 'sa', 'wa', 'nt', 'act', 'tas']
+    states = ['nsw', 'vic', 'qld', 'sa', 'wa', 'nt', 'act', 'tas']
 
     output = {}
 
@@ -159,7 +159,7 @@ if __name__ == "__main__":
     # %% Plot
 
     plot_df = sqlite_utils.read_recent_sales()
-    plot_utils.plot_recent_sales(plot_df)
+    plot_utils.plot_recent_sales(plot_df, 'clearance_rate')
 
 
     # %% Close the driver
