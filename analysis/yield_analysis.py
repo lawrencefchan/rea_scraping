@@ -77,17 +77,30 @@ def plot_historical_yield(df=None):
 
 plot_historical_yield(df)
 
-# %% correlation plot
+# %% correlation/pair plot: growth vs yield vs suburb median
 
-d = df.pivot_table(index=['suburb', 'dwelling_type', 'n_beds', 'yr_ended'],
+d = df[(df['n_beds'] == 0)].pivot_table(index=['suburb', 'dwelling_type', 'n_beds', 'yr_ended'],
             columns='ownership_type',
             values='median')
 d['yield'] = d['rent'] * 50 / d['buy']
-# d['yield_mv_avg'] = d['yield'].rolling(window=12).mean()
+d['mom_growth'] = (d['buy'] - d['buy'].shift())/d['buy']  # month on month
+d = d.drop(['rent'], axis=1)
+d.columns.name = 'measure'
+d = d.groupby(level=['suburb', 'dwelling_type', 'n_beds']).mean()
 
-historical_means = d.groupby(level='suburb')['buy'].mean()
+d['yoy_growth'] = d['mom_growth'] * 12
+d = d.reset_index().drop(['n_beds', 'yoy_growth'], axis=1) \
+     .rename(columns={'buy': 'median'})
+d
 
-d[(d['measure'] == 'yield') &
-(d['dwelling_type'] == 'house')] \
-    .sort_values(['order', 'n_beds', 'yr_ended'], ascending=False),
+# %%
+import seaborn as sns
+pd.set_option('display.float_format', lambda x: '%.3f' % x)
 
+sns.pairplot(
+    d, hue='dwelling_type',
+    plot_kws={'alpha': 0.4}
+    )
+
+
+# TODO: add correlations over time
